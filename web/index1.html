@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpine - AI 医疗影像分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/eel.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 80%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 80%, transparent);
+        }
+
+        .hero-spine-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 120vh;
+            min-width: 1000px;
+            background-image: url('a656e04b461eeb84da85986309c29f53.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.20;
+            mix-blend-mode: screen;
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .center-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(94,106,210,0.15) 0%, rgba(0,0,0,0) 60%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#5E6AD2]/30 selection:text-white">
+
+    <div class="fixed inset-0 bg-grid z-[-4] pointer-events-none opacity-50"></div>
+    <canvas id="radiating-particles" class="fixed inset-0 z-[-1] pointer-events-none"></canvas>
+
+    <nav class="relative z-50 w-full max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div class="flex items-center gap-2 cursor-pointer group">
+            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-[#8896F9] to-[#5E6AD2] flex items-center justify-center text-white font-bold text-xs shadow-[0_0_15px_rgba(94,106,210,0.5)] group-hover:shadow-[0_0_20px_rgba(94,106,210,0.8)] transition-all">M</div>
+            <span class="text-white font-semibold text-sm tracking-wide">MindSpineAI</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#features" class="text-xs text-[#8A8F98] hover:text-white transition-colors font-medium">核心功能</a>
+            <a href="#solutions" class="text-xs text-[#8A8F98] hover:text-white transition-colors font-medium">解决方案</a>
+            <a href="#api" class="text-xs text-[#8A8F98] hover:text-white transition-colors font-medium">API 接口</a>
+            <a href="#pricing" class="text-xs text-[#8A8F98] hover:text-white transition-colors font-medium">定价方案</a>
+        </div>
+        <div class="flex items-center gap-6">
+            <a href="#" class="text-xs text-[#8A8F98] hover:text-white transition-colors font-medium hidden sm:block">登录</a>
+            <a href="workspace1.html" class="bg-[#5E6AD2] hover:bg-[#6B79E4] text-white text-xs font-semibold px-4 py-2 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(94,106,210,0.4)] hover:shadow-[0_0_20px_rgba(94,106,210,0.6)]">进入工作台</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-10 pb-20">
+        <div class="hero-spine-bg"></div>
+        <div class="center-glow"></div>
+
+        <div class="absolute right-[5%] top-[20%] hidden lg:flex flex-col items-start p-6 bg-[#050505]/60 border border-white/10 rounded-2xl backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-20 transition-transform hover:-translate-y-1">
+            <span class="text-[9px] font-semibold text-[#8A8F98] tracking-[0.2em] uppercase mb-2">系统测算精准度</span>
+            <div class="relative inline-block pb-2">
+                <span class="text-[2.5rem] font-bold text-white tracking-tight leading-none">99.8%</span>
+                <div class="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#5E6AD2] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 w-1/2 h-[3px] bg-[#5E6AD2] blur-[2px]"></div>
+            </div>
+        </div>
+
+        <div class="relative z-20 flex flex-col items-center text-center px-4 max-w-4xl mx-auto">
+
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#5E6AD2]/10 border border-[#5E6AD2]/20 mb-8 backdrop-blur-md">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#6B79E4] shadow-[0_0_8px_#6B79E4] animate-pulse"></span>
+                <span class="text-[11px] font-medium text-[#8896F9] tracking-wide">v2.4 Pro 引擎现已上线</span>
+            </div>
+
+            <h1 class="text-5xl md:text-[5.5rem] font-bold tracking-tight leading-[1.2] text-white mb-8">
+                智能影像解析，<br>
+                洞悉每一节<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#6B79E4] to-[#A393FF]">脊椎结构。</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-[#8A8F98] max-w-2xl font-light leading-relaxed mb-10">
+                利用 AI 驱动的计算机视觉赋能临床诊断。为医疗专业人员提供实时的解剖结构分割、滑脱病理检测与自动化报告生成。
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <a href="workspace1.html" class="inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-200 transition-all duration-300">
+                    开始分析
+                    <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <a href="#demo" class="inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-white bg-transparent border border-white/20 rounded-full hover:bg-white/[0.05] backdrop-blur-sm transition-all duration-300">
+                    观看演示
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-24 flex items-center justify-center gap-8 opacity-70 flex-wrap z-20">
+            <span class="text-[10px] font-semibold tracking-[0.2em] text-[#8A8F98] uppercase">顶尖医疗机构的信赖之选</span>
+            <span class="text-sm font-bold tracking-widest text-[#B4B9C4]">BIO-TECH</span>
+            <span class="text-sm font-bold tracking-widest text-[#B4B9C4]">MEDICORE</span>
+            <span class="text-sm font-bold tracking-widest text-[#B4B9C4]">SPINE-X</span>
+        </div>
+    </main>
+
+    <section id="features" class="py-32 relative z-10 bg-[#000000]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">临床级辅助诊断工具。</h2>
+                <p class="text-[#8A8F98] text-sm md:text-base">MindSpine 提供从 DICOM 影像导入到手术规划的端到端智能工作流。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-[#050505] border border-white/5 rounded-2xl p-8 hover:bg-[#0A0A0A] hover:border-white/10 transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-[#5E6AD2]/10 border border-[#5E6AD2]/20 flex items-center justify-center text-[#6B79E4] mb-6 group-hover:scale-110 group-hover:bg-[#5E6AD2]/20 transition-all">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3 tracking-tight">原生 DICOM 支持</h3>
+                    <p class="text-[#8A8F98] text-sm leading-relaxed">无缝支持医学影像文件，自动解析窗宽窗位并完整保留元数据，处理过程零画质损耗。</p>
+                </div>
+                <div class="bg-[#050505] border border-white/5 rounded-2xl p-8 hover:bg-[#0A0A0A] hover:border-white/10 transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-[#5E6AD2]/10 border border-[#5E6AD2]/20 flex items-center justify-center text-[#6B79E4] mb-6 group-hover:scale-110 group-hover:bg-[#5E6AD2]/20 transition-all">
+                        <i class="fa-solid fa-arrows-up-down"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3 tracking-tight">自动化指标测算</h3>
+                    <p class="text-[#8A8F98] text-sm leading-relaxed">以亚毫米级精度自动计算腰椎前凸角 (LL)、骶骨倾斜角 (SS) 以及节段滑脱位移距离。</p>
+                </div>
+                <div class="bg-[#050505] border border-white/5 rounded-2xl p-8 hover:bg-[#0A0A0A] hover:border-white/10 transition-all duration-300 group hover:-translate-y-1 hover:shadow-2xl">
+                    <div class="w-10 h-10 rounded-xl bg-[#5E6AD2]/10 border border-[#5E6AD2]/20 flex items-center justify-center text-[#6B79E4] mb-6 group-hover:scale-110 group-hover:bg-[#5E6AD2]/20 transition-all">
+                        <i class="fa-regular fa-file-pdf"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-3 tracking-tight">一键 PDF 报告</h3>
+                    <p class="text-[#8A8F98] text-sm leading-relaxed">瞬间生成包含高分辨率带有骨骼标识线与测算数据的专业级医学影像诊断报告。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-8 relative z-10 bg-[#000000]">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-md bg-gradient-to-br from-[#8896F9] to-[#5E6AD2] flex items-center justify-center text-white font-bold text-[9px]">M</div>
+                <span class="text-xs text-[#8A8F98] font-semibold tracking-wide">MindSpine AI © 2026. 保留所有权利。</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#" class="text-xs text-[#8A8F98] hover:text-white transition-colors">隐私政策</a>
+                <a href="#" class="text-xs text-[#8A8F98] hover:text-white transition-colors">服务条款</a>
+                <a href="#" class="text-xs text-[#8A8F98] hover:text-white transition-colors">联系技术支持</a>
+                <a href="#" class="text-[#8A8F98] hover:text-white transition-colors"><i class="fa-brands fa-twitter text-sm"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('radiating-particles');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const particles = [];
+        const particleCount = 180;
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.life = Math.random() * this.maxLife;
+                this.x += Math.cos(this.angle) * this.speed * this.life;
+                this.y += Math.sin(this.angle) * this.speed * this.life;
+            }
+
+            reset() {
+                const spineWidth = 150;
+                const spineHeight = canvas.height * 0.75;
+
+                this.x = (canvas.width / 2) + (Math.random() - 0.5) * spineWidth;
+                this.y = (canvas.height / 2) + (Math.random() - 0.5) * spineHeight;
+
+                const dx = this.x - canvas.width / 2;
+                const dy = this.y - canvas.height / 2;
+
+                this.angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 1.5;
+                this.speed = Math.random() * 0.2 + 0.05;
+                this.radius = Math.random() * 1.2 + 0.4;
+                this.life = 0;
+                this.maxLife = Math.random() * 300 + 200;
+            }
+
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.speed *= 1.002;
+                this.life++;
+
+                if (this.life >= this.maxLife ||
+                    this.x < 0 || this.x > canvas.width ||
+                    this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                let alpha = 0;
+                const lifeRatio = this.life / this.maxLife;
+
+                if (lifeRatio < 0.05) {
+                    alpha = lifeRatio / 0.05;
+                } else {
+                    alpha = 1 - ((lifeRatio - 0.05) / 0.95);
+                }
+
+                ctx.fillStyle = `rgba(230, 240, 255, ${alpha * 0.6})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for(let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+/* web/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "tnum" on, "cv02" on, "cv03" on, "cv04" on;
+    margin: 0;
+    background: #000000 !important;
+    color: #ffffff;
+}
+
+body {
+    background: #000000 !important;
+}
+
+/* --- 极细微噪点图层 --- */
+.noise-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+}
+
+/* --- 动态环境光发光 --- */
+.ambient-light-1, .ambient-light-2 {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    pointer-events: none;
+    animation: drift 20s infinite alternate ease-in-out;
+}
+.ambient-light-1 { top: -10%; left: -10%; width: 40vw; height: 40vw; background: rgba(94, 106, 210, 0.12); }
+.ambient-light-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: rgba(138, 143, 152, 0.08); }
+
+@keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(8%, 8%); }
+}
+
+/* --- 锋利质感的毛玻璃与极细描边 --- */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.015);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.sharp-border {
+    border-radius: 0.75rem; /* xl */
+    position: relative;
+}
+.sharp-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.05) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- 动态流光交互按钮 --- */
+.btn-glow {
+    position: relative;
+    overflow: hidden;
+}
+.btn-glow::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.btn-glow:hover::after { left: 200%; }
+.primary-glow::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); }
+
+/* --- 文字外发光与数据卡片微动效 --- */
+.text-glow { text-shadow: 0 0 12px currentColor; }
+.metric-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.metric-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.03);
+}
+
+/* --- 流畅克制的粒子微动效 --- */
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.15;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: particle-drift 15s infinite linear;
+    pointer-events: none;
+}
+@keyframes particle-drift {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.25; }
+    80% { opacity: 0.25; }
+    100% { transform: translateY(-80px) translateX(20px); opacity: 0; }
+}
+.p-delay-0 { animation-delay: 0s; animation-duration: 18s; }
+.p-delay-1 { animation-delay: -4s; animation-duration: 22s; }
+.p-delay-2 { animation-delay: -7s; animation-duration: 25s; }
+.p-delay-3 { animation-delay: -11s; animation-duration: 20s; }
+
+/* 极细滚动条 & Range Slider 维持原样 */
+.custom-scrollbar::-webkit-scrollbar { width: 3px; height: 3px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 99px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+input[type=range] { -webkit-appearance: none; background: transparent; width: 100%; margin: 6px 0; }
+input[type=range]:focus { outline: 2px solid rgba(136, 150, 249, 0.9); outline-offset: 3px; }
+input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 2px; cursor: pointer; background: rgba(255, 255, 255, 0.1); border-radius: 1px; }
+input[type=range]::-webkit-slider-thumb { height: 12px; width: 12px; border-radius: 50%; background: #F4F5F8; border: 1px solid rgba(0, 0, 0, 0.2); box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); cursor: pointer; -webkit-appearance: none; margin-top: -5px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 0 4px rgba(255, 255, 255, 0.05); }
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid #8896f9;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

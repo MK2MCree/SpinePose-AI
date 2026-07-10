@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "path": "best.pt",
+      "task": "xray-keypoints",
+      "sha256": "48d9542e2e9ae2ab0e7f6d28911f9c857121275452d7a759e78675fb8c64cd9d"
+    },
+    {
+      "path": "bbox_best.pt",
+      "task": "rgb-roi",
+      "sha256": "cb14f0500ab362f4806f0c399b40dd4d5f449407bd1c664e68c6376597fa4f93"
+    },
+    {
+      "path": "xray_cls.pt",
+      "task": "xray-orientation",
+      "sha256": "7c72e9067ecfb5814523387a121f66d7168c9f2daa0d3c6293c7246694d470b9"
+    },
+    {
+      "path": "rgb_cls.pt",
+      "task": "rgb-orientation",
+      "sha256": "6ce69770fb90715f98d332dcff16fe2a532895a4503ae057c528621a35966478"
+    },
+    {
+      "path": "pseudoct/best_transfer_v2_generator.pth",
+      "task": "pseudoct-transfer",
+      "sha256": "d80804a7a8633e7218bcd8b041f058f05813d89273505568d1512efe4de0a00f"
+    },
+    {
+      "path": "pseudoct/best_source_generator_joint.pth",
+      "task": "pseudoct-source-direct",
+      "sha256": "bb864eac7f25a605c21f942ffe51a2796e7c2a431ac97288bd4969d2c45b35ff"
+    }
+  ]
+}
+

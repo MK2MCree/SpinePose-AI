@@ -1,0 +1,44 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+app_settings.json
+.github-deploy-key*
+
+# Runtime data
+temp_uploads/
+*.log
+__pycache__/
+*.py[cod]
+generated/
+generated_results/
+
+# Private / generated competition material
+doc_extracts/
+doc_extracts_current/
+doc_extracts_filled/
+optimized_docs/
+tools/
+.agents/
+
+# Model binaries are distributed separately (GitHub has a 100 MB file limit)
+*.pt
+*.pth
+*.onnx
+*.engine
+!weights/manifest.json
+
+# Tooling
+.idea/
+.pytest_cache/
+.ruff_cache/
+
+# Sites / Node
+site/node_modules/
+site/.vinext/
+site/.next/
+site/dist/
+site/.wrangler/
+site/outputs/
+site/tsconfig.tsbuildinfo
+site/.openai/hosting.json

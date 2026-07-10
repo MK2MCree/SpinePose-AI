@@ -1,0 +1,10 @@
+[project]
+name = "spineinsight"
+version = "2.0.0"
+description = "SpineInsight browser API and medical image inference runtime"
+requires-python = ">=3.10,<3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+

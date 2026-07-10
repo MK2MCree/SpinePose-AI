@@ -1,0 +1,19 @@
+services:
+  spineinsight-api:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - spineinsight-data:/data
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+
+volumes:
+  spineinsight-data:
+
