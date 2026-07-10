@@ -8,6 +8,8 @@
 
 GitHub Pages 提供零成本的静态产品展示，包括官网、工作台界面和完整交互设计。由于 GitHub Pages 不能运行 Python、PyTorch 或持久化后端服务，在线展示版不会处理或上传医学影像。
 
+在线访问：[SpineInsight GitHub Pages](https://mk2mcree.github.io/SpinePose-AI/)
+
 完整功能可在本机或自行部署的服务器上运行：
 
 - DICOM 与常规 X 光图像导入、窗宽窗位和脊柱量化分析
