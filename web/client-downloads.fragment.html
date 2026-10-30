@@ -55,20 +55,23 @@
             <p class="client-downloads__note">审核通过后，将在这里提供华为应用市场下载入口。</p>
         </article>
 
-        <article class="client-downloads__platform" aria-labelledby="download-windows-title">
+        <article class="client-downloads__platform client-downloads__platform--available" aria-labelledby="download-windows-title">
             <div class="client-downloads__platform-top">
                 <span class="client-downloads__device" aria-hidden="true">
                     <svg viewBox="0 0 48 48" fill="none"><rect x="5" y="8" width="38" height="26" rx="4" stroke="currentColor" stroke-width="2.2"/><path d="M19 40h10m-5-6v6M11 14h10v6H11zm16 0h10v6H27zM11 24h10v4H11zm16 0h10v4H27z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </span>
-                <span class="client-downloads__status">准备中</span>
+                <span class="client-downloads__status client-downloads__status--ready">桌面体验版</span>
             </div>
             <h3 id="download-windows-title">Windows</h3>
             <p class="client-downloads__purpose">在更大的屏幕上，展开工作。</p>
-            <p class="client-downloads__meta"><span>桌面客户端</span><span>公开安装包准备中</span></p>
+            <p id="windows-download-meta" class="client-downloads__meta"><span>2026.07 构建</span><span>Windows 64 位</span><span>986 MB · ZIP</span></p>
             <div class="client-downloads__actions">
-                <button class="client-downloads__button" type="button" disabled>下载即将开放</button>
+                <a class="client-downloads__button client-downloads__button--primary" href="https://github.com/MK2MCree/SpinePose-AI/releases/download/windows-preview-20260713/SpineInsight-Windows-20260713.zip" aria-describedby="windows-download-meta">
+                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v9m-3.5-3.5L10 12l3.5-3.5M4 13v3h12v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    下载 Windows 版
+                </a>
             </div>
-            <p class="client-downloads__note">桌面版安装包完成发布后，将在这里开放下载。</p>
+            <p class="client-downloads__note">完整解压后运行 MindSpine.exe。桌面体验构建，与手机端功能不同。</p>
         </article>
     </div>
 
