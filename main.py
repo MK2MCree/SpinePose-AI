@@ -1,4 +1,5 @@
 import copy
+import io
 import json
 import logging
 import math
@@ -15,19 +16,42 @@ import threading
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, File, UploadFile, Form, Request
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse, FileResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 from pydantic import BaseModel
+from PIL import Image, UnidentifiedImageError
 
 from model import SpineModel
 from pseudoct_generator import PseudoCTGenerator
 from ai_report_service import DeepSeekReportService
 from mindspine.config import load_settings
+from mindspine.auth_sessions import AuthSessions
+from mindspine.gait import GaitService, GaitError
+from mindspine.gait_api import create_router as create_gait_router
+from mindspine.knowledge import KnowledgeIndex
+from mindspine.agent_runtime import ClinicalAgent
+from mindspine.agent_tools import AgentToolService, AgentToolError, create_router as create_agent_tools_router
+from mindspine.auth import (
+    ALLOWED_AVATAR_MIME_TYPES,
+    MAX_AVATAR_BYTES,
+    AccountValidationError,
+    UserProfile,
+    UserStore,
+)
+from mindspine.personal_cases import PersonalCaseStore, PersonalCaseValidationError
+from mindspine.spine_agent import (
+    SpineAgentPermissionError,
+    SpineAgentStore,
+    SpineAgentValidationError,
+    SpineHealthAgent,
+    THIRD_PARTY_REPRODUCTION_PLAN,
+)
+from mindspine.runtime import get_app_root, get_resource_root
 from mindspine.sessions import (
     CaseRegistry,
     ModelProxy,
@@ -36,21 +60,19 @@ from mindspine.sessions import (
     new_session_id,
 )
 
-
-def get_runtime_base_dir():
-    if getattr(sys, "frozen", False):
-        return os.path.dirname(sys.executable)
-    return os.path.dirname(os.path.abspath(__file__))
-
-
-APP_ROOT = get_runtime_base_dir()
-WEB_ROOT = os.path.join(APP_ROOT, "web")
+APP_ROOT = get_app_root()
+RESOURCE_ROOT = get_resource_root()
+WEB_ROOT = os.path.join(RESOURCE_ROOT, "web")
 SETTINGS = load_settings(APP_ROOT)
 TEMP_DIR = str(SETTINGS.data_dir)
 PSEUDOCT_INPUT_DIR = os.path.join(TEMP_DIR, "pseudoct_inputs")
 PSEUDOCT_OUTPUT_DIR = os.path.join(TEMP_DIR, "pseudoct_outputs")
 BATCH_JOB_ROOT = os.path.join(TEMP_DIR, "batch_jobs")
 SESSION_ROOT = os.path.join(TEMP_DIR, "sessions")
+USER_DATABASE_PATH = SETTINGS.data_dir / "mindspine_accounts.sqlite3"
+PERSONAL_CASE_DATABASE_PATH = SETTINGS.data_dir / "mindspine_personal_cases.sqlite3"
+SPINE_AGENT_DATABASE_PATH = SETTINGS.data_dir / "mindspine_spine_agent.sqlite3"
+AUTH_COOKIE_NAME = "mindspine_auth"
 
 os.makedirs(TEMP_DIR, exist_ok=True)
 os.makedirs(PSEUDOCT_INPUT_DIR, exist_ok=True)
@@ -77,7 +99,7 @@ if SETTINGS.allowed_origins:
         CORSMiddleware,
         allow_origins=list(SETTINGS.allowed_origins),
         allow_credentials=True,
-        allow_methods=["GET", "POST", "OPTIONS"],
+        allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allow_headers=["Accept", "Content-Type", "X-Request-ID"],
     )
 
@@ -93,15 +115,81 @@ case_registry = CaseRegistry(
 )
 model = ModelProxy(case_registry)
 session_codec = SessionTokenCodec(SETTINGS.session_secret)
+auth_codec = AuthSessions(SETTINGS.data_dir / 'mindspine_auth_sessions.sqlite3', SETTINGS.session_ttl_seconds)
+user_store = UserStore(USER_DATABASE_PATH)
+personal_case_store = PersonalCaseStore(PERSONAL_CASE_DATABASE_PATH)
 
 pseudoct_service = PseudoCTGenerator(
-    project_root=APP_ROOT,
+    project_root=RESOURCE_ROOT,
     output_root=PSEUDOCT_OUTPUT_DIR,
     bbox_detector=model_template.model_rgb,
     predict_device=model_template.run_device,
+    initial_mode="source_direct",
 )
 
-ai_report_service = DeepSeekReportService()
+ai_report_service = DeepSeekReportService(base_dir=RESOURCE_ROOT)
+spine_agent_store = SpineAgentStore(SPINE_AGENT_DATABASE_PATH)
+gait_service = GaitService(SETTINGS.data_dir / 'gait')
+knowledge_index = KnowledgeIndex(Path(RESOURCE_ROOT) / 'knowledge_sources' / 'clinical_v1_20260908')
+from mindspine.exam_history import ExamHistoryProvider
+exam_history_provider = ExamHistoryProvider(spine_agent_store, gait_service, personal_case_store)
+AGENT_EXECUTION_LOCK = threading.RLock()
+
+
+def structured_legacy_case_facts(user_id: str, _case_id: str) -> dict:
+    """Expose a narrow compatibility digest to the controlled Agent.
+
+    This deliberately excludes free-text notes, filenames, IDs, raw assets and
+    storage locations. It lets the Agent acknowledge existing DR/RGB/clinical
+    records without confusing a previous product measurement with a new worker
+    result or exporting private raw data to an external model.
+    """
+
+    spine_agent_store.get_case(user_id, _case_id)
+    legacy_case = personal_case_store.get_case(user_id, limit=24, case_id=_case_id,
+        include_unassigned=spine_agent_store.is_legacy_case(user_id, _case_id))
+    labels = {"dr": "既有 DR / X 光链路", "rgb": "既有体表 RGB 链路", "video": "视频素材", "clinical": "人工临床记录", "checkin": "状态打卡"}
+    metric_labels = {
+        "LL": "LL", "SS": "SS", "SSA": "SS/SA", "LCA": "LCA", "HARRISON_A": "LCA", "LCI": "LCI",
+        "cobb_angle": "Cobb", "atr_angle": "ATR", "pain_score": "疼痛评分", "activity_limit": "活动受限",
+    }
+    facts = []
+    modalities = []
+    for entry in legacy_case.get("entries", [])[:12]:
+        kind = str(entry.get("kind") or "")
+        if kind not in labels:
+            continue
+        payload = entry.get("payload") if isinstance(entry.get("payload"), dict) else {}
+        values = {}
+        angles = payload.get("angles") if isinstance(payload.get("angles"), dict) else {}
+        for key, label in metric_labels.items():
+            candidate = angles.get(key) if key in angles else payload.get(key)
+            try:
+                number = float(candidate)
+            except (TypeError, ValueError):
+                continue
+            if math.isfinite(number) and -10000 <= number <= 10000:
+                values[label] = round(number, 2)
+        facts.append({
+            "source": labels[kind],
+            "kind": kind,
+            "state": str(entry.get("status") or "unknown")[:32],
+            "recorded_at": str(entry.get("recorded_at") or "")[:16],
+            "measurements": values,
+        })
+        if labels[kind] not in modalities:
+            modalities.append(labels[kind])
+    return {"fact_count": len(facts), "modalities": modalities, "facts": facts}
+
+
+spine_health_agent = ClinicalAgent(
+    spine_agent_store,
+    knowledge_index,
+    gait_service,
+    report_service=ai_report_service,
+    history_provider=exam_history_provider,
+    facts_provider=structured_legacy_case_facts,
+)
 print(f"DeepSeek 报告增强状态: {ai_report_service.describe()['status']}")
 print(f"AI 引擎初始化状态: {status_msg}")
 print(f"X光图生成器状态: {pseudoct_service.status}")
@@ -117,10 +205,39 @@ SUPPORTED_XRAY_EXTENSIONS = SUPPORTED_IMAGE_EXTENSIONS | {".dcm"}
 SESSION_CLEANUP_LOCK = threading.Lock()
 LAST_SESSION_CLEANUP_AT = 0.0
 
+PUBLIC_API_PATHS = {
+    "/api/auth/register",
+    "/api/auth/login",
+    "/api/auth/logout",
+    "/api/auth/me",
+}
+
+
+def get_authenticated_user(request: Request) -> Optional[UserProfile]:
+    token = request.cookies.get(AUTH_COOKIE_NAME, "")
+    return user_store.get_user(auth_codec.decode(token))
+
+
+def auth_error_response() -> JSONResponse:
+    return JSONResponse(status_code=401, content={"code": 401, "message": "请先登录后再使用工作台"})
+
+
+def set_auth_cookie(response: Response, user: UserProfile) -> None:
+    response.set_cookie(
+        AUTH_COOKIE_NAME,
+        auth_codec.encode(user.user_id),
+        max_age=SETTINGS.session_ttl_seconds,
+        httponly=True,
+        secure=SETTINGS.session_cookie_secure,
+        samesite="lax",
+        path="/",
+    )
+
 
 @app.middleware("http")
 async def isolate_browser_session(request: Request, call_next):
     request_id = request.headers.get("x-request-id", "").strip()[:96] or uuid.uuid4().hex
+    path = request.url.path
     protected_path = request.url.path.startswith(("/api/", "/temp/", "/generated/"))
     if SETTINGS.production and SETTINGS.proxy_secret and protected_path:
         supplied = request.headers.get("x-mindspine-proxy-secret", "")
@@ -130,10 +247,30 @@ async def isolate_browser_session(request: Request, call_next):
                 content={"code": 401, "message": "请求未通过服务网关认证"},
                 headers={"X-Request-ID": request_id},
             )
+
+    if path == "/index1.html":
+        return RedirectResponse(url="/", status_code=308)
+
+    user = get_authenticated_user(request)
+    request.state.user = user
+    public_api = path in PUBLIC_API_PATHS or path.startswith("/api/auth/avatar/")
+    if path == "/workspace1.html" and user is not None:
+        return RedirectResponse(url="/workspace.html", status_code=308)
+
+    requires_login = path in {"/workspace.html", "/workspace1.html", "/personal-workspace.html", "/personal-case.html", "/health-home.html", "/health-agent.html"} or (
+        path == '/gait-workspace.html' or
+        (path.startswith("/api/") and not public_api)
+        or path.startswith(("/temp/", "/generated/"))
+    )
+    if requires_login and user is None:
+        if path in {"/workspace.html", "/workspace1.html", "/personal-workspace.html", "/personal-case.html", "/health-home.html", "/health-agent.html", '/gait-workspace.html'}:
+            return RedirectResponse(url="/login.html", status_code=303)
+        return auth_error_response()
+
     token = request.cookies.get(SETTINGS.session_cookie_name, "")
-    session_id = session_codec.decode(token)
-    created = session_id is None
-    if created:
+    session_id = user.user_id if user else session_codec.decode(token)
+    created = user is None and session_id is None
+    if session_id is None:
         session_id = new_session_id()
 
     with case_registry.activate_session(session_id):
@@ -154,6 +291,13 @@ async def isolate_browser_session(request: Request, call_next):
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    if path in {
+        "/personal-workspace.html", "/personal-case.html", "/health-home.html", "/health-agent.html",
+        "/personal-app.js", "/personal-case.js", "/health-home.js", "/health-agent.js", "/spine-demo.js",
+    }:
+        # These pages share the same local case view.  Do not let an embedded
+        # browser keep an older HTML/JS pair after a desktop-app restart.
+        response.headers["Cache-Control"] = "no-store, max-age=0"
     if SETTINGS.production:
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     maybe_cleanup_expired_sessions()
@@ -410,7 +554,7 @@ def has_valid_xray_detection(result) -> bool:
         return True
 
 
-def predict_xray_candidate(image_bgr, scale: float, conf: float):
+def predict_xray_candidate(image_bgr, scale: float, conf: float, measurement_overlay: bool = True):
     source = ensure_bgr_image(image_bgr)
     with MODEL_INFERENCE_LOCK:
         results = model.model_xray.predict(
@@ -423,6 +567,10 @@ def predict_xray_candidate(image_bgr, scale: float, conf: float):
 
     annotated = result.plot(boxes=False, labels=False)
     annotated, angles, slips = model.process_medical_image(result, annotated, scale)
+    if not measurement_overlay:
+        # Agent cards carry calibrated measurements separately. A bare keypoint
+        # overlay avoids printing legacy default-scale millimetres on JPEGs.
+        annotated = result.plot(boxes=False, labels=False)
     detected = has_valid_xray_detection(result)
 
     return {
@@ -717,7 +865,7 @@ def load_image_into_xray_state(file_path: str, default_scale: float = 1.5):
     }
 
 
-def run_current_xray_inference(scale: float):
+def run_current_xray_inference(scale: float, measurement_overlay: bool = True):
     if model.model_xray is None:
         raise RuntimeError("X 光模型未加载")
     if model.current_cv_img is None:
@@ -729,7 +877,7 @@ def run_current_xray_inference(scale: float):
 
     oriented_raw_source = cv2.flip(raw_source, 1) if was_flipped else raw_source.copy()
 
-    standard_result = predict_xray_candidate(routed_standard, scale, conf=0.35)
+    standard_result = predict_xray_candidate(routed_standard, scale, conf=0.35, measurement_overlay=measurement_overlay)
     if standard_result["detected"]:
         result_message = f"{routing_message} 标准 X 光直测已检出关键点并完成测算。"
         final = {
@@ -748,7 +896,7 @@ def run_current_xray_inference(scale: float):
         fallback_success = None
 
         for candidate in candidates:
-            candidate_result = predict_xray_candidate(candidate["image"], scale, conf=candidate["conf"])
+            candidate_result = predict_xray_candidate(candidate["image"], scale, conf=candidate["conf"], measurement_overlay=measurement_overlay)
             if candidate_result["detected"]:
                 fallback_success = (candidate, candidate_result)
                 break
@@ -1841,11 +1989,637 @@ def get_session_summary():
     }
 
 
+def read_avatar_upload(avatar: Optional[UploadFile]) -> tuple[bytes | None, str | None]:
+    if avatar is None or not avatar.filename:
+        return None, None
+    declared_type = (avatar.content_type or "").lower().split(";", 1)[0].strip()
+    if declared_type not in ALLOWED_AVATAR_MIME_TYPES:
+        raise AccountValidationError("头像仅支持 JPG、PNG 或 WebP 格式")
+    payload = avatar.file.read(MAX_AVATAR_BYTES + 1)
+    if len(payload) > MAX_AVATAR_BYTES:
+        raise AccountValidationError("头像文件不能超过 2 MB")
+    try:
+        with Image.open(io.BytesIO(payload)) as image:
+            image.verify()
+            detected_format = image.format
+    except (UnidentifiedImageError, OSError, ValueError) as error:
+        raise AccountValidationError("头像文件不是有效的图片") from error
+
+    detected_type = {"JPEG": "image/jpeg", "PNG": "image/png", "WEBP": "image/webp"}.get(detected_format or "")
+    if detected_type is None or detected_type != declared_type:
+        raise AccountValidationError("头像文件格式与内容不一致")
+    return payload, detected_type
+
+
+@app.post("/api/auth/register")
+def register_account(
+    username: str = Form(...),
+    password: str = Form(...),
+    password_confirm: str = Form(...),
+    avatar: Optional[UploadFile] = File(None),
+):
+    if password != password_confirm:
+        return JSONResponse(status_code=400, content={"code": 400, "message": "两次输入的密码不一致"})
+    try:
+        avatar_data, avatar_mime = read_avatar_upload(avatar)
+        user = user_store.register(username, password, avatar_data, avatar_mime)
+    except AccountValidationError as error:
+        return JSONResponse(status_code=400, content={"code": 400, "message": str(error)})
+
+    response = JSONResponse(content={"code": 200, "user": user.as_dict()})
+    set_auth_cookie(response, user)
+    return response
+
+
+@app.post("/api/auth/login")
+def login_account(username: str = Form(...), password: str = Form(...)):
+    user = user_store.authenticate(username, password)
+    if user is None:
+        return JSONResponse(status_code=401, content={"code": 401, "message": "用户名或密码不正确"})
+    response = JSONResponse(content={"code": 200, "user": user.as_dict()})
+    set_auth_cookie(response, user)
+    return response
+
+
+@app.post("/api/auth/logout")
+def logout_account(request: Request):
+    token = request.cookies.get(AUTH_COOKIE_NAME, '')
+    user_id = auth_codec.decode(token)
+    if user_id:
+        gait_service.cancel_user(user_id)
+    auth_codec.revoke(token)
+    response = JSONResponse(content={"code": 200, "message": "已退出当前账号"})
+    response.delete_cookie(AUTH_COOKIE_NAME, path="/")
+    response.delete_cookie(SETTINGS.session_cookie_name, path="/")
+    return response
+
+
+@app.get("/api/auth/me")
+def get_current_account(request: Request):
+    user = getattr(request.state, "user", None)
+    if user is None:
+        return auth_error_response()
+    return {"code": 200, "user": user.as_dict()}
+
+
+@app.get("/api/auth/avatar/{user_id}", include_in_schema=False)
+def get_account_avatar(user_id: str):
+    avatar = user_store.get_avatar(user_id)
+    if avatar is None:
+        return JSONResponse(status_code=404, content={"code": 404, "message": "头像不存在"})
+    payload, mime_type = avatar
+    return Response(content=payload, media_type=mime_type, headers={"Cache-Control": "private, max-age=3600"})
+
+
+class PersonalCaseProfileRequest(BaseModel):
+    display_name: str = ""
+    birth_date: Optional[str] = None
+    sex: str = "undisclosed"
+    height_cm: Optional[float] = None
+    weight_kg: Optional[float] = None
+    clinician_note: str = ""
+
+
+class PersonalCaseEntryRequest(BaseModel):
+    case_id: Optional[str] = None
+    kind: str
+    status: str = "completed"
+    recorded_at: Optional[str] = None
+    title: str = ""
+    summary: str = ""
+    source_filename: str = ""
+    payload: Optional[Dict[str, Any]] = None
+
+
+def current_personal_case_user(request: Request) -> UserProfile:
+    user = getattr(request.state, "user", None)
+    if user is None:
+        raise RuntimeError("当前账号不存在")
+    return user
+
+
+@app.get("/api/personal-case")
+def get_personal_case(request: Request, limit: int = 120, case_id: Optional[str] = None):
+    user = current_personal_case_user(request)
+    if case_id:
+        try: spine_agent_store.get_case(user.user_id, case_id)
+        except (SpineAgentValidationError, SpineAgentPermissionError) as error: return spine_agent_error_response(error)
+    data = personal_case_store.get_case(
+        user.user_id,
+        default_name=user.username,
+        limit=max(1, min(limit, 500)),
+        case_id=case_id,
+        include_unassigned=bool(case_id and spine_agent_store.is_legacy_case(user.user_id, case_id)),
+    )
+    return {"code": 200, "case": data}
+
+
+@app.put("/api/personal-case/profile")
+def update_personal_case_profile(request: Request, payload: PersonalCaseProfileRequest):
+    user = current_personal_case_user(request)
+    try:
+        profile = personal_case_store.update_profile(user.user_id, payload.dict())
+    except PersonalCaseValidationError as error:
+        return JSONResponse(status_code=400, content={"code": 400, "message": str(error)})
+    return {"code": 200, "profile": profile.as_dict()}
+
+
+@app.post("/api/personal-case/entries")
+def create_personal_case_entry(request: Request, payload: PersonalCaseEntryRequest):
+    user = current_personal_case_user(request)
+    try:
+        case_id = payload.case_id or spine_agent_store.ensure_default_case(user.user_id)['id']
+        spine_agent_store.require_write(user.user_id, case_id)
+        entry = personal_case_store.create_entry(user.user_id, {**payload.dict(), 'case_id': case_id})
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    except PersonalCaseValidationError as error:
+        return JSONResponse(status_code=400, content={"code": 400, "message": str(error)})
+    return {"code": 200, "entry": entry}
+
+
+@app.delete("/api/personal-case/entries/{entry_id}")
+def delete_personal_case_entry(request: Request, entry_id: str):
+    user = current_personal_case_user(request)
+    if not personal_case_store.delete_entry(user.user_id, entry_id):
+        return JSONResponse(status_code=404, content={"code": 404, "message": "记录不存在或不属于当前病例"})
+    return {"code": 200, "message": "记录已删除"}
+
+
+# ---------------------------------------------------------------------------
+# Spine Health Agent API
+# ---------------------------------------------------------------------------
+# These endpoints intentionally live beside the legacy personal-case API.  The
+# new case ledger only references existing account data; it never deletes or
+# rewrites a historic personal_case_entries row.
+
+
+class SpineCaseCreateRequest(BaseModel):
+    title: str = "我的脊柱健康档案"
+    care_scope: str = "spine_exam"
+
+
+class SpineCaseInviteRequest(BaseModel):
+    user_id: str
+    role: str
+    expires_at: Optional[int] = None
+
+
+class SpineConsentRequest(BaseModel):
+    external_ai_allowed: bool
+
+
+class SpineQuestionnaireRequest(BaseModel):
+    answers: Dict[str, Any]
+    protocol_version: str = "spine-intake-v2"
+
+
+class SpineAgentMessageRequest(BaseModel):
+    message: str
+    web_search: bool = False
+
+
+class SpineActionConfirmationRequest(BaseModel):
+    case_id: str
+    confirmation_token: str
+
+
+class SpineReviewResolveRequest(BaseModel):
+    case_id: str
+
+
+def current_spine_agent_user(request: Request) -> UserProfile:
+    user = getattr(request.state, "user", None)
+    if user is None:
+        raise RuntimeError("当前账号不存在")
+    return user
+
+
+def spine_agent_error_response(error: Exception) -> JSONResponse:
+    if isinstance(error, SpineAgentPermissionError):
+        return JSONResponse(status_code=403, content={"code": 403, "message": str(error)})
+    return JSONResponse(status_code=400, content={"code": 400, "message": str(error) or "脊柱健康工作台请求无效"})
+
+
+def spine_case_workspace_payload(user: UserProfile, case_id: str) -> dict:
+    workspace = spine_agent_store.workspace(user.user_id, case_id)
+    # The legacy case store remains the source of truth for previous entries;
+    # exposing it here performs a non-destructive compatibility migration.
+    owner_id = workspace['case']['owner_user_id']
+    legacy_case = personal_case_store.get_case(owner_id, limit=120,
+        case_id=case_id, include_unassigned=spine_agent_store.is_legacy_case(owner_id, case_id))
+    workspace["legacy_timeline"] = legacy_case["entries"]
+    workspace["legacy_overview"] = legacy_case["overview"]
+    workspace['gait_jobs'] = gait_service.list(owner_id, case_id)
+    workspace['knowledge'] = knowledge_index.stats()
+    workspace['report_url'] = f'/api/cases/{case_id}/report.pdf'
+    workspace['agent_tool_runs'] = agent_tool_service.list(owner_id, case_id)
+    for action in workspace.get('actions', []):
+        linked = action.get('result', {}).get('gait_job_id')
+        if linked:
+            try:
+                job = gait_service.get(owner_id, linked)
+                action['state'] = job['status']
+                action['result']['gait_job'] = job
+            except GaitError:
+                pass
+    return workspace
+
+
+@app.get("/api/cases")
+def list_spine_cases(request: Request):
+    user = current_spine_agent_user(request)
+    return {"code": 200, "cases": spine_agent_store.list_cases(user.user_id)}
+
+
+@app.post("/api/cases")
+def create_spine_case(request: Request, payload: SpineCaseCreateRequest):
+    user = current_spine_agent_user(request)
+    try:
+        case = spine_agent_store.create_case(user.user_id, payload.title, payload.care_scope)
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    return {"code": 200, "case": case}
+
+
+@app.get("/api/cases/default/workspace")
+def get_default_spine_case_workspace(request: Request):
+    user = current_spine_agent_user(request)
+    try:
+        case = spine_agent_store.ensure_default_case(user.user_id)
+        return {"code": 200, "workspace": spine_case_workspace_payload(user, case["id"])}
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+
+
+@app.get("/api/cases/{case_id}/workspace")
+def get_spine_case_workspace(request: Request, case_id: str):
+    user = current_spine_agent_user(request)
+    try:
+        return {"code": 200, "workspace": spine_case_workspace_payload(user, case_id)}
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+
+
+@app.get("/api/cases/{case_id}/timeline")
+def get_spine_case_timeline(request: Request, case_id: str):
+    user = current_spine_agent_user(request)
+    try:
+        workspace = spine_case_workspace_payload(user, case_id)
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    return {
+        "code": 200,
+        "case": workspace["case"],
+        "legacy_entries": workspace["legacy_timeline"],
+        "assessments": workspace["assessments"],
+        "questionnaire": workspace["questionnaire"],
+        "review_tasks": workspace["review_tasks"],
+    }
+
+
+@app.post("/api/cases/{case_id}/members")
+def invite_spine_case_member(request: Request, case_id: str, payload: SpineCaseInviteRequest):
+    user = current_spine_agent_user(request)
+    if user_store.get_user(payload.user_id) is None:
+        return JSONResponse(status_code=404, content={"code": 404, "message": "受邀账号不存在"})
+    try:
+        membership = spine_agent_store.invite_member(user.user_id, case_id, payload.user_id, payload.role, payload.expires_at)
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    return {"code": 200, "membership": membership}
+
+
+@app.put("/api/cases/{case_id}/consent")
+def update_spine_case_consent(request: Request, case_id: str, payload: SpineConsentRequest):
+    user = current_spine_agent_user(request)
+    try:
+        consent = spine_agent_store.set_consent(user.user_id, case_id, payload.external_ai_allowed)
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    return {"code": 200, "consent": consent}
+
+
+@app.get('/api/questionnaire/schema')
+def get_spine_questionnaire_schema(request: Request):
+    from mindspine.questionnaire import questionnaire_schema
+    current_spine_agent_user(request)
+    return {'code': 200, 'schema': questionnaire_schema()}
+
+
+@app.post("/api/cases/{case_id}/questionnaire")
+def submit_spine_questionnaire(request: Request, case_id: str, payload: SpineQuestionnaireRequest):
+    user = current_spine_agent_user(request)
+    try:
+        questionnaire = spine_agent_store.submit_questionnaire(user.user_id, case_id, payload.answers, payload.protocol_version)
+        triage = questionnaire.get('triage', {})
+        spine_agent_store.append_agent_message(user.user_id, case_id, 'assistant',
+            '问卷已保存到当前病例。\n' + (triage.get('analysis') or triage.get('message', '安全分流已更新。')),
+            audit={'answer_mode': 'workflow', 'questionnaire_id': questionnaire['id'],
+                   'result_cards': [{'type': 'questionnaire', 'title': '查看或更新本次问卷'}]})
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    return {"code": 200, "questionnaire": questionnaire}
+
+
+@app.post("/api/cases/{case_id}/agent/messages")
+def send_spine_agent_message(request: Request, case_id: str, payload: SpineAgentMessageRequest):
+    user = current_spine_agent_user(request)
+    try:
+        response = spine_health_agent.respond(user.user_id, case_id, payload.message, web_search=payload.web_search)
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    return {"code": 200, "agent": response}
+
+
+@app.post("/api/agent-actions/{action_id}/confirm")
+def confirm_spine_agent_action(request: Request, action_id: str, payload: SpineActionConfirmationRequest):
+    user = current_spine_agent_user(request)
+    try:
+        with AGENT_EXECUTION_LOCK:
+            action = spine_agent_store.confirm_action(user.user_id, payload.case_id, action_id, payload.confirmation_token)
+            source_job = action.get('payload', {}).get('source_job_id')
+            if action['kind'] == 'run_video_screening' and source_job and not action.get('result', {}).get('gait_job_id') and action['state'] in {'confirmed', 'queued', 'needs_review'}:
+                source = gait_service.get(user.user_id, source_job)
+                if source['case_id'] != payload.case_id:
+                    raise SpineAgentPermissionError('视频不属于当前检查')
+                job = gait_service.rerun(user.user_id, source_job, {}, idempotency_key=action_id)
+                result = {'gait_job_id': job['id'], 'gait_job': job, 'url': f"gait-workspace.html?case_id={payload.case_id}&job_id={job['id']}"}
+                spine_agent_store.update_action_result(user.user_id, payload.case_id, action_id, 'queued', result)
+                action.update(state='queued', result=result)
+    except GaitError as error:
+        return JSONResponse(status_code=error.status_code, content={'code': error.status_code, 'message': str(error)})
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    return {"code": 200, "action": action}
+
+
+@app.get("/api/jobs/{job_id}")
+def get_spine_agent_job(request: Request, job_id: str, case_id: str):
+    user = current_spine_agent_user(request)
+    try:
+        jobs = spine_agent_store.list_assessments(user.user_id, case_id, limit=100)
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    job = next((item for item in jobs if item["id"] == job_id), None)
+    if job is None:
+        return JSONResponse(status_code=404, content={"code": 404, "message": "任务不存在或不属于当前病例"})
+    return {"code": 200, "job": job}
+
+
+@app.post("/api/review-tasks/{task_id}/resolve")
+def resolve_spine_review_task(request: Request, task_id: str, payload: SpineReviewResolveRequest):
+    user = current_spine_agent_user(request)
+    try:
+        resolved = spine_agent_store.resolve_review_task(user.user_id, payload.case_id, task_id)
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+    if not resolved:
+        return JSONResponse(status_code=404, content={"code": 404, "message": "复核任务不存在、已关闭或不属于当前病例"})
+    return {"code": 200, "message": "复核任务已关闭"}
+
+
+@app.get("/api/spine-agent/knowledge-status")
+def get_spine_agent_knowledge_status(request: Request):
+    current_spine_agent_user(request)
+    return {"code": 200, "knowledge": knowledge_index.stats()}
+
+
+@app.get("/api/spine-agent/third-party")
+def get_spine_agent_third_party_status(request: Request):
+    current_spine_agent_user(request)
+    return {"code": 200, "projects": list(THIRD_PARTY_REPRODUCTION_PLAN)}
+
+
+@app.post('/api/agent-actions/{action_id}/refresh-confirmation')
+def refresh_agent_confirmation(request: Request, action_id: str, payload: SpineReviewResolveRequest):
+    user = current_spine_agent_user(request)
+    try:
+        return {'code': 200, **spine_agent_store.refresh_confirmation(user.user_id, payload.case_id, action_id)}
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+
+
+@app.get('/api/knowledge/search')
+def search_clinical_knowledge(request: Request, q: str, audience: str = 'all', limit: int = 6):
+    current_spine_agent_user(request)
+    return {'code': 200, 'evidence': knowledge_index.search(q[:1600], audience=audience, limit=min(limit,10)), 'knowledge': knowledge_index.stats()}
+
+
+@app.get('/api/cases/{case_id}/report.pdf')
+def export_comprehensive_report(request: Request, case_id: str):
+    from mindspine.case_report import build_case_pdf
+    user = current_spine_agent_user(request)
+    try:
+        workspace = spine_case_workspace_payload(user, case_id)
+        if 'export' not in workspace['case'].get('scopes', []):
+            raise SpineAgentPermissionError('当前授权不允许导出此病例')
+        selected = gait_service.selected_result(user.user_id, case_id)
+        report, sheet = None, None
+        if selected:
+            report = selected
+            try: sheet = gait_service.artifact(user.user_id, selected['job_id'], 'contact_sheet.jpg')
+            except GaitError: pass
+        personal = personal_case_store.get_case(workspace['case']['owner_user_id'])
+        pdf = build_case_pdf(workspace['case'], workspace.get('questionnaire'), report,
+            profile=personal.get('profile'), legacy_entries=workspace.get('legacy_timeline'),
+            review=selected.get('review', {}) if selected else {}, contact_sheet=sheet)
+        return Response(pdf, media_type='application/pdf', headers={'Content-Disposition': f'inline; filename="SpineInsight-{case_id[:12]}.pdf"', 'Cache-Control':'private, no-store'})
+    except (SpineAgentValidationError, SpineAgentPermissionError) as error:
+        return spine_agent_error_response(error)
+
+
+from mindspine.report_api import create_router as create_report_router
+app.include_router(create_report_router(
+    root=SETTINGS.data_dir / 'case_reports', store=spine_agent_store,
+    current_user=current_spine_agent_user, workspace_provider=spine_case_workspace_payload,
+    profile_provider=lambda case: personal_case_store.get_case(case['owner_user_id']).get('profile', {}),
+))
+
+
+def agent_plugin_availability() -> dict:
+    gait = gait_service.health()
+    # Availability must check the requested generator, not the ROI detector or
+    # whichever mode was last selected in the separate imaging workspace.
+    with PSEUDOCT_INFERENCE_LOCK:
+        try:
+            pseudoct_service.ensure_mode('source_direct')
+            direct = pseudoct_service.describe()
+            pseudo_dr = {'available': bool(direct['ready']), 'reason': direct['status']}
+        except Exception:
+            LOGGER.warning('Agent Pix2Pix source model could not be loaded')
+            pseudo_dr = {'available': False, 'reason': 'Pix2Pix 左半图直推权重加载失败，请检查源模型权重'}
+    return {
+        'keypoints': {'available': model_template.model_xray is not None, 'reason': '侧位 DR 关键点模型已加载' if model_template.model_xray is not None else '侧位 DR 关键点模型未加载'},
+        'roi': {'available': model_template.model_rgb is not None, 'reason': '体表 ROI 模型已加载' if model_template.model_rgb is not None else '体表 ROI 模型未加载'},
+        'gait': {'available': gait['available'], 'reason': gait['message']},
+        'pseudo_dr': pseudo_dr,
+    }
+
+
+def execute_agent_plugin(owner, case_id, run_id, step, attachment, input_path, output, cancelled):
+    """Reuse real model pipelines in a fresh mutable case for each tool step."""
+    plugin = step['plugin_id']
+    images = []
+
+    def image_artifact(name, label, image=None, source=None):
+        destination = output / name
+        if source is not None:
+            shutil.copyfile(source, destination)
+        else:
+            write_image_file(str(destination), image)
+        images.append({'url': AgentToolService.artifact_url(case_id, run_id, step['id'], name), 'label': label})
+
+    if plugin == 'gait':
+        try:
+            with input_path.open('rb') as stream:
+                job = gait_service.create(owner, case_id, stream, attachment['filename'], {}, idempotency_key=step['id'])
+            deadline = time.monotonic() + gait_service.timeout_seconds + 120
+            while job['status'] not in {'completed', 'rejected', 'failed', 'cancelled'}:
+                if cancelled.wait(0.5):
+                    gait_service.cancel(owner, job['id'])
+                    raise AgentToolError('步态分析已取消', 409)
+                if time.monotonic() > deadline:
+                    gait_service.cancel(owner, job['id'])
+                    raise AgentToolError('步态分析超时，请重试较短视频', 408)
+                # Recheck revocable case authorization throughout a long-running job.
+                spine_agent_store.require_write(owner, case_id)
+                job = gait_service.get(owner, job['id'])
+            if job['status'] not in {'completed', 'rejected'}:
+                raise AgentToolError(job['message'] or '步态分析未完成', 422)
+            report = gait_service.report(owner, job['id'])
+            files = report.get('file_urls', {})
+            if 'contact_sheet.jpg' in files:
+                image_artifact('gait-contact-sheet.jpg', '步态剪影', source=gait_service.artifact(owner, job['id'], 'contact_sheet.jpg'))
+            return {'type': 'video', 'title': '步态视频分析', 'images': images,
+                    'video_url': files.get('overlay.mp4') or files.get('input_preview.mp4'),
+                    'report_url': files.get('report.html'), 'gait_job_id': job['id'],
+                    'metrics': {'quality': report.get('quality', {}), 'analysis': report.get('analysis', {})},
+                    'summary': job['message'], 'status': 'needs_review' if job['status'] == 'rejected' else 'completed',
+                    'model_version': f"ScoNet {job['engine_version']}"}
+        except GaitError as error:
+            raise AgentToolError(str(error), error.status_code) from None
+        except PermissionError:
+            if 'job' in locals():
+                gait_service.cancel(owner, job['id'])
+            raise AgentToolError('病例授权已失效，步态任务已停止', 403) from None
+
+    if plugin == 'pseudo_dr':
+        # Source-direct has its own training input protocol: no RGB orientation
+        # routing, ROI crop or transfer-mode soft mask may precede this call.
+        if cancelled.is_set():
+            raise AgentToolError('分析已取消', 409)
+        with PSEUDOCT_INFERENCE_LOCK:
+            resolved_mode = pseudoct_service.ensure_mode('source_direct')
+            if not pseudoct_service.ready:
+                raise AgentToolError('Pix2Pix 左半图直推模型未加载', 503)
+            result = pseudoct_service.generate_from_path(str(input_path), job_id=step['id'], item_index=0,
+                                                        inference_mode=resolved_mode, output_namespace=owner)
+        image_artifact('source-input.png', '左半输入图', source=result['paths']['overlay'])
+        image_artifact('pseudo-dr.png', '生成类 DR（非真实 X 光）', source=result['paths']['generated'])
+        image_artifact('generation-preview.png', 'Pix2Pix 直推预览', source=result['paths']['preview'])
+        return {'type': 'image', 'title': '脊柱伪 DR · Pix2Pix 左半图直推', 'images': images,
+                'metrics': {}, 'inference_mode': result['inference_mode'],
+                'mode_label': result['mode_label'], 'source_layout': result['source_layout'],
+                'network_input_size': result['network_input_size'],
+                'summary': f"已使用 Pix2Pix 左半图直推模型生成。{result['note']} 这是模型生成结果，不能替代真实 X 光或用于确诊。",
+                'status': 'completed', 'model_version': result['checkpoint_name'], 'generated_image': True}
+
+    runtime_case_id = f"agent_{step['id']}"
+    with case_registry.activate_session(owner):
+        with case_registry.activate_case(runtime_case_id, remember=False, create=True):
+            try:
+                with MODEL_INFERENCE_LOCK:
+                    loaded = load_image_into_xray_state(str(input_path), 1.5)
+                    if cancelled.is_set():
+                        raise AgentToolError('分析已取消', 409)
+                    if plugin == 'keypoints':
+                        from mindspine.agent_tools_imaging import calibration_for_image
+                        calibration = calibration_for_image(input_path, model.current_cv_img.shape[:2])
+                        if calibration['resample_size']:
+                            model.current_cv_img = cv2.resize(model.current_cv_img, tuple(calibration['resample_size']), interpolation=cv2.INTER_LINEAR)
+                        result = run_current_xray_inference(calibration['pixels_per_mm'] or 1.0, measurement_overlay=False)
+                        # Legacy fallback adapters rescale the input canvas. Their
+                        # physical scale is not propagated, so retain angles only.
+                        calibrated = calibration['calibrated'] and result['pipeline_label'] == '标准X光直测'
+                        calibration['calibrated'] = bool(calibrated)
+                        if not calibrated:
+                            calibration['reason'] = '缺少有效像素标定，或分析适配器改变了图像尺度；不输出毫米距离。'
+                        metrics = dict(result['angles'])
+                        if not calibrated:
+                            metrics.pop('LCI', None)
+                        summary = result['message'] if result['detected'] else '未检出可测量关键点，请核对是否为清晰的腰椎侧位影像。'
+                        if not calibrated:
+                            summary += ' 当前影像未标定，不提供 LCI 或滑脱的毫米值。'
+                        image_artifact('annotated.png', '关键点与测量标注', image=result['annotated'])
+                        image_artifact('source.png', '分析输入影像', image=result['source'])
+                        return {'type': 'image', 'title': 'DR 关键点与角度分析', 'images': images,
+                                'metrics': metrics, 'slips': result['slips'] if calibrated else [],
+                                'metric_units': {key: 'mm' if key == 'LCI' else '°' for key in metrics},
+                                'summary': summary, 'calibration': calibration,
+                                'status': 'completed' if result['detected'] else 'needs_review',
+                                'model_version': 'best.pt', 'pipeline_label': result['pipeline_label']}
+                    if plugin != 'roi':
+                        raise AgentToolError('不支持的分析插件', 422)
+                    model.current_mode = 'rgb'
+                    source, _ = model.auto_flip_if_needed(model.current_cv_img, 'rgb')
+                    detection = detect_rgb_region(source)
+                    image_artifact('roi.png', '体表 ROI 标注', image=detection['detected_image'])
+                    if detection['crop_image'] is not None:
+                        image_artifact('roi-crop.png', 'ROI 裁剪', image=detection['crop_image'])
+                    return {'type': 'image', 'title': '体表 ROI 识别',
+                            'images': images, 'metrics': {'confidence': detection['confidence'], 'box': detection['best_box']},
+                            'summary': '已检测并标注体表区域。' if detection['best_box'] else '未检出可靠的体表 ROI，请重新提供清晰体表照片。',
+                            'status': 'completed' if detection['best_box'] else 'needs_review', 'model_version': 'bbox_best.pt'}
+            finally:
+                case_registry.delete_case(runtime_case_id)
+
+
+def archive_agent_plugin_result(owner, case_id, run_id, attachment, card):
+    plugin = card['plugin_id']
+    kind = 'dr' if plugin == 'keypoints' else 'video' if plugin == 'gait' else 'rgb'
+    payload = {'image_id': f"agent_{run_id}_{attachment['id']}_{plugin}", 'agent_tool_run_id': run_id,
+               'attachment_id': attachment['id'], 'tool': plugin, 'model_version': card.get('model_version'),
+               'metrics': card.get('metrics', {}), 'media': card.get('images', []), 'review_status': 'unreviewed'}
+    if card.get('calibration'):
+        payload['calibration'] = card['calibration']
+    if plugin == 'pseudo_dr':
+        payload.update(inference_mode=card['inference_mode'], source_layout=card['source_layout'],
+                       generated_image=True, network_input_size=card['network_input_size'])
+    if plugin == 'keypoints':
+        payload['angles'] = card['metrics']
+    if plugin == 'gait':
+        payload['gait_job_id'] = card['gait_job_id']
+        # Large video details remain in the dedicated gait report, not the legacy ledger.
+        payload['metrics'] = {}
+    entry = personal_case_store.create_entry(owner, {
+        'case_id': case_id, 'kind': kind, 'status': 'completed' if card['status'] == 'completed' else 'no_measurement',
+        'title': card['title'], 'summary': card['summary'][:600], 'source_filename': attachment['filename'], 'payload': payload})
+    return entry['id']
+
+
+agent_tool_service = AgentToolService(SETTINGS.data_dir / 'agent_tools', spine_agent_store,
+                                    execute_agent_plugin, agent_plugin_availability,
+                                    max_upload_bytes=SETTINGS.max_upload_bytes,
+                                    max_video_bytes=gait_service.max_upload_bytes,
+                                    record_result=archive_agent_plugin_result)
+app.include_router(create_agent_tools_router(agent_tool_service, current_spine_agent_user))
+app.include_router(create_gait_router(gait_service, current_spine_agent_user, spine_agent_store.require_write))
+
+
+@app.on_event('shutdown')
+def stop_local_workers():
+    agent_tool_service.close()
+    gait_service.close()
+    BATCH_EXECUTOR.shutdown(wait=False, cancel_futures=True)
+
+
 app.mount("/", StaticFiles(directory=WEB_ROOT, html=True), name="web")
 
 
 if __name__ == "__main__":
     import uvicorn
 
-    print("\n服务启动成功，请在浏览器访问: http://127.0.0.1:8000\n")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    local_port = int(os.getenv('MINDSPINE_PORT', '8000'))
+    print(f"\n服务启动成功，请在浏览器访问: http://localhost:{local_port}\n")
+    uvicorn.run(app, host=os.getenv('MINDSPINE_HOST', '127.0.0.1'), port=local_port)

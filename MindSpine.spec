@@ -5,7 +5,7 @@ a = Analysis(
     ['launcher.py'],
     pathex=[],
     binaries=[],
-    datas=[('web', 'web'), ('weights', 'weights'), ('app_settings.example.json', '.'), ('pseudoct_generator.py', '.'), ('ai_report_service.py', '.')],
+    datas=[('web', 'web'), ('weights', 'weights'), ('app_settings.json', '.'), ('app_settings.example.json', '.'), ('pseudoct_generator.py', '.'), ('ai_report_service.py', '.')],
     hiddenimports=['uvicorn', 'fastapi', 'starlette', 'pydantic', 'multipart', 'webview', 'cv2', 'numpy'],
     hookspath=[],
     hooksconfig={},

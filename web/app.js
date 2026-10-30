@@ -4,6 +4,9 @@ const PSEUDOCT_MODE_SOURCE = "source_direct";
 const app = {
     mode: "xray",
     currentImageId: null,
+    currentImageFilename: "",
+    currentImageOrigin: "upload",
+    pendingExamImages: new Map(),
     staticDemo: window.location.hostname.endsWith(".github.io"),
 
     pseudoctItems: [],
@@ -1422,6 +1425,8 @@ const app = {
             }
 
             this.currentImageId = data.id;
+            this.currentImageFilename = file.name;
+            this.currentImageOrigin = "upload";
             this.updateDisplay(data.preview_b64, null, "原始图像", "");
 
             if (data.dicom_info && data.dicom_info.ww) {
@@ -1449,6 +1454,9 @@ const app = {
 
         this.setStatus("正在进行 X 光左右判断与关键点测算...", "#5E6AD2");
         const scale = parseFloat(this.el("scale-input")?.value || "1.5") || 1.5;
+        const imageId = this.currentImageId;
+        const filename = this.currentImageFilename;
+        const origin = this.currentImageOrigin;
 
         try {
             const data = await this.fetchJson("/api/xray", {
@@ -1469,16 +1477,46 @@ const app = {
                 this.buildXrayInputLabel(data)
             );
             this.updateXrayMetrics(data.angles, data.slips);
+            const saved = origin === "upload" ? await this.saveDoctorExamResult(data, { imageId, filename, scale }) : null;
+            const archiveNote = saved === true ? " 已保留至本次检查。" : saved === false ? " 检查记录未保存，可再次测算重试。" : "";
 
             if (data.detected === false) {
-                this.setStatus(data.message || "当前图像未检出可测量关键点", "#F59E0B");
+                this.setStatus((data.message || "当前图像未检出可测量关键点") + archiveNote, "#F59E0B");
             } else {
-                this.setStatus(data.message || "测算完成", "#22C55E");
+                this.setStatus((data.message || "测算完成") + archiveNote, saved === false ? "#F59E0B" : "#22C55E");
             }
         } catch (error) {
             console.error(error);
             this.setStatus("网络请求异常", "#EF4444");
         }
+    },
+
+    async saveDoctorExamResult(result, { imageId, filename, scale }) {
+        if (this.staticDemo || !imageId) return null;
+        const caseId = window.MindSpineCaseContext?.id?.() || new URLSearchParams(window.location.search).get("case_id");
+        const key = `${caseId || "latest"}:${imageId}:${scale}`;
+        if (this.pendingExamImages.has(key)) return this.pendingExamImages.get(key);
+        const measured = result.detected !== false && Boolean(result.angles);
+        const entry = {
+            ...(caseId ? { case_id: caseId } : {}),
+            kind: "dr", status: measured ? "completed" : "no_measurement",
+            title: "医生工作台 · DR / X 光测算",
+            summary: measured ? "DR / X 光影像已完成关键点测算。" : (result.message || "未检出可测量关键点。"),
+            source_filename: filename || "",
+            payload: { image_id: imageId, detected: measured, angles: result.angles || {}, slips: Array.isArray(result.slips) ? result.slips : [], scale, source: "doctor_workspace" },
+        };
+        const pending = (async () => {
+            try {
+                const data = await this.fetchJson("/api/personal-case/entries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(entry) });
+                if (data.code !== 200) return false;
+                const assignedCase = data.entry?.case_id || data.case_id;
+                if (assignedCase) window.MindSpineCaseContext?.setCaseId?.(assignedCase);
+                return true;
+            } catch { return false; }
+            finally { this.pendingExamImages.delete(key); }
+        })();
+        this.pendingExamImages.set(key, pending);
+        return pending;
     },
 
     async runRgb() {
@@ -1806,6 +1844,8 @@ const app = {
 
             this.setMode("xray", { preservePseudoCT: true });
             this.currentImageId = data.image_id || `pseudoct_loop_${Date.now()}`;
+            this.currentImageOrigin = "generated";
+            this.currentImageFilename = item.filename || "";
 
             const scaleInput = this.el("scale-input");
             if (scaleInput && data.scale) {
@@ -2395,6 +2435,10 @@ const app = {
     },
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    const canUseWorkspace = await window.MindSpineAuth?.requireUser?.();
+    if (!canUseWorkspace) {
+        return;
+    }
     app.init();
 });

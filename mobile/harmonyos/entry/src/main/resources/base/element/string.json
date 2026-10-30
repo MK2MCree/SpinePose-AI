@@ -1,0 +1,7 @@
+{
+  "string": [
+    { "name": "module_desc", "value": "脊见智诊离线记录" },
+    { "name": "EntryAbility_desc", "value": "在本机管理个人记录" },
+    { "name": "EntryAbility_label", "value": "脊见智诊" }
+  ]
+}

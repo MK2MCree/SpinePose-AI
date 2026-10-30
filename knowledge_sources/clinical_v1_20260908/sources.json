@@ -1,0 +1,2888 @@
+{
+  "schema_version": "mindspine_knowledge_v1",
+  "corpus_version": "clinical_v1_20260908",
+  "created_at": "2026-09-08",
+  "language": "zh-CN",
+  "scope": "55 reviewed source summaries; not exhaustive clinical coverage",
+  "updated_at": "2026-09-08",
+  "sources": [
+    {
+      "id": "srs_diagnosis",
+      "title": "侧弯的体格检查、前屈试验与 Cobb 角",
+      "publisher": "SRS",
+      "source_url": "https://www.srs.org/Patients/Diagnosis-And-Treatment/Diagnosing-Scoliosis",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "imaging",
+        "assessment"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "观察肩、腰、骨盆不对称和前屈时肋背隆起可提示侧弯；医生结合体格检查与站立全脊柱正侧位 X 线测量 Cobb 角。",
+      "key_points": [
+        "X 线用于量化曲线，表面观察是发现线索。"
+      ],
+      "applicability": "疑似侧弯或希望理解影像测量含义。",
+      "limitations": "外观、脊柱测量仪和步态结果不能直接当作影像 Cobb 角；是否检查及处置由临床情境决定。",
+      "keywords": [
+        "高低肩",
+        "肩膀不平",
+        "前屈试验",
+        "Cobb",
+        "侧弯",
+        "脊柱测量仪"
+      ],
+      "clinical_questions": [
+        "怎样确诊脊柱侧弯？高低肩是不是侧弯？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "srs_observation",
+      "title": "侧弯观察与复查：何时继续随访",
+      "publisher": "SRS",
+      "source_url": "https://www.srs.org/Patients/Diagnosis-And-Treatment/Observation",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "follow_up"
+      ],
+      "populations": [
+        "adolescent",
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "较小曲线或骨骼成熟后稳定且无明显问题的曲线可由专科观察。生长期常安排间隔数月的临床与影像复查，以判断是否进展或需要支具。",
+      "key_points": [
+        "随访比较曲线、生长情况及症状，而不是只看一次角度。"
+      ],
+      "applicability": "已有侧弯诊断，讨论复查计划与需要记录的变化。",
+      "limitations": "页面举例 4–6 个月影像观察，不能据此为所有患者自动开出相同频率；应结合生长、曲线及既往进展。",
+      "keywords": [
+        "复查",
+        "随访",
+        "复诊",
+        "观察",
+        "进展",
+        "生长期"
+      ],
+      "clinical_questions": [
+        "轻度侧弯多久复查一次？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "srs_bracing",
+      "title": "生长期侧弯支具的目的、选择与佩戴",
+      "publisher": "SRS",
+      "source_url": "https://www.srs.org/Patients/Diagnosis-And-Treatment/Bracing",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "bracing",
+        "adherence"
+      ],
+      "populations": [
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "生长期、存在进展风险的侧弯可考虑支具；SRS 页面以大于 25°、小于约 45°–50° 的曲线作为常见适用范围。支具选择依曲线位置和程度，目标主要是控制进展。",
+      "key_points": [
+        "佩戴依从性与治疗效果有关，具体安排遵循个体处方。"
+      ],
+      "applicability": "已诊断侧弯并考虑或正在使用支具。",
+      "limitations": "范围是教育信息而非自动处方。佩戴时长、皮肤问题、舒适度与生长调整需专科及矫形团队指导；不承诺把脊柱完全矫直。",
+      "keywords": [
+        "支具",
+        "矫形器",
+        "佩戴",
+        "25度",
+        "侧弯"
+      ],
+      "clinical_questions": [
+        "支具为什么要戴？一天戴多久？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "srs_surgery",
+      "title": "侧弯手术讨论与术后恢复范围",
+      "publisher": "SRS",
+      "source_url": "https://www.srs.org/Patients/Diagnosis-And-Treatment/Surgery",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "surgery",
+        "follow_up"
+      ],
+      "populations": [
+        "adolescent",
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "严重或持续进展的侧弯可能需要讨论手术，评估包含曲线、症状、功能、继续进展风险及家庭意愿。脊柱融合可稳定并矫正部分曲线，术后活动逐步恢复。",
+      "key_points": [
+        "治疗目标与风险需共同讨论；具体术式不由网页或模型自动决定。"
+      ],
+      "applicability": "准备专科手术沟通或术后复诊。",
+      "limitations": "成人手术决策还重视疼痛、神经受压、平衡和非手术疗效；不能只凭角度决定手术。恢复时间必须以手术团队安排为准。",
+      "keywords": [
+        "手术",
+        "融合",
+        "术后",
+        "恢复",
+        "侧弯"
+      ],
+      "clinical_questions": [
+        "侧弯一定要手术吗？术后多久恢复活动？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "srs_ais",
+      "title": "青少年特发性侧弯、生长潜力与 MRI 选择",
+      "publisher": "SRS",
+      "source_url": "https://www.srs.org/Patients/Conditions/Scoliosis/Idiopathic-Scoliosis",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "growth",
+        "imaging"
+      ],
+      "populations": [
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "特发性侧弯常在生长高峰期进展；临床评估结合身高增长、骨骼成熟度和曲线。MRI 通常不是典型、无异常神经体征患者的常规检查，可在明显疼痛、神经异常或非典型曲线时考虑。",
+      "key_points": [
+        "站立 X 线主要量化曲线；MRI 回答不同的临床问题。"
+      ],
+      "applicability": "讨论进展风险、骨骼成熟度和是否需要 MRI。",
+      "limitations": "年龄只是生长判断的一部分，不能仅凭年龄推断是否停止生长；旧页面的具体产品或历史技术不作为本索引建议。",
+      "keywords": [
+        "生长",
+        "骨龄",
+        "Risser",
+        "MRI",
+        "神经异常",
+        "青少年"
+      ],
+      "clinical_questions": [
+        "骨龄和 Risser 与侧弯有什么关系？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "srs_living",
+      "title": "侧弯患者的活动、支具适应与心理支持",
+      "publisher": "SRS",
+      "source_url": "https://www.srs.org/Patients/Diagnosis-And-Treatment/Living-with-Scoliosis",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "activity",
+        "psychosocial",
+        "adherence"
+      ],
+      "populations": [
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "多数侧弯患者可继续喜欢的运动；疼痛、支具安排及医生的特定限制需要考虑。与家人、同伴及支持团体沟通，可帮助适应支具和身体外观变化。",
+      "key_points": [
+        "支具主要为了限制进展，特异性训练应与治疗团队讨论。"
+      ],
+      "applicability": "患者或家长担忧生活、体育课或同伴相处。",
+      "limitations": "一般运动与侧弯特异性训练不同；不能把强壮核心或运动说成普遍治愈侧弯的方法。",
+      "keywords": [
+        "运动",
+        "上体育课",
+        "支具",
+        "焦虑",
+        "外观",
+        "心理",
+        "书包"
+      ],
+      "clinical_questions": [
+        "有侧弯还能运动吗？戴支具觉得难为情怎么办？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "srs_kyphosis",
+      "title": "Scheuermann 结构性后凸与一般驼背",
+      "publisher": "SRS",
+      "source_url": "https://www.srs.org/Patients/Conditions/Kyphosis/Scheuremanns-Kyphosis",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "kyphosis",
+        "imaging",
+        "rehabilitation"
+      ],
+      "populations": [
+        "adolescent",
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "Scheuermann 后凸涉及椎体楔形改变，常在青春期形成较僵硬的后凸，有时延续至成年。站立 X 线有助于评价和随访；理疗运动可用于增强肌肉及减轻疼痛。",
+      "key_points": [
+        "后凸主要在侧面评价，侧弯是另一类三维脊柱畸形描述。"
+      ],
+      "applicability": "想区分驼背、姿势问题与结构性畸形。",
+      "limitations": "仅看照片或姿势无法区分结构性后凸与可纠正的姿势问题；需临床检查，不能套用侧弯的 Cobb 阈值作治疗决定。",
+      "keywords": [
+        "驼背",
+        "后凸",
+        "Scheuermann",
+        "楔形椎",
+        "僵硬"
+      ],
+      "clinical_questions": [
+        "驼背和脊柱侧弯是同一种病吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nhs_scoliosis",
+      "title": "侧弯概览与常见误区",
+      "publisher": "NHS",
+      "source_url": "https://www.nhs.uk/conditions/scoliosis/",
+      "source_date": "2023-04-12",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "assessment",
+        "activity"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "侧弯是脊柱向侧方弯曲并伴旋转，可发生于不同年龄。肩、髋不对称或躯干偏斜可促使就诊；治疗取决于年龄、严重程度和进展可能，许多轻度曲线不需积极治疗。",
+      "key_points": [
+        "症状与外观可提示就诊，X 线用于确认和量化曲线。"
+      ],
+      "applicability": "初次了解侧弯或纠正错误因果判断。",
+      "limitations": "特发性侧弯原因通常未知，不应简单归因于坐姿、饮食或某一种运动。该页面标注复核日期已过，应与更新指南并读。",
+      "keywords": [
+        "侧弯",
+        "坐姿",
+        "歪肩",
+        "不对称",
+        "原因"
+      ],
+      "clinical_questions": [
+        "坐姿不好会导致脊柱侧弯吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nhs_child_treatment",
+      "title": "儿童侧弯治疗、成长监测与运动",
+      "publisher": "NHS",
+      "source_url": "https://www.nhs.uk/conditions/scoliosis/treatment-in-children/",
+      "source_date": "2023-04-12",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "bracing",
+        "rehabilitation",
+        "follow_up"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "儿童治疗需看曲线大小、是否加重和剩余生长。可采用观察、石膏、支具或手术；常规运动有助于肌力和健康，具体限制由专科决定。",
+      "key_points": [
+        "观察并不等于不管，需要按计划监测变化。"
+      ],
+      "applicability": "家长了解儿童侧弯治疗路径。",
+      "limitations": "不能把儿童的生長干预直接用于成人。页面对特定运动证据较谨慎，应与 SOSORT 的具体训练方案及证据级别并读。",
+      "keywords": [
+        "儿童",
+        "支具",
+        "石膏",
+        "随访",
+        "体育",
+        "生长"
+      ],
+      "clinical_questions": [
+        "孩子侧弯有哪些治疗选择？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nhs_adult_treatment",
+      "title": "成人侧弯的疼痛、运动与手术评估",
+      "publisher": "NHS",
+      "source_url": "https://www.nhs.uk/conditions/scoliosis/treatment-in-adults/",
+      "source_date": "2023-04-12",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "pain",
+        "rehabilitation",
+        "surgery"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "成人侧弯处理常以减轻疼痛、维持活动和功能为重点。锻炼与理疗可帮助疼痛，但不一定改变曲线；严重进展、持续难治疼痛或神经受压时可讨论手术。",
+      "key_points": [
+        "很多成人不需要手术，症状和功能比单独一个角度更能说明治疗需求。"
+      ],
+      "applicability": "成年后侧弯或退变相关不适。",
+      "limitations": "成人支具与生长期支具的目标不同；不应照搬儿童矫形路径。开始新训练或讨论药物时需考虑个人状况。",
+      "keywords": [
+        "成人",
+        "成年",
+        "侧弯",
+        "疼痛",
+        "神经受压",
+        "康复"
+      ],
+      "clinical_questions": [
+        "成人侧弯还能通过康复改善吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nhs_back_pain",
+      "title": "背痛分诊、危险信号与日常活动",
+      "publisher": "NHS",
+      "source_url": "https://www.nhs.uk/conditions/back-pain/",
+      "source_date": "2026-03-05",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "pain",
+        "red_flags",
+        "activity"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "背痛常见且可能逐渐缓解，可在耐受范围内保持活动，避免长期卧床。若疼痛持续、影响日常生活、夜间加重或伴不明原因体重下降，应就医评估。",
+      "key_points": [
+        "发热、突发严重或迅速加重的疼痛也应及时就医。"
+      ],
+      "applicability": "描述背痛并需要判断就医紧迫性。",
+      "limitations": "双腿无力或麻木、会阴感觉丧失、新发排尿排便障碍，或严重外伤后的背痛需紧急评估；不要等待视频算法分析。当地急救流程替代英国电话号码。",
+      "keywords": [
+        "背痛",
+        "腰痛",
+        "夜间痛",
+        "体重下降",
+        "排尿障碍",
+        "麻木",
+        "急诊"
+      ],
+      "clinical_questions": [
+        "腰痛伴腿麻或大小便异常怎么办？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nhs_sciatica",
+      "title": "坐骨神经痛：放射痛、麻木与就医时机",
+      "publisher": "NHS",
+      "source_url": "https://www.nhs.uk/conditions/sciatica/",
+      "source_date": "2024-12-03",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "pain",
+        "neurology",
+        "red_flags"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "坐骨神经受刺激或压迫可出现臀部及一侧腿后方的疼痛、刺痛、麻木或无力。可逐步恢复耐受活动；持续不改善或影响功能时应评估。",
+      "key_points": [
+        "只有局限背痛未必是坐骨神经痛，需结合临床表现。"
+      ],
+      "applicability": "腰臀腿放射症状的教育与分诊。",
+      "limitations": "双侧症状、加重的双腿无力、会阴麻木和新发膀胱肠道异常需紧急处理；不能只凭单一症状或影像词语确诊。",
+      "keywords": [
+        "坐骨神经痛",
+        "腿痛",
+        "腿麻",
+        "放射痛",
+        "麻木",
+        "膀胱"
+      ],
+      "clinical_questions": [
+        "疼痛从腰放射到脚是怎么回事？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "who_lbp",
+      "title": "腰痛的疾病负担与功能恢复",
+      "publisher": "WHO",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/low-back-pain",
+      "source_date": "2023-06-19",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "public_health",
+      "evidence_type": "public_health",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "pain",
+        "rehabilitation"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "腰痛可影响活动、工作、学习和心理状态，大部分属于非特异性腰痛。康复帮助理解疼痛、恢复有意义的活动并建立自我管理策略。",
+      "key_points": [
+        "疼痛严重程度、活动能力和生活参与值得共同记录。"
+      ],
+      "applicability": "解释腰痛与恢复目标。",
+      "limitations": "非特异性腰痛是排查和评估后的临床描述，不可由应用在缺少病史检查时直接认定。",
+      "keywords": [
+        "腰痛",
+        "非特异性",
+        "康复",
+        "功能",
+        "工作"
+      ],
+      "clinical_questions": [
+        "为什么腰痛找不到一个明确影像原因？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "who_chronic_lbp",
+      "title": "WHO 慢性原发性腰痛非手术照护",
+      "publisher": "WHO",
+      "source_url": "https://www.who.int/news/item/07-12-2023-who-releases-guidelines-on-chronic-low-back-pain",
+      "source_date": "2023-12-07",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "guideline_summary",
+      "evidence_type": "guideline_summary",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "pain",
+        "rehabilitation",
+        "self_management"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "WHO 对成人慢性原发性腰痛提倡以人为中心的综合方案，包括教育、自我照护、运动及适当心理支持等，结合身体、心理与社会因素。",
+      "key_points": [
+        "通常需要组合措施，目标和方案应个体化。"
+      ],
+      "applicability": "成人持续超过数月的腰痛照护沟通。",
+      "limitations": "本条查阅的是 WHO 官方指南发布摘要，未索引整部指南；不适用于所有病因腰痛，不把腰带、牵引或阿片类药物作为常规方案。",
+      "keywords": [
+        "慢性腰痛",
+        "原发性",
+        "运动",
+        "心理",
+        "自我管理",
+        "牵引"
+      ],
+      "clinical_questions": [
+        "慢性腰痛除了吃药还能做什么？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "who_rehabilitation",
+      "title": "康复的目标、参与和个体化计划",
+      "publisher": "WHO",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/rehabilitation",
+      "source_date": "2024-04-22",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "public_health",
+      "evidence_type": "public_health",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "rehabilitation",
+        "function",
+        "follow_up"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "康复关注功能、独立生活以及学习工作和社会参与，结合本人目标、环境调整、训练、辅助器具和自我管理。康复可与其他治疗并行开展。",
+      "key_points": [
+        "评价疗效不只看影像角度，还应看活动和参与情况。"
+      ],
+      "applicability": "制定康复目标、解释康复价值和随访内容。",
+      "limitations": "这是康复概念与服务范围，不是某一患者的具体动作、频次或负荷处方。",
+      "keywords": [
+        "康复",
+        "功能",
+        "目标",
+        "日常生活",
+        "训练",
+        "辅助器具"
+      ],
+      "clinical_questions": [
+        "康复应记录什么目标和进展？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "who_activity",
+      "title": "身体活动与久坐的健康影响",
+      "publisher": "WHO",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/physical-activity",
+      "source_date": "2024-06-26",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "public_health",
+      "evidence_type": "public_health",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "activity",
+        "prevention",
+        "rehabilitation"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "身体活动包括步行、骑行、运动和日常移动。规律活动有助于身体与心理健康；儿童青少年可获益于骨骼、肌肉和运动发展，成人也可改善健康与生活质量。",
+      "key_points": [
+        "一般活动的健康获益不等同于已经证明能矫正某条侧弯曲线。"
+      ],
+      "applicability": "日常活动与健康教育。",
+      "limitations": "公共健康活动建议不能代替术后、骨折、神经症状或特定侧弯患者的个体训练限制。",
+      "keywords": [
+        "运动",
+        "久坐",
+        "身体活动",
+        "步行",
+        "健康"
+      ],
+      "clinical_questions": [
+        "平时一直坐着，如何看待运动与脊柱健康？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "who_falls",
+      "title": "跌倒的多因素预防",
+      "publisher": "WHO",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/falls",
+      "source_date": "2021-04-26",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "public_health",
+      "evidence_type": "public_health",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "falls",
+        "prevention"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "跌倒风险涉及平衡和移动能力、药物、视力及环境等因素。预防可包括步态和平衡训练、家庭环境评估及按具体风险安排干预。",
+      "key_points": [
+        "不同年龄与环境的风险因素不同，应结合个体评估。"
+      ],
+      "applicability": "了解跌倒原因和减少风险的方向。",
+      "limitations": "单个步态视频分数不能覆盖全部跌倒原因；药物调整由专业人员进行，不能根据检索结果自行停药。",
+      "keywords": [
+        "跌倒",
+        "平衡",
+        "步态",
+        "家庭环境",
+        "预防"
+      ],
+      "clinical_questions": [
+        "走路不稳如何减少跌倒？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "uspstf_ais_screening",
+      "title": "无症状青少年侧弯筛查的证据边界",
+      "publisher": "USPSTF",
+      "source_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/adolescent-idiopathic-scoliosis-screening",
+      "source_date": "2018-01-09",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "recommendation",
+      "evidence_type": "recommendation",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "screening",
+        "evidence"
+      ],
+      "populations": [
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "USPSTF 对 10–18 岁无症状青少年普遍侧弯筛查给出 I 声明：获益与伤害平衡的证据不足。页面记录 2025 年文献监测未发现足够新证据启动更新。",
+      "key_points": [
+        "筛查检出能力、改善健康结局与假阳性代价是不同问题。"
+      ],
+      "applicability": "设计学校筛查或讨论筛查证据。",
+      "limitations": "I 声明不是认定所有筛查无效，也不适用于已有疼痛或明显畸形者的诊断性评估；不同组织可能有不同筛查立场。",
+      "keywords": [
+        "筛查",
+        "学校",
+        "无症状",
+        "证据",
+        "准确率"
+      ],
+      "clinical_questions": [
+        "学校侧弯筛查证据充分吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "aaos_ais",
+      "title": "特发性侧弯的症状、原因与专科评估",
+      "publisher": "AAOS OrthoInfo",
+      "source_url": "https://www.orthoinfo.org/diseases--conditions/idiopathic-scoliosis-in-children-and-adolescents",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "assessment",
+        "growth"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "特发性侧弯涉及侧向弯曲和旋转，轻度可能没有疼痛。生长高峰可能加快曲线变化，肩部和腰部不对称可成为发现线索。",
+      "key_points": [
+        "先天或神经肌肉病相关侧弯属于不同情况，需要区别评估。"
+      ],
+      "applicability": "初次疑似侧弯或家庭病因沟通。",
+      "limitations": "没有已确定的单一病因，不应归罪于重书包或不良坐姿；专科评估决定观察、支具或其他处理。",
+      "keywords": [
+        "特发性",
+        "肩部不对称",
+        "书包",
+        "青春期",
+        "侧弯"
+      ],
+      "clinical_questions": [
+        "孩子不痛是否仍可能有侧弯？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "aaos_stenosis",
+      "title": "腰椎管狭窄与行走相关腿部症状",
+      "publisher": "AAOS OrthoInfo",
+      "source_url": "https://www.orthoinfo.org/diseases--conditions/lumbar-spinal-stenosis/",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "pain",
+        "gait",
+        "neurology",
+        "degeneration"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "腰椎管空间变窄可能压迫神经，导致腰痛、腿痛、麻木或无力，常与退变有关，也可能存在先天因素。",
+      "key_points": [
+        "功能变化和神经表现应纳入复诊记录。"
+      ],
+      "applicability": "成人腰腿症状与行走能力下降。",
+      "limitations": "影像退变词语本身不等于症状原因；需结合病史、神经检查和功能评估，不能由步态分类器确认狭窄。",
+      "keywords": [
+        "椎管狭窄",
+        "腿痛",
+        "腿麻",
+        "行走",
+        "神经压迫",
+        "退变"
+      ],
+      "clinical_questions": [
+        "走路腿痛和腰椎管狭窄有什么关系？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "aaos_vertebral_fracture",
+      "title": "骨质疏松、椎体压缩骨折与新发背痛",
+      "publisher": "AAOS OrthoInfo",
+      "source_url": "https://www.orthoinfo.org/diseases--conditions/osteoporosis-and-spinal-fractures",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "fracture",
+        "osteoporosis",
+        "pain",
+        "imaging"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "骨质疏松会降低骨强度，椎体压缩骨折可在轻微外力后发生，引起新发背痛、身高减少或后凸。医生可结合影像及骨密度评估骨折与后续风险。",
+      "key_points": [
+        "确诊骨折后还应考虑骨健康和再次骨折预防。"
+      ],
+      "applicability": "成人特别是骨质疏松风险者出现新发背痛。",
+      "limitations": "并非所有椎体骨折都由骨质疏松引起；新发剧痛或外伤不能作为普通康复训练问题处理。",
+      "keywords": [
+        "骨质疏松",
+        "压缩骨折",
+        "骨折",
+        "身高变矮",
+        "新发背痛"
+      ],
+      "clinical_questions": [
+        "轻轻摔倒后背痛，是否需要排查骨折？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nice_ng59",
+      "title": "NICE 腰痛与坐骨神经痛：影像和非手术管理",
+      "publisher": "NICE",
+      "source_url": "https://www.nice.org.uk/guidance/ng59/chapter/Recommendations",
+      "source_date": "2016-11-30",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "guideline",
+      "evidence_type": "guideline",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "pain",
+        "imaging",
+        "rehabilitation",
+        "self_management"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "非专科场景不应对一般腰痛常规影像检查；专科影像应以可能改变处理为前提。鼓励适合个人能力的活动和运动，手法治疗仅作为含运动的组合方案一部分。",
+      "key_points": [
+        "建议不常规提供腰带或牵引，具体临床适用范围需要保留。"
+      ],
+      "applicability": "成人腰痛影像必要性及非手术管理。",
+      "limitations": "NG59 面向 16 岁及以上；严重病因或新危险信号需另行评估。不同指南对具体疗法的意见并不完全一致，不能把本条当统一全球处方。",
+      "keywords": [
+        "腰痛",
+        "影像",
+        "MRI",
+        "牵引",
+        "运动",
+        "坐骨神经痛"
+      ],
+      "clinical_questions": [
+        "腰痛是不是必须拍 MRI？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nice_ng127",
+      "title": "异常步态与马尾综合征的转诊线索",
+      "publisher": "NICE",
+      "source_url": "https://www.nice.org.uk/guidance/ng127/chapter/Recommendations-for-adults-aged-over-16",
+      "source_date": "2019-05-01",
+      "source_date_kind": "publication",
+      "retrieved_at": "2026-09-08",
+      "source_type": "guideline",
+      "evidence_type": "guideline",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "neurology",
+        "red_flags",
+        "referral"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "突然或快速进展的步态不稳需按神经系统疾病路径评估。严重腰痛放射至腿并新发膀胱、肠道或性功能变化，或会阴麻木，应立即评估马尾综合征。",
+      "key_points": [
+        "慢性逐渐加重的步态不稳也需要专业查因。"
+      ],
+      "applicability": "异常步态或腰腿痛合并新神经症状。",
+      "limitations": "指南涉及 16 岁以上，具体急诊和转诊路径需本地化；不要把神经性步态问题归结为侧弯视频分数。",
+      "keywords": [
+        "步态不稳",
+        "走路不稳",
+        "马尾综合征",
+        "会阴麻木",
+        "排尿障碍",
+        "大小便失禁"
+      ],
+      "clinical_questions": [
+        "突然走路不稳该怎么办？腰痛加尿不出来是否紧急？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false,
+      "source_updated_at": "2023-10-02"
+    },
+    {
+      "id": "nice_ng249",
+      "title": "跌倒后的步态平衡评估和预防训练",
+      "publisher": "NICE",
+      "source_url": "https://www.nice.org.uk/guidance/ng249/chapter/Recommendations",
+      "source_date": "2025-04-29",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "guideline",
+      "evidence_type": "guideline",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "falls",
+        "rehabilitation",
+        "follow_up"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "对 65 岁以上及部分高风险 50–64 岁人群，跌倒史可触发综合评估或步态平衡评估。干预可包括个体化、渐进的力量与平衡训练及家庭环境评估，并复核训练进展。",
+      "key_points": [
+        "多次跌倒、受伤、无法自行起身等情况需要更全面评估。"
+      ],
+      "applicability": "高风险成人或老年人跌倒后的管理。",
+      "limitations": "不推荐用单一跌倒风险预测工具判断个体是否会跌倒；本指南的人群不能直接扩展到儿童侧弯筛查。",
+      "keywords": [
+        "跌倒",
+        "平衡",
+        "步态",
+        "训练",
+        "老年",
+        "随访"
+      ],
+      "clinical_questions": [
+        "跌倒以后应该评估哪些方面？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nice_ng197",
+      "title": "共同决策与风险沟通",
+      "publisher": "NICE",
+      "source_url": "https://www.nice.org.uk/guidance/ng197",
+      "source_date": "2021-06-17",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "guideline",
+      "evidence_type": "guideline",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "shared_decision",
+        "communication"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "共同决策让患者与专业人员讨论选择、获益、风险、后果和个人偏好；决策辅助工具帮助理解，但不能替代沟通。",
+      "key_points": [
+        "清楚说明信息适用范围和不确定性，避免给模型分数包装成个体疾病概率。"
+      ],
+      "applicability": "准备治疗选择沟通或理解不确定结果。",
+      "limitations": "该指南主要面向成人照护，不涵盖需要立即救命的紧急情况；儿童需结合监护和参与能力。没有个人风险数据时应明确不确定性。",
+      "keywords": [
+        "共同决策",
+        "风险",
+        "选择",
+        "沟通",
+        "知情",
+        "治疗方案"
+      ],
+      "clinical_questions": [
+        "治疗有几种选择时如何和医生讨论？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "acr_scoliosis_child",
+      "title": "ACR 儿童侧弯初始影像选择",
+      "publisher": "ACR",
+      "source_url": "https://acsearch.acr.org/docs/3101564/narrative",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "appropriateness_criteria",
+      "evidence_type": "appropriateness_criteria",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "imaging",
+        "assessment"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "ACR 按先天、早发及青少年侧弯并有无风险因素区分影像场景。全脊柱 X 线常用于初始评估；无风险因素的青少年特发性侧弯通常不常规做 MRI，而先天或早发情况不同。",
+      "key_points": [
+        "检查选择必须保留年龄、病因和风险因素。"
+      ],
+      "applicability": "医生比较侧弯影像检查场景。",
+      "limitations": "适宜性评级对应明确临床场景，不是给所有疑似侧弯者的检查套餐；本条仅索引实际查阅的摘要和评级表。",
+      "keywords": [
+        "影像",
+        "儿童",
+        "MRI",
+        "先天侧弯",
+        "早发",
+        "全脊柱"
+      ],
+      "clinical_questions": [
+        "无神经异常的青少年侧弯是否常规 MRI？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "acr_low_back_pain",
+      "title": "ACR 腰痛初始影像适宜性",
+      "publisher": "ACR",
+      "source_url": "https://acsearch.acr.org/docs/69483/Narrative/",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "appropriateness_criteria",
+      "evidence_type": "appropriateness_criteria",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "pain",
+        "imaging",
+        "assessment"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "急性腰痛伴或不伴神经根症状，在没有危险信号且未接受初步处理时，常规初始 X 线、CT 或 MRI 通常不适宜。不同病史和危险因素对应不同影像路径。",
+      "key_points": [
+        "影像是否改变管理是重要问题，检查并非越多越好。"
+      ],
+      "applicability": "医生或患者讨论初始影像必要性。",
+      "limitations": "不能把无危险信号情景的结论套用于疑似感染、肿瘤、骨折、马尾综合征或术后新症状。",
+      "keywords": [
+        "腰痛",
+        "CT",
+        "MRI",
+        "影像",
+        "危险信号"
+      ],
+      "clinical_questions": [
+        "普通急性腰痛要不要立即拍片？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "radiology_bone_xray",
+      "title": "骨骼 X 线检查的用途和局限",
+      "publisher": "ACR/RSNA RadiologyInfo",
+      "source_url": "https://www.radiologyinfo.org/en/info/bonerad",
+      "source_date": "2024-03-11",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "imaging",
+        "radiation"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "X 线利用电离辐射显示骨骼和排列，可用于骨折及骨性结构评价；对软组织、神经和某些隐匿损伤的信息有限。检查前应说明可能怀孕等相关情况。",
+      "key_points": [
+        "应让专业人员判断是否需要其他成像方法。"
+      ],
+      "applicability": "解释检查用途、准备与局限。",
+      "limitations": "X 线、CT、MRI 回答不同问题；普通 RGB 图片或生成图像不能视为真实检查。来源仅介绍影像检查，不验证本项目图像算法。",
+      "keywords": [
+        "X线",
+        "xray",
+        "拍片",
+        "辐射",
+        "骨骼",
+        "影像"
+      ],
+      "clinical_questions": [
+        "X 光能看到神经吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "radiology_spine_mri",
+      "title": "脊柱 MRI：神经软组织与检查安全信息",
+      "publisher": "ACR/RSNA RadiologyInfo",
+      "source_url": "https://www.radiologyinfo.org/en/info/spinemr",
+      "source_date": "2026-07-01",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "imaging",
+        "mri"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "脊柱 MRI 利用磁场和射频成像，不使用电离辐射，可显示脊柱和周围组织。检查前应说明体内器械、植入物、既往手术、妊娠及相关过敏史。",
+      "key_points": [
+        "MRI 的适应证与 X 线测量曲线不同。"
+      ],
+      "applicability": "理解 MRI 原理与检查前沟通。",
+      "limitations": "无电离辐射不等于无需安全筛查；植入物兼容性和是否使用对比剂由影像团队判断，不能只看植入物名称。",
+      "keywords": [
+        "MRI",
+        "核磁",
+        "磁共振",
+        "植入物",
+        "辐射",
+        "脊髓"
+      ],
+      "clinical_questions": [
+        "MRI 有辐射吗？有金属植入物能做吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "sosort_2016",
+      "title": "SOSORT：生长期侧弯特异性运动与保守治疗",
+      "publisher": "SOSORT / Scoliosis and Spinal Disorders",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5795289/",
+      "source_date": "2018-01-10",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "guideline",
+      "evidence_type": "guideline",
+      "evidence_level": "recommendations_with_variable_certainty_not_individually_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "rehabilitation",
+        "psse",
+        "bracing",
+        "follow_up"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "2016 SOSORT 指南提出侧弯特异性运动 PSSE 包含三维自我矫正、日常活动训练、保持矫正姿势及患者教育。方案需由受过相应训练的治疗师根据曲线和治疗阶段个体化，监测执行质量及依从性。",
+      "key_points": [
+        "观察随访和支具可与训练组合，频次取决于具体临床情况。"
+      ],
+      "applicability": "临床制定侧弯保守治疗和家庭练习复核。",
+      "limitations": "指南年份为 2016、发表于 2018；推荐依据等级不同，部分来自共识。不能把通用拉伸或单一视频动作称为完整 PSSE，也不能保证角度下降。",
+      "keywords": [
+        "PSSE",
+        "施罗斯",
+        "Schroth",
+        "侧弯特异性运动",
+        "康复",
+        "三维矫正"
+      ],
+      "clinical_questions": [
+        "侧弯康复训练如何个体化？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "braist_2013",
+      "title": "BrAIST：支具减少高风险曲线进展的研究证据",
+      "publisher": "Weinstein et al. / NEJM",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3913566/",
+      "source_date": "2013-10-17",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "clinical_trial",
+      "evidence_type": "clinical_trial",
+      "evidence_level": "randomized_and_preference_cohorts",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "bracing",
+        "evidence",
+        "adherence"
+      ],
+      "populations": [
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "BrAIST 对符合高进展风险条件的青少年比较支具与观察，发现支具组更可能在骨骼成熟时保持曲线低于 50°；实际佩戴时间与成功率相关。",
+      "key_points": [
+        "患者选择、骨骼成熟和曲线风险影响结果适用性。"
+      ],
+      "applicability": "医生查阅支具治疗效果依据。",
+      "limitations": "研究包括随机和偏好队列，佩戴时间关联可能受混杂影响。终点不是完全治愈，也不能用研究总体成功率预测某个孩子的结果。",
+      "keywords": [
+        "BrAIST",
+        "支具",
+        "随机试验",
+        "依从性",
+        "佩戴时间"
+      ],
+      "clinical_questions": [
+        "支具有效吗，有什么研究证据？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "cdc_tug",
+      "title": "TUG 起立行走计时：活动能力观察",
+      "publisher": "CDC STEADI",
+      "source_url": "https://www.cdc.gov/steadi/pdf/STEADI-Assessment-TUG-508.pdf",
+      "source_date": "2017",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "assessment_protocol",
+      "evidence_type": "assessment_protocol",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "falls",
+        "assessment"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "TUG 通过从椅子起立、以平常速度走到 3 米处、转身返回并坐下，观察活动能力及用时；同时记录稳定性、步幅、摆臂和转身表现。评估人员应在旁保护安全。",
+      "key_points": [
+        "可在需要时使用平常的助行器，必须记录测试条件。"
+      ],
+      "applicability": "专业人员标准化观察活动能力。",
+      "limitations": "此工具面向老年跌倒评估，不是侧弯诊断或自动风险概率。时间阈值不可孤立使用，也不能要求不安全的患者独自完成。",
+      "keywords": [
+        "TUG",
+        "起立行走",
+        "计时",
+        "步幅",
+        "步态",
+        "平衡"
+      ],
+      "clinical_questions": [
+        "TUG 测试怎么做，能说明什么？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_pdf_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "cdc_telesteadi",
+      "title": "远程步态和平衡评估前的环境准备",
+      "publisher": "CDC STEADI",
+      "source_url": "https://cdc.gov/steadi/media/pdfs/2024/08/Telesteadi-Guide_H_WEB.pdf",
+      "source_date": "2024",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "implementation_guide",
+      "evidence_type": "implementation_guide",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "falls",
+        "telehealth",
+        "assessment"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "远程评估前应试运行视频软件，确认适当鞋服、清除绊倒障碍、准备稳固座椅，并让参与者理解测试流程。",
+      "key_points": [
+        "视野、场地和人员保护应先满足评估安全要求。"
+      ],
+      "applicability": "医疗团队准备远程活动能力评估。",
+      "limitations": "这是远程跌倒评估的准备建议，不能视为 ScoNet 视频采集标准，也不授权无保护完成有跌倒风险的任务。",
+      "keywords": [
+        "远程",
+        "视频",
+        "拍摄",
+        "环境",
+        "步态",
+        "安全",
+        "座椅"
+      ],
+      "clinical_questions": [
+        "远程录步态视频前应准备什么？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_pdf_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "sconet_paper",
+      "title": "ScoNet-MT 与步态侧弯分类的研究范围",
+      "publisher": "Zhou et al. / MICCAI 2024",
+      "source_url": "https://arxiv.org/abs/2407.05726",
+      "source_date": "2024-08-23",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "research_model",
+      "evidence_type": "research_model",
+      "evidence_level": "algorithm_research_not_clinical_guidance",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "scoliosis",
+        "ai",
+        "evidence"
+      ],
+      "populations": [
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "research_reference"
+      ],
+      "summary": "研究提出 Scoliosis1K 数据集和基于步态的 ScoNet、ScoNet-MT 分类方法，探索非侵入视频表征作为侧弯相关研究信号；论文报告对象主要是青少年。",
+      "key_points": [
+        "知识来源说明方法，不代表本患者的模型结果；实际工具报告需单独提供。"
+      ],
+      "applicability": "解释步态 AI 方法来源和能力边界。",
+      "limitations": "算法论文不是临床指南。论文数据上的分类表现不能自动外推成人或学校手机视频，也不能从模型分数推导个人患病概率、Cobb 角或治疗方案。",
+      "keywords": [
+        "ScoNet",
+        "步态识别",
+        "视频",
+        "模型分数",
+        "准确率",
+        "Cobb"
+      ],
+      "clinical_questions": [
+        "步态视频能确诊侧弯或测量 Cobb 角吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_abstract",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "niams_treatment",
+      "title": "NIAMS：侧弯治疗目标与家庭执行支持",
+      "publisher": "NIAMS",
+      "source_url": "https://www.niams.nih.gov/health-topics/scoliosis/diagnosis-treatment-and-steps-to-take",
+      "source_date": "2023-07",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "follow_up",
+        "bracing",
+        "psychosocial"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "治疗根据曲线位置与程度、症状及剩余生长制定，目标包括控制进展、减轻疼痛及改善生活质量。支具按处方佩戴，家长与孩子遇到依从性困难时应及时与团队沟通。",
+      "key_points": [
+        "可记录具体不适、活动影响、执行情况及待问问题。"
+      ],
+      "applicability": "家长准备复诊和支持治疗执行。",
+      "limitations": "不要自行改变支具时长或停用；支持性沟通和复诊有助于解决不适，不能用责备替代原因评估。",
+      "keywords": [
+        "家庭",
+        "依从性",
+        "支具",
+        "复诊",
+        "生活质量",
+        "儿童"
+      ],
+      "clinical_questions": [
+        "孩子不愿戴支具，如何与医生沟通？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nhc_school_spine_2021",
+      "title": "儿童青少年脊柱弯曲异常防控：学校筛查与转诊",
+      "publisher": "国家卫生健康委",
+      "source_url": "https://www.nhc.gov.cn/jkj/c100062/202111/fbb103397fab4a1c9541bdcf3988dad6.shtml",
+      "source_date": "2021-11-01",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "public_health_guidance",
+      "evidence_type": "public_health_guidance",
+      "evidence_level": "guidance_or_consensus_recommendations_vary_in_certainty",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "screening",
+        "school_health",
+        "assessment",
+        "follow_up"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "学校专业筛查关注脊柱侧弯、前后弯曲异常及姿态问题，发现疑似异常后转至医疗机构确认，并以连续健康档案追踪。",
+      "key_points": [
+        "体表躯干旋转角 ATR 与影像 Cobb 角属于不同测量；健康姿态教育不能替代结构性侧弯诊疗。"
+      ],
+      "applicability": "中国儿童青少年学校筛查、档案与家校医协作。",
+      "limitations": "公共卫生技术指南，不能把坐姿问题一概解释为特发性侧弯病因；筛查结果不等同确诊。",
+      "keywords": [
+        "学校筛查",
+        "脊柱弯曲异常",
+        "ATR",
+        "Cobb",
+        "学生健康档案",
+        "转诊"
+      ],
+      "clinical_questions": [
+        "学校筛查发现脊柱弯曲异常后如何转诊和记录？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "china_five_health_2026",
+      "title": "五健行动计划：年度脊柱筛查、学生档案与转介",
+      "publisher": "国家卫生健康委等13部门（教育部公开）",
+      "source_url": "https://www.moe.gov.cn/jyb_xxgk/moe_1777/moe_1779/202603/t20260324_1431885.html",
+      "source_date": "2025",
+      "source_date_kind": "notice_year",
+      "retrieved_at": "2026-09-08",
+      "source_type": "public_health_policy",
+      "evidence_type": "public_health_policy",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "school_health",
+        "screening",
+        "follow_up",
+        "posture"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "2026—2030 年行动计划将脊柱筛查纳入学生体检与常见病监测，提出学校每年为 10—16 岁学生开展一次筛查评估，将异常者转介医疗机构。",
+      "key_points": [
+        "学校记录脊柱健康档案，并结合身高变化调整课桌椅与书包使用，支持体育活动。"
+      ],
+      "applicability": "中国学校公共卫生流程和家校医协作。",
+      "limitations": "政策实施要求不是无症状筛查净获益的临床试验证明；学校筛查不等于每年统一拍片。",
+      "keywords": [
+        "五健",
+        "学校筛查",
+        "学生档案",
+        "年度体检",
+        "转介",
+        "课桌椅"
+      ],
+      "clinical_questions": [
+        "五健计划对学校脊柱筛查和转介有什么要求？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "ndc_multidisease_2024",
+      "title": "学生常见病多病共防：环境、行为与动态监测",
+      "publisher": "国家疾病预防控制局",
+      "source_url": "https://www.ndcpa.gov.cn/jbkzzx/c100014/common/content/content_1787407022636773376.html",
+      "source_date": "2024-05-06",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "public_health_guidance",
+      "evidence_type": "public_health_guidance",
+      "evidence_level": "guidance_or_consensus_recommendations_vary_in_certainty",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "school_health",
+        "posture",
+        "physical_activity",
+        "follow_up"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "学生常见病多病共防指南从身体活动、久坐、睡眠及家庭学校环境等共同因素组织健康促进，结合监测结果开展干预、复查和转诊。",
+      "key_points": [
+        "学校与家庭可共同改善课桌椅适配、活动机会和健康行为记录。"
+      ],
+      "applicability": "中国学校脊柱健康与其他学生常见病协同管理。",
+      "limitations": "多病共同风险因素不代表每一种行为都会导致特发性侧弯；不提供个体矫形处方。",
+      "keywords": [
+        "多病共防",
+        "学生常见病",
+        "课桌椅",
+        "久坐",
+        "学校健康",
+        "动态监测"
+      ],
+      "clinical_questions": [
+        "学校怎样把姿态、活动和复查纳入多病共防？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "cma_spine_anatomy",
+      "title": "认识脊柱：生理曲度、椎间盘与神经保护",
+      "publisher": "中华医学会神经外科学分会",
+      "source_url": "https://cns.cma.org.cn/art/2020/6/8/art_3024_34809.html",
+      "source_date": "2020-06-08",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "anatomy",
+        "posture",
+        "spine"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "脊柱由椎骨及连接它们的关节、椎间盘和韧带组成；颈腰段与胸骶段的生理曲度协同承担支撑、活动和神经保护功能。",
+      "key_points": [
+        "解剖结构、正常生理曲度和疾病造成的结构改变需要分别理解。"
+      ],
+      "applicability": "医生解释脊柱结构、家庭理解影像和姿态概念。",
+      "limitations": "仅索引该科普的基础解剖信息，不将泛化寝具或保健建议转为治疗处方。",
+      "keywords": [
+        "脊柱结构",
+        "椎骨",
+        "椎间盘",
+        "生理曲度",
+        "前凸",
+        "后凸",
+        "脊髓"
+      ],
+      "clinical_questions": [
+        "脊柱为什么有生理弯曲，椎间盘和脊髓分别做什么？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "cma_rehab_scoliosis",
+      "title": "科学认识侧弯康复与三维自我矫正",
+      "publisher": "中华医学会物理医学与康复学分会",
+      "source_url": "https://cspmr.cma.org.cn/cn/news.asp?id=867.html",
+      "source_date": "2023-05-23",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "rehabilitation",
+        "exercise",
+        "assessment"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "侧弯康复科普介绍外观检查线索和观察、特异性运动、支具及手术等方案，强调根据年龄、类型和严重程度选择，并将三维自我矫正融入生活。",
+      "key_points": [
+        "PSSE 包括姿态自我矫正、稳定与呼吸等内容，应由专业人员评估指导。"
+      ],
+      "applicability": "中文家庭教育与康复沟通。",
+      "limitations": "患者教育材料，非临床指南；运动不能普遍替代支具或手术，不据此承诺纠正角度。",
+      "keywords": [
+        "三维自我矫正",
+        "PSSE",
+        "侧弯康复",
+        "呼吸训练",
+        "康复运动"
+      ],
+      "clinical_questions": [
+        "侧弯特异性康复运动与普通体操有什么区别？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "hk_student_scoliosis",
+      "title": "学生脊柱侧弯：发现线索与生活习惯误区",
+      "publisher": "香港卫生署学生健康服务",
+      "source_url": "https://www.studenthealth.gov.hk/sc_chi/health/health_bsh/health_bsh_sco.html",
+      "source_date": "2022-06",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "scoliosis",
+        "screening",
+        "posture",
+        "follow_up"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "高低肩、肩胛骨或腰部不对称可提示需要检查；侧弯进展与骨骼成熟度和曲线程度有关。日常健康习惯有益整体健康，但不等于可预防特发性侧弯。",
+      "key_points": [
+        "轻度曲线也应按医生建议观察，严重情况需要骨科评估。"
+      ],
+      "applicability": "学生及家长理解姿态观察、随访与病因不确定性。",
+      "limitations": "页面对生活习惯的说明不能用来否定已确诊患者接受专业 PSSE 的可能价值；科普不提供个体疗效预测。",
+      "keywords": [
+        "高低肩",
+        "坐姿病因",
+        "生活习惯",
+        "学生脊柱",
+        "原发性侧弯",
+        "骨骼成熟"
+      ],
+      "clinical_questions": [
+        "孩子侧弯是不是坐姿不好造成，轻度还用复查吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nice_ng65",
+      "title": "炎性腰背痛与脊柱关节炎识别转诊",
+      "publisher": "NICE",
+      "source_url": "https://www.nice.org.uk/guidance/NG65/chapter/Recommendations",
+      "source_date": "2017",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "clinical_guideline",
+      "evidence_type": "clinical_guideline",
+      "evidence_level": "guidance_or_consensus_recommendations_vary_in_certainty",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "back_pain",
+        "red_flags",
+        "assessment",
+        "rehabilitation"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "年轻起病且持续的腰背痛若伴夜间痛、活动改善、银屑病或葡萄膜炎等线索，应考虑脊柱关节炎评估；单个体征或阴性检查不能独立排除。",
+      "key_points": [
+        "疑似炎性疾病需要综合病史、检查与专科转诊，避免只按机械性腰痛处理。"
+      ],
+      "applicability": "16 岁以上疑似脊柱关节炎的专业识别和转诊参考。",
+      "limitations": "所索引为识别原则，不复刻完整转诊算法；本库 adult 标签是检索分类，原指南范围为16岁以上。",
+      "keywords": [
+        "炎性腰背痛",
+        "晨僵",
+        "夜间痛",
+        "脊柱关节炎",
+        "银屑病",
+        "葡萄膜炎"
+      ],
+      "clinical_questions": [
+        "腰背痛夜里明显、活动好转，是否要考虑炎性疾病？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "nice_ng234",
+      "title": "肿瘤患者新发步态障碍：警惕脊髓压迫",
+      "publisher": "NICE",
+      "source_url": "https://www.nice.org.uk/guidance/ng234/resources/metastatic-spinal-cord-compression-initial-assessment-and-management-pdf-13134700768",
+      "source_date": "2023",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "guideline_summary",
+      "evidence_type": "guideline_summary",
+      "evidence_level": "guidance_or_consensus_recommendations_vary_in_certainty",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "red_flags",
+        "gait",
+        "imaging",
+        "back_pain"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "有肿瘤病史的人若出现行走困难、肢体无力、感觉变化或膀胱肠道障碍，应立即评估可能的转移性脊髓压迫；这属于急诊路径，不能等待视频步态结果。",
+      "key_points": [
+        "疑似压迫的影像与处置由急诊或专科团队尽快安排，并同步评估支持和康复需求。"
+      ],
+      "applicability": "肿瘤背景下新发神经症状和步态异常的识别。",
+      "limitations": "仅索引 NICE 初始评估摘要；不包含药物剂量，不把所有背痛判断为肿瘤。",
+      "keywords": [
+        "肿瘤",
+        "脊髓压迫",
+        "癌症",
+        "行走困难",
+        "肢体无力",
+        "转移"
+      ],
+      "clinical_questions": [
+        "有癌症病史最近走路困难，应先做步态视频还是及时就诊？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "radiology_child_safety",
+      "title": "儿童影像辐射：必要性、既往检查与剂量适配",
+      "publisher": "ACR/RSNA RadiologyInfo",
+      "source_url": "https://www.radiologyinfo.org/en/info/safety-rad-children",
+      "source_date": "2024-08-25",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "imaging",
+        "radiation",
+        "shared_decision"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "儿童影像选择应平衡诊断价值与潜在风险，检查前可核对既往影像是否足够、是否有适用的无电离辐射替代方法，以及设备参数是否适配儿童体型。",
+      "key_points": [
+        "携带已有影像和报告有助避免不必要重复检查。"
+      ],
+      "applicability": "家长与医生沟通儿童影像检查必要性。",
+      "limitations": "MRI、超声和 X 线各有适应证，不能仅因辐射担忧就自行替代或取消有指征检查。",
+      "keywords": [
+        "儿童辐射",
+        "重复拍片",
+        "影像剂量",
+        "既往影像",
+        "儿童X线"
+      ],
+      "clinical_questions": [
+        "儿童反复拍片怎么办，可以带旧片避免重复吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "aaos_pars",
+      "title": "青少年腰痛的其他原因：峡部裂与椎体滑脱",
+      "publisher": "AAOS OrthoInfo",
+      "source_url": "https://www.orthoinfo.org/diseases--conditions/spondylolysis-and-spondylolisthesis/",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "back_pain",
+        "differential_diagnosis",
+        "imaging",
+        "rehabilitation"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "峡部裂是椎弓峡部的薄弱或应力骨折，椎体滑脱指椎骨向前移位；青少年反复腰椎过伸运动相关腰痛需要病史、查体和必要影像鉴别。",
+      "key_points": [
+        "部分患者有活动痛、腘绳肌紧张或僵硬步态，治疗与复查依症状和滑脱情况选择。"
+      ],
+      "applicability": "青少年运动性腰痛、步态僵硬的鉴别教育。",
+      "limitations": "不将所有运动后腰痛归于峡部裂，也不以步态模型判断骨折或滑脱等级。",
+      "keywords": [
+        "峡部裂",
+        "椎体滑脱",
+        "过伸",
+        "运动腰痛",
+        "应力骨折",
+        "僵硬步态"
+      ],
+      "clinical_questions": [
+        "运动后腰痛且走路僵硬会不会不只是侧弯？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "aaos_adult_slip",
+      "title": "成人腰椎滑脱：退变、神经症状与评估",
+      "publisher": "AAOS OrthoInfo",
+      "source_url": "https://www.orthoinfo.org/diseases--conditions/adult-spondylolisthesis-in-the-low-back",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "back_pain",
+        "differential_diagnosis",
+        "spine",
+        "assessment"
+      ],
+      "populations": [
+        "adult",
+        "older_adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "腰椎滑脱可与退变或既往峡部缺损有关；有些人没有症状，另一些人表现为腰痛或腿痛，需要结合症状和影像判断其临床意义。",
+      "key_points": [
+        "椎间盘和关节退变可能影响稳定性，但单个影像发现不能解释所有疼痛。"
+      ],
+      "applicability": "成人腰腿痛及影像提示滑脱的理解。",
+      "limitations": "患者教育资料，不提供手术适应证自动判定；不同病因和滑脱程度不能共用单一处方。",
+      "keywords": [
+        "成人滑脱",
+        "腰椎滑脱",
+        "退变",
+        "峡部缺损",
+        "腰腿痛"
+      ],
+      "clinical_questions": [
+        "成人影像发现腰椎滑脱一定会疼或一定要手术吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "srs_radiographic_manual",
+      "title": "脊柱影像测量：Cobb 之外的平衡与旋转",
+      "publisher": "SRS/SDSG",
+      "source_url": "https://www.srs.org/Files/Research/Manuals-and-Publications/sdsg-radiographic-measuremnt-manual.pdf",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "measurement_manual",
+      "evidence_type": "measurement_manual",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "imaging",
+        "measurement",
+        "anatomy",
+        "spine"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "脊柱畸形测量手册强调 Cobb 角不能概括全部畸形，还应区分冠状与矢状平衡、椎体旋转、端椎选择及骨盆相关参数，并保证影像体位和质量。",
+      "key_points": [
+        "一致的术语、椎体编号与拍摄条件有助不同医生和时间点交流，但部分区域测量重复性有限。"
+      ],
+      "applicability": "影像测量字段设计、人工复核与随访报告解释。",
+      "limitations": "本条仅摘要所查阅的手册前言及范围，不等于实现或校验整套测量算法；不索引手册图像。",
+      "keywords": [
+        "影像测量",
+        "冠状平衡",
+        "矢状平衡",
+        "端椎",
+        "骨盆参数",
+        "椎体旋转"
+      ],
+      "clinical_questions": [
+        "Cobb角之外还需要看哪些脊柱平衡和旋转参数？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "acr_scoliosis_radiography",
+      "title": "儿童侧弯摄片规范：体位、视野与临床信息",
+      "publisher": "ACR/SPR/SSR",
+      "source_url": "https://gravitas.acr.org/PPTS/DownloadPreviewDocument?DocId=44",
+      "source_date": null,
+      "source_date_kind": "not_stated_in_reviewed_text",
+      "retrieved_at": "2026-09-08",
+      "source_type": "practice_parameter",
+      "evidence_type": "practice_parameter",
+      "evidence_level": "guidance_or_consensus_recommendations_vary_in_certainty",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "imaging",
+        "measurement",
+        "radiation",
+        "follow_up"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "儿童侧弯 X 线应有明确医学理由，在诊断质量前提下控制剂量；摄片数量和体位依临床问题选择，并向影像医生提供病史、症状及随访目的。",
+      "key_points": [
+        "站立后前位可降低部分组织剂量，不能站立者需适当替代体位；侧位有助矢状畸形和平衡评估。"
+      ],
+      "applicability": "影像采集说明、拍摄条件记录和跨次比较。",
+      "limitations": "网页为官方实践参数预览，所查文字未明确版本日期；不把所有患者固定为同一拍摄频次。",
+      "keywords": [
+        "摄片规范",
+        "站立位",
+        "后前位",
+        "影像视野",
+        "拍摄体位",
+        "矢状评估"
+      ],
+      "clinical_questions": [
+        "全脊柱片拍摄体位和视野为什么影响比较？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "sosort_radiation_2012",
+      "title": "侧弯随访减少 X 线暴露的共识原则",
+      "publisher": "SOSORT",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4002921/",
+      "source_date": "2014-04-25",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "expert_consensus",
+      "evidence_type": "expert_consensus",
+      "evidence_level": "guidance_or_consensus_recommendations_vary_in_certainty",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "radiation",
+        "imaging",
+        "follow_up",
+        "scoliosis"
+      ],
+      "populations": [
+        "child",
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "SOSORT 共识建议结合生长成熟度、体表变化和病情制定临床与影像随访，优先用查体等发现进展线索，并考虑后前位等减少照射的方法。",
+      "key_points": [
+        "临床复诊间隔和拍片间隔是两个不同概念，重复侧位或 CT 不应自动成为常规。"
+      ],
+      "applicability": "理解长期侧弯随访中的剂量管理。",
+      "limitations": "2012 年形成、2014 年发表的专家共识，不能取代更新的本地规范和个体临床判断；未把旧间隔直接设为软件规则。",
+      "keywords": [
+        "减少辐射",
+        "拍片间隔",
+        "临床复诊",
+        "后前位",
+        "随访影像"
+      ],
+      "clinical_questions": [
+        "侧弯复诊是否每次都需要重新拍正侧位？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "CC-BY-4.0 (article); summary only",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "schreiber_schroth_rct_2016",
+      "title": "施罗斯运动联合常规照护的随机试验证据",
+      "publisher": "Schreiber et al./PLOS ONE",
+      "source_url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0168746",
+      "source_date": "2016-12-29",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "randomized_trial",
+      "evidence_type": "randomized_trial",
+      "evidence_level": "individual_randomized_trial_not_formally_graded_here",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "rehabilitation",
+        "exercise",
+        "scoliosis",
+        "evidence"
+      ],
+      "populations": [
+        "adolescent"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "clinical_reference",
+        "research_reference"
+      ],
+      "summary": "一项 50 人、六个月的随机试验比较了施罗斯 PSSE 联合常规照护与单纯常规照护，前者在平均曲线变化上更有利，提供短期辅助治疗证据。",
+      "key_points": [
+        "研究包含专业监督及家庭练习，干预是在观察或支具等照护基础上增加运动。"
+      ],
+      "applicability": "讨论青少年特发性侧弯 PSSE 证据与研究局限。",
+      "limitations": "小样本、单中心及短期随访，不能外推个人改善角度、长期免手术获益或成人疗效。",
+      "keywords": [
+        "施罗斯",
+        "Schroth",
+        "随机试验",
+        "PSSE",
+        "运动疗效"
+      ],
+      "clinical_questions": [
+        "施罗斯运动有随机试验证据吗，能保证角度下降吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "Creative Commons Attribution (article notice); summary only",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "gstt_postop_recovery",
+      "title": "腰椎减压或椎间盘切除术后的活动与随访",
+      "publisher": "Guy's and St Thomas' NHS Foundation Trust",
+      "source_url": "https://www.guysandstthomas.nhs.uk/health-information/recovering-lumbar-spine-decompression-or-discectomy",
+      "source_date": "2026-07",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "postoperative",
+        "rehabilitation",
+        "follow_up",
+        "red_flags"
+      ],
+      "populations": [
+        "adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "腰椎减压或椎间盘切除后应在团队指导下逐步恢复步行，出院时明确药物、联系渠道及复诊时间；恢复速度因人而异。",
+      "key_points": [
+        "伤口红肿渗出或发热需联系医疗人员；新发显著神经症状或排尿困难需及时急诊评估。"
+      ],
+      "applicability": "该类手术后早期家庭照护与复查教育。",
+      "limitations": "医院患者资料针对特定手术，不可将其活动时程直接用于侧弯融合、骨折或其他术式。",
+      "keywords": [
+        "术后康复",
+        "腰椎减压",
+        "椎间盘切除",
+        "伤口",
+        "出院随访"
+      ],
+      "clinical_questions": [
+        "腰椎减压术后回家怎样逐步走路并安排复查？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "cdc_four_stage_balance",
+      "title": "四阶段平衡测试：静态平衡与停止条件",
+      "publisher": "CDC STEADI",
+      "source_url": "https://www.cdc.gov/steadi/media/pdfs/STEADI-Assessment-4Stage-508.pdf",
+      "source_date": "2017",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "assessment_protocol",
+      "evidence_type": "assessment_protocol",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "balance",
+        "falls",
+        "assessment"
+      ],
+      "populations": [
+        "older_adult"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "四阶段测试以逐渐变难的站姿评估静态平衡，由评估者示范并在旁保护；不能按协议保持某一阶段时停止，避免继续挑战。",
+      "key_points": [
+        "结果用于发现平衡问题并考虑进一步评估或训练，不应当作个体跌倒概率。"
+      ],
+      "applicability": "受训人员进行老年静态平衡评估。",
+      "limitations": "有安全保护与明确测试条件，不能从任意步行视频补算成绩，也不建议无人保护时自行尝试。",
+      "keywords": [
+        "四阶段平衡",
+        "静态平衡",
+        "串联站立",
+        "停止条件",
+        "跌倒评估"
+      ],
+      "clinical_questions": [
+        "四阶段平衡测试什么时候应该停止？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_pdf_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "cdc_chair_stand",
+      "title": "30 秒坐站测试：下肢力量与耐力",
+      "publisher": "CDC STEADI",
+      "source_url": "https://www.cdc.gov/steadi/media/pdfs/STEADI-Assessment-30Sec-508.pdf",
+      "source_date": "2017",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "assessment_protocol",
+      "evidence_type": "assessment_protocol",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "gait",
+        "strength",
+        "falls",
+        "assessment"
+      ],
+      "populations": [
+        "older_adult"
+      ],
+      "audiences": [
+        "doctor"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "30 秒坐站测试在规定座椅和姿势下记录完整起立次数，用来评估下肢力量与耐力；施测者应在旁保护，无法遵循姿势要求时按协议停止和记录。",
+      "key_points": [
+        "年龄相关参考值来自规定人群和施测方法，记录座椅、辅助及未完成情况很重要。"
+      ],
+      "applicability": "受训人员开展老年功能评估与纵向比较。",
+      "limitations": "普通视频缺少规定时间、座椅与动作条件时不能生成该量表成绩；不复制原表格或将单项成绩当作诊断。",
+      "keywords": [
+        "30秒坐站",
+        "下肢力量",
+        "起立次数",
+        "肌肉耐力",
+        "座椅高度"
+      ],
+      "clinical_questions": [
+        "30秒坐站测试测什么，普通走路视频能得出这个成绩吗？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "who_assistive_technology",
+      "title": "辅助技术与康复：促进活动和日常参与",
+      "publisher": "WHO",
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/assistive-technology",
+      "source_date": "2024-01-02",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "fact_sheet",
+      "evidence_type": "fact_sheet",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "rehabilitation",
+        "assistive_technology",
+        "function"
+      ],
+      "populations": [
+        "all"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "辅助技术包含产品及配套服务，可支持移动、自理和日常参与；合理服务应考虑使用者与家庭的需求，并支持长期安全有效使用。",
+      "key_points": [
+        "辅助产品可能短期或长期使用，其价值不仅在行走速度，也在独立性和生活参与。"
+      ],
+      "applicability": "康复目标沟通、辅助产品需求评估。",
+      "limitations": "宏观健康资料，不根据步态视频自动推荐具体助行器型号或矫形器参数。",
+      "keywords": [
+        "辅助技术",
+        "助行器",
+        "轮椅",
+        "独立生活",
+        "日常参与"
+      ],
+      "clinical_questions": [
+        "康复为什么也要关注助行器和日常生活参与？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "indexed_source_excerpt",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    },
+    {
+      "id": "niams_osteoporosis",
+      "title": "骨质疏松、身高下降与脊柱骨折线索",
+      "publisher": "NIAMS",
+      "source_url": "https://www.niams.nih.gov/health-topics/osteoporosis",
+      "source_date": "2022-12",
+      "source_date_kind": "publication_or_page_review",
+      "retrieved_at": "2026-09-08",
+      "source_type": "patient_education",
+      "evidence_type": "patient_education",
+      "evidence_level": "educational_or_implementation_material_not_formally_graded",
+      "evidence_kind": "knowledge",
+      "topics": [
+        "bone_health",
+        "fracture",
+        "red_flags",
+        "posture"
+      ],
+      "populations": [
+        "adult",
+        "older_adult"
+      ],
+      "audiences": [
+        "doctor",
+        "family"
+      ],
+      "usage": [
+        "education",
+        "clinical_reference"
+      ],
+      "summary": "骨质疏松可能在骨折前没有明显症状；脊柱骨折可表现为新发背痛、身高下降或后凸，风险评估应同时考虑年龄、既往骨折、疾病及药物等。",
+      "key_points": [
+        "轻微跌倒或日常负荷也可能造成脆性骨折，体态变化需要结合病史评估。"
+      ],
+      "applicability": "成人尤其老年人的骨健康与姿态变化教育。",
+      "limitations": "不能仅凭驼背、步态或摄像头姿态诊断骨质疏松，也不提供骨密度或骨折风险的自动推算。",
+      "keywords": [
+        "骨质疏松",
+        "身高下降",
+        "脆性骨折",
+        "驼背",
+        "骨健康"
+      ],
+      "clinical_questions": [
+        "老人身高变矮和驼背是否需要考虑脊柱骨折？"
+      ],
+      "access_mode": "summary_only",
+      "full_text_indexed": false,
+      "retrieval_method": "reviewed_source_page_text",
+      "source_license": "not_relicensed; original source rights retained",
+      "license_note": "仅保存自行撰写的简短事实摘要、元数据与出处链接；不复制原文全文、图片或量表。未把公开可读等同于允许全文再分发。",
+      "clinically_signed_off": false
+    }
+  ]
+}

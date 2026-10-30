@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "displayName": "脊见智诊",
+  "huaweiAppId": "6917619919410116692",
+  "bundleName": "com.benjaminmcree.spineinsight",
+  "huaweiProjectName": "脊见智诊",
+  "platform": "HarmonyOS",
+  "deviceTypes": ["phone"],
+  "supportEmail": "benjaminmcree@qq.com",
+  "appIdCreated": true,
+  "marketCategoryConfirmed": false,
+  "signed": true,
+  "published": false
+}

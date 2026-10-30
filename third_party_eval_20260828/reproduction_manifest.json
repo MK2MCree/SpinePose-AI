@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "policy": "A project is never enabled in the product merely because its source is present. Every entry must pass license, isolated execution, adapter contract, case-archive and regression gates.",
+  "projects": [
+    {
+      "id": "repdetect",
+      "repository": "https://github.com/giaongo/RepDetect",
+      "commit": "50f990f138de50778833f82b812e4a3691eacaef",
+      "license": "Apache-2.0",
+      "adapter": "run_video_screening",
+      "input_contract": "{case_id, asset_id, protocol_version}",
+      "output_contract": "VideoAssessment",
+      "status": "algorithmic core verified locally: source-faithful 33-landmark embedding, mirror-invariant two-stage KNN and confidence hysteresis passed fixed pose traces; Android/ML Kit application reproduction still pending",
+      "verification": "tests/test_independent_reproduction.py::test_repdetect_*",
+      "enable_when": ["complete fixed Android source is materialized", "Android SDK/Gradle/ML Kit build passes", "real-video pose fixture passes", "timeout/cancel regression passes", "clinical protocol review signed"]
+    },
+    {
+      "id": "opencap_core",
+      "repository": "https://github.com/opencap-org/opencap-core",
+      "commit": "4c0aab5e2f1c80810585cda212769e9da4ec167e",
+      "license": "Apache-2.0",
+      "adapter": "run_multicam_kinematics",
+      "input_contract": "{case_id, asset_ids, calibration_id}",
+      "output_contract": "KinematicsAssessment",
+      "status": "algorithmic core verified locally: calibrated DLT triangulation, synchronization and reprojection gates passed a fixed synthetic fixture; OpenSim worker reproduction still pending",
+      "verification": "tests/test_independent_reproduction.py::test_calibrated_dlt_* and test_triangulation_*",
+      "enable_when": ["complete fixed source is materialized", "multi-camera video/calibration fixture passes", "OpenSim output provenance is stored", "dedicated worker health check passes"]
+    },
+    {
+      "id": "totalsegmentator_monai",
+      "repository": "https://github.com/wasserth/TotalSegmentator + https://github.com/Project-MONAI/MONAI",
+      "commit": null,
+      "license": "Apache-2.0",
+      "adapter": "run_ctmr_segmentation",
+      "input_contract": "{case_id, asset_id, modality}",
+      "output_contract": "SegmentationAssessment",
+      "status": "pending fixed-version acquisition and isolated worker reproduction",
+      "enable_when": ["DICOM/NIfTI de-identification fixture passes", "model card reviewed", "manual review route passes", "worker capacity is verified"]
+    },
+    {
+      "id": "multimodal_torso",
+      "repository": "https://github.com/luantran/MultimodalTorsoImageReconstruction",
+      "commit": null,
+      "license": "MIT",
+      "adapter": "build_surface_archive",
+      "input_contract": "{case_id, asset_ids, capture_protocol_version}",
+      "output_contract": "SurfaceArchive",
+      "status": "reference workflow only; v1 allows non-diagnostic surface archive",
+      "enable_when": ["same-session calibrated professional acquisition", "anatomical landmark protocol", "expert review workflow"]
+    },
+    {
+      "id": "medrag",
+      "repository": "https://github.com/gzxiong/MedRAG",
+      "commit": null,
+      "license": "NCBI public-domain notice",
+      "adapter": "retrieve_clinical_evidence",
+      "input_contract": "{query, audience, age_group}",
+      "output_contract": "Evidence[]",
+      "status": "local lexical baseline implemented; semantic worker pending",
+      "enable_when": ["approved local corpus", "retrieval golden set", "citation coverage test", "no-evidence abstention test"]
+    }
+  ]
+}

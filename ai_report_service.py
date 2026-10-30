@@ -3,20 +3,24 @@ import os
 import sys
 from urllib import error, request
 
+from mindspine.runtime import get_resource_root
+
 
 def get_runtime_base_dir():
-    if getattr(sys, "frozen", False):
-        return os.path.dirname(sys.executable)
-    return os.path.dirname(os.path.abspath(__file__))
+    return get_resource_root()
 
 
 class DeepSeekReportService:
-    def __init__(self):
-        self.base_dir = get_runtime_base_dir()
+    def __init__(self, base_dir=None):
+        self.base_dir = base_dir or get_runtime_base_dir()
         self.settings_path = os.path.join(self.base_dir, "app_settings.json")
         self.api_key = ""
         self.base_url = "https://api.deepseek.com"
-        self.model = "deepseek-chat"
+        # V4-Pro is the strongest current DeepSeek Chat Completions model. It
+        # is still constrained to de-identified wording after local policy has
+        # made every safety and tool decision.
+        self.model = "deepseek-v4-pro"
+        self.model_migrated_from = ""
         self.timeout_sec = 45.0
         self.refresh_config()
 
@@ -45,7 +49,16 @@ class DeepSeekReportService:
 
         env_model = os.getenv("DEEPSEEK_MODEL", "").strip()
         file_model = str(settings.get("deepseek_model", "")).strip()
-        self.model = env_model or file_model or "deepseek-chat"
+        requested_model = env_model or file_model or "deepseek-v4-pro"
+        # Keep legacy local settings from silently selecting a retired model.
+        # The setting file itself is left untouched so secrets/config ownership
+        # remain with the operator.
+        if requested_model in {"deepseek-chat", "deepseek-reasoner", "deepseek-v4-flash"}:
+            self.model_migrated_from = requested_model
+            self.model = "deepseek-v4-pro"
+        else:
+            self.model_migrated_from = ""
+            self.model = requested_model
 
         env_timeout = os.getenv("DEEPSEEK_TIMEOUT_SEC", "").strip()
         file_timeout = str(settings.get("deepseek_timeout_sec", "")).strip()
@@ -66,10 +79,12 @@ class DeepSeekReportService:
             "ready": bool(self.api_key),
             "provider": "DeepSeek",
             "model": self.model,
+            "model_migrated_from": self.model_migrated_from or None,
             "base_url": self.base_url,
             "settings_path": "",
             "status": (
                 f"已配置 DeepSeek，当前模型：{self.model}"
+                + (f"（已从 {self.model_migrated_from} 迁移）" if self.model_migrated_from else "")
                 if self.api_key
                 else "未配置 DeepSeek API，个人报告将使用本地基础解读"
             ),
@@ -178,6 +193,100 @@ class DeepSeekReportService:
             ),
         }
 
+    def generate_agent_copy(self, deidentified_summary, draft_message):
+        """Improve wording only; no identifiers or raw medical assets are sent.
+
+        The case agent has already made the deterministic safety and tool-policy
+        decision before this method is reached.  This method cannot propose a
+        tool, prescribe treatment, or alter the triage level.
+        """
+
+        self.refresh_config()
+        safe_draft = self._sanitize_text(draft_message, "")[:900]
+        if not self.api_key or not safe_draft:
+            return {"used": False, "message": safe_draft}
+
+        safe_summary = {
+            "case_scope": str((deidentified_summary or {}).get("case_scope", "adult_spine_followup"))[:64],
+            "triage": (deidentified_summary or {}).get("triage", {}),
+            "symptom_scores": (deidentified_summary or {}).get("symptom_scores", {}),
+            "assessment_states": (deidentified_summary or {}).get("assessment_states", []),
+            "structured_case_facts": (deidentified_summary or {}).get("structured_case_facts", {}),
+        }
+        system_prompt = """
+You are the wording component of a cautious spine-health assistant.
+Call return_safe_copy exactly once with the revised message.
+Write concise Simplified Chinese for adults.
+You may improve the supplied draft's clarity but must preserve its safety boundaries.
+Do not diagnose, prescribe medication, recommend surgery, invent results, mention hidden reasoning,
+or add exercises/dosage. Do not ask for names, addresses, identifiers, raw images, DICOM, photos, or video.
+"""
+        body = {
+            "model": self.model,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {
+                    "role": "user",
+                    "content": "去标识化摘要：\n"
+                    + json.dumps(safe_summary, ensure_ascii=False, separators=(",", ":"))
+                    + "\n\n必须保持的草稿：\n"
+                    + safe_draft,
+                },
+            ],
+            # This is a schema-only function call.  The returned arguments are
+            # validated locally and never grant the model an application tool.
+            "tools": [
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "return_safe_copy",
+                        "description": "Return only the patient-facing wording while preserving the supplied safety boundary.",
+                        "strict": True,
+                        "parameters": {
+                            "type": "object",
+                            "properties": {"message": {"type": "string", "minLength": 1, "maxLength": 1000}},
+                            "required": ["message"],
+                            "additionalProperties": False,
+                        },
+                    },
+                }
+            ],
+            "tool_choice": {"type": "function", "function": {"name": "return_safe_copy"}},
+            "thinking": {"type": "enabled"},
+            "reasoning_effort": "max",
+            "max_tokens": 420,
+        }
+        req = request.Request(
+            url=f"{self.base_url}/chat/completions",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {self.api_key}"},
+            method="POST",
+        )
+        try:
+            with request.urlopen(req, timeout=self.timeout_sec) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            response_message = (((payload.get("choices") or [{}])[0].get("message")) or {})
+            calls = response_message.get("tool_calls") or []
+            if calls:
+                function = (calls[0] or {}).get("function") or {}
+                if function.get("name") != "return_safe_copy":
+                    return {"used": False, "message": safe_draft}
+                parsed = json.loads(function.get("arguments") or "{}")
+            else:
+                # Some compatible gateways return JSON content despite a forced
+                # tool call.  Support it only as a non-authoritative fallback.
+                content = str(response_message.get("content") or "").strip()
+                parsed = json.loads(content)
+            message = self._sanitize_text(parsed.get("message"), safe_draft)
+            prohibited = ("确诊", "诊断为", "处方", "服用", "手术", "剂量")
+            if any(token in message for token in prohibited):
+                return {"used": False, "message": safe_draft}
+            return {"used": bool(message), "message": message[:1000]}
+        except Exception:
+            # The case agent already has a safe local response.  Avoid leaking
+            # provider details into a patient-facing workbench.
+            return {"used": False, "message": safe_draft}
+
     def generate_personal_sections(self, analysis_context):
         self.refresh_config()
 
@@ -226,6 +335,8 @@ The json schema must be:
                 {"role": "user", "content": user_prompt},
             ],
             "response_format": {"type": "json_object"},
+            "thinking": {"type": "enabled"},
+            "reasoning_effort": "max",
             "max_tokens": 1200,
         }
 

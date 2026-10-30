@@ -42,3 +42,20 @@ site/.wrangler/
 site/outputs/
 site/tsconfig.tsbuildinfo
 site/.openai/hosting.json
+.runtime/
+.analysis_tmp/integration_v201/
+
+# Local builds, research outputs and temporary workspaces
+/build/
+/dist/
+/output/
+/projects/
+/group_meeting_review/
+/tmp/
+/.analysis_tmp/
+/pytest-cache-files-*/
+
+# Keep provenance only; external evaluation clones and outputs stay local
+/third_party_eval_20260828/*
+!/third_party_eval_20260828/README.md
+!/third_party_eval_20260828/reproduction_manifest.json

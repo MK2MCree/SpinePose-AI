@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+import threading
 
 from mindspine.sessions import CaseRegistry, ModelProxy
 
@@ -41,7 +42,28 @@ class SessionRegistryTests(unittest.TestCase):
             with self.assertRaises(KeyError):
                 self.registry.select_case("missing")
 
+    def test_concurrent_uploads_in_same_account_keep_request_case(self):
+        created_a, created_b = threading.Event(), threading.Event()
+        def first():
+            with self.registry.activate_session('a' * 32):
+                self.registry.create_case('case-a')
+                created_a.set()
+                self.assertTrue(created_b.wait(3))
+                self.proxy.image_path = 'synthetic-a.png'
+        def second():
+            self.assertTrue(created_a.wait(3))
+            with self.registry.activate_session('a' * 32):
+                self.registry.create_case('case-b')
+                self.proxy.image_path = 'synthetic-b.png'
+                created_b.set()
+        threads = [threading.Thread(target=first), threading.Thread(target=second)]
+        for thread in threads: thread.start()
+        for thread in threads: thread.join(5)
+        self.assertFalse(any(thread.is_alive() for thread in threads))
+        with self.registry.activate_session('a' * 32):
+            self.assertEqual(self.registry.select_case('case-a').image_path, 'synthetic-a.png')
+            self.assertEqual(self.registry.select_case('case-b').image_path, 'synthetic-b.png')
+
 
 if __name__ == "__main__":
     unittest.main()
-

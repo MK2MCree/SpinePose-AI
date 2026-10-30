@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="创建脊见智诊本地账号">
+    <title>注册｜脊见智诊 SpineInsight</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="vendor/fontawesome-free-6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page" data-page="register">
+    <div class="auth-grid"></div>
+    <main class="auth-shell">
+        <section class="auth-intro" aria-label="产品介绍">
+            <a class="auth-brand" href="index.html"><span class="auth-brand-mark"><img src="logo.png" alt=""></span><span>SpineInsight</span></a>
+            <h1>从这里开始<br>建立你的工作台。</h1>
+            <p>使用用户名和密码创建本地账号。你可以现在上传头像，也可以先使用默认圆形头像。</p>
+        </section>
+        <section class="auth-card" aria-labelledby="register-title">
+            <h2 id="register-title">创建账号</h2>
+            <p>账号信息仅保存于当前服务的本地数据库。</p>
+            <form id="register-form" novalidate>
+                <div class="avatar-upload">
+                    <label class="avatar-picker" for="register-avatar" aria-label="选择头像">
+                        <img id="avatar-preview" alt="头像预览" hidden>
+                        <span id="avatar-placeholder"><i class="fa-solid fa-plus"></i><b>添加头像</b></span>
+                        <input id="register-avatar" name="avatar" type="file" accept="image/jpeg,image/png,image/webp">
+                    </label>
+                    <small>可选 · JPG、PNG 或 WebP，最大 2 MB</small>
+                </div>
+                <div class="auth-field"><label for="register-username">用户名</label><input id="register-username" name="username" autocomplete="username" maxlength="32" required placeholder="2–32 位，支持中文、字母和数字"></div>
+                <div class="auth-field"><label for="register-password">密码</label><input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="256" required placeholder="至少 8 位"></div>
+                <div class="auth-field"><label for="register-password-confirm">确认密码</label><input id="register-password-confirm" name="password_confirm" type="password" autocomplete="new-password" minlength="8" maxlength="256" required placeholder="再次输入密码"></div>
+                <p id="register-message" class="auth-message" aria-live="polite"></p>
+                <button id="register-submit" class="auth-submit" type="submit">创建账号</button>
+            </form>
+            <p class="auth-footnote">已经有账号？ <a href="login.html">登录</a></p>
+        </section>
+    </main>
+    <script src="auth.js"></script>
+</body>
+</html>

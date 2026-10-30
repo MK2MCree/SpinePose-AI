@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindSpine - 智能工作台</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="vendor/tailwindcss-3.4.17/tailwind.min.js"></script>
+    <link href="vendor/fontawesome-free-6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=20260416-black-bg">
     <style>
         html,
@@ -27,8 +27,9 @@
             background: #020202 !important;
         }
     </style>
-</head>
-<body class="bg-[#000000] text-white h-screen overflow-hidden flex font-sans selection:bg-[#5E6AD2]/30">
+<script src="case-context.js?v=20260908" defer></script></head>
+<body class="bg-[#000000] text-white h-screen overflow-hidden flex font-sans selection:bg-[#5E6AD2]/30" data-page="workspace">
+<a href="gait-workspace.html?audience=doctor" style="position:fixed;right:28px;top:18px;z-index:10001;padding:9px 14px;border:1px solid #56636d;border-radius:8px;background:#1c252bea;color:#dce6ed;font:12px Inter,'Microsoft YaHei',sans-serif;text-decoration:none">步态工作区 ↗</a>
 
     <div class="noise-bg"></div>
     <div class="ambient-light-1"></div>
@@ -486,6 +487,7 @@
         </div>
     </main>
 
+    <script src="auth.js"></script>
     <script src="app.js?v=20260710-production" defer></script>
 </body>
 </html>

@@ -1,0 +1,77 @@
+{
+  "downloaded_at": "2026-09-08",
+  "files": [
+    {
+      "path": "fontawesome-free-6.0.0/css/all.min.css",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+      "bytes": 89220,
+      "sha256": "8d321d88cb97fdedc3189506c25de9292c6e73a60ebaab496243346c6404480e"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/LICENSE.txt",
+      "source_url": "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.0.0/LICENSE.txt",
+      "bytes": 1548,
+      "sha256": "e779748dfe75e84f974df3c7bc07f842011a100159158b0f1f49b2f2a5a515cb"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-brands-400.ttf",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-brands-400.ttf",
+      "bytes": 180148,
+      "sha256": "9e122861bc5f7d6190d580b22acc5b1c3f8cdba9f495593cccd3b47d2cbfa2fd"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-brands-400.woff2",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-brands-400.woff2",
+      "bytes": 104544,
+      "sha256": "29bc44694c394921d1f00271128a2e4cd8293516216e24eac07a73fa821fc1f5"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-regular-400.ttf",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-regular-400.ttf",
+      "bytes": 60380,
+      "sha256": "709034805d10429d24862ad685d561808328329debdbca4f70487b508320a3ff"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-regular-400.woff2",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-regular-400.woff2",
+      "bytes": 23900,
+      "sha256": "fa79fc4f2559112ff3dd27cf5be216d9b5f88066ceef728264f5a3a1a195fc1e"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-solid-900.ttf",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.ttf",
+      "bytes": 303480,
+      "sha256": "1782156bfa2054db429277b42f143298a1ce03437c05e2779ca7875112b19d3c"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-solid-900.woff2",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2",
+      "bytes": 126828,
+      "sha256": "1b099f88c06ed0869872561c157f0ec9cbe133a0939d9ece4ee1e1f54bd4683d"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-v4compatibility.ttf",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-v4compatibility.ttf",
+      "bytes": 10556,
+      "sha256": "fde941c0964fab984f6af0697b3fec92e7df384eec9941babfd3e4cbbd6211c2"
+    },
+    {
+      "path": "fontawesome-free-6.0.0/webfonts/fa-v4compatibility.woff2",
+      "source_url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-v4compatibility.woff2",
+      "bytes": 4956,
+      "sha256": "b3abfccce275536beaaeba990e900a0c08ed2fefbabf4a8bcbb2e2ffe3f2431f"
+    },
+    {
+      "path": "tailwindcss-3.4.17/LICENSE.txt",
+      "source_url": "https://raw.githubusercontent.com/tailwindlabs/tailwindcss/v3.4.17/LICENSE",
+      "bytes": 1071,
+      "sha256": "60e0b68c0f35c078eef3a5d29419d0b03ff84ec1df9c3f9d6e39a519a5ae7985"
+    },
+    {
+      "path": "tailwindcss-3.4.17/tailwind.min.js",
+      "source_url": "https://cdn.tailwindcss.com/3.4.17",
+      "bytes": 407279,
+      "sha256": "176e894661aa9cdc9a5cba6c720044cbbf7b8bd80d1c9a142a7c24b1b6c50d15"
+    }
+  ]
+}

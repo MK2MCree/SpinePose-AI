@@ -149,7 +149,11 @@ class CaseRegistry:
 
     def create_case(self, case_id: str) -> Any:
         with self.activate_case(case_id, remember=True, create=True) as model:
-            return model
+            created = model
+        # Like select_case, keep the request's choice pinned after creation.
+        # Another request for the same account may change the remembered case.
+        CURRENT_CASE_ID.set(case_id)
+        return created
 
     def select_case(self, case_id: Optional[str], required: bool = True) -> Any:
         session_id = current_session_id()
@@ -222,4 +226,3 @@ class ModelProxy:
 
     def __setattr__(self, name: str, value: Any) -> None:
         setattr(self._registry.current_model(), name, value)
-

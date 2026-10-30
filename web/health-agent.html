@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="在对话中查看脊柱健康资料并使用影像与步态分析工具。">
+  <meta name="color-scheme" content="light">
+  <title>Agent · SpineInsight 脊见智诊</title>
+  <link rel="icon" type="image/png" href="favicon.png?v=20260930-brand1">
+  <link rel="stylesheet" href="health-agent.css?v=20260930-workflows2">
+  <link rel="stylesheet" href="spine-questionnaire.css?v=20260930-intake4">
+  <script src="case-context.js?v=20260908" defer></script>
+</head>
+<body class="ms-app agent-app">
+  <div class="agent-app-shell">
+    <aside class="agent-sidebar agent-navigation" id="agent-navigation" aria-label="侧栏">
+      <div class="agent-brand-row">
+        <a class="agent-brand" href="index.html" aria-label="SpineInsight 脊见智诊首页"><span class="agent-brand-mark" aria-hidden="true"><img src="logo.png?v=20260930-brand1" alt="" width="1024" height="1024"></span><span class="agent-brand-name">SpineInsight<small>脊见智诊</small></span></a>
+        <a class="icon-button" href="health-home.html" data-demo-link aria-label="返回健康中心" title="返回健康中心"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></a>
+      </div>
+      <button class="agent-new-chat" id="agent-new-chat" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-6M16 3l5 5M10 14l2.5-.5L21 5a1.8 1.8 0 0 0-2.5-2.5L10 11Z"/></svg>新对话</button>
+      <nav class="agent-nav" aria-label="健康工作区">
+        <a href="health-agent.html" data-demo-link aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-8 8 9 9 0 0 1-3.4-.7L4 20l1.2-4.6a8 8 0 1 1 14.8-3.9Z"/></svg>对话</a>
+        <a href="health-home.html" data-demo-link><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8M5 9v11h5v-6h4v6h5V9"/></svg>健康中心</a>
+        <a href="personal-case.html" data-demo-link><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H5v17h14V4h-3M8 3h8v4H8ZM8 12h8M8 16h5"/></svg>健康档案</a>
+        <a href="personal-workspace.html" data-demo-link><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m3 16 5-5 5 5 4-4 4 4M8 7h.01"/></svg>影像评估</a>
+        <a href="gait-workspace.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="m6 12 4-4 5 2 3 4M10 8l-1 7-3 6M9 15l5 1 2 5M15 10l-2 5"/></svg>步态评估</a>
+      </nav>
+      <div class="agent-sidebar-scroll">
+        <details class="agent-details" id="agent-case-details">
+          <summary>当前病例</summary>
+          <div class="agent-details-body">
+            <h2 id="agent-triage-status" class="agent-context-hero">正在读取</h2>
+            <p id="agent-triage-note" class="agent-context-sub">正在读取病例资料。</p>
+            <div class="agent-fact-row"><span>健康问卷</span><b id="agent-context-questionnaire">—</b></div>
+            <div class="agent-fact-row"><span>检测与档案</span><b id="agent-context-assets">—</b></div>
+            <div class="agent-fact-row"><span>人工复核</span><b id="agent-context-review">—</b></div>
+            <a id="agent-safety-link" href="personal-case.html?modal=questionnaire" data-demo-link class="agent-context-link">查看健康问卷 <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+        <details class="agent-details">
+          <summary>问卷详情</summary>
+          <div class="agent-details-body"><h3 id="agent-questionnaire-summary-title">尚未填写</h3><p id="agent-questionnaire-analysis" class="agent-context-sub">填写后可查看摘要。</p></div>
+        </details>
+      </div>
+      <details class="agent-details agent-settings">
+        <summary><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg>AI 与资料设置</span></summary>
+        <div class="agent-details-body"><p id="agent-consent-status" class="ms-note">仅本地处理</p><button id="btn-agent-toggle-consent" class="ms-button" type="button"><span id="agent-consent-button-label">开启 AI 病例解读</span></button><p id="agent-third-party-status" class="agent-context-sub">正在读取可用能力…</p></div>
+      </details>
+    </aside>
+
+    <main class="agent-main">
+      <header class="agent-thread-head">
+        <div class="agent-thread-title"><button id="agent-sidebar-toggle" type="button" class="icon-button" aria-label="展开侧栏" aria-controls="agent-navigation" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button><span id="agent-case-label">新对话</span></div>
+        <details class="agent-task-drawer" id="agent-task-drawer">
+          <summary id="agent-tasks-toggle" aria-label="查看任务"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 6 1.5 1.5L8 5M11 6h9M4 12h3M11 12h9M4 18h3M11 18h9"/></svg><span>任务</span></summary>
+          <aside class="agent-sidebar right" aria-label="任务记录"><div class="agent-task-heading">任务记录</div><div id="agent-action-list"><p class="ms-note">暂无任务。</p></div><a href="personal-case.html" data-demo-link class="agent-context-link">查看完整记录 <span aria-hidden="true">↗</span></a></aside>
+        </details>
+      </header>
+      <div id="agent-demo-banner" data-demo-banner class="hidden agent-demo-banner" hidden><span>示例病例</span><a href="health-agent.html?mode=real">切换到我的病例 ↗</a></div>
+      <section class="agent-conversation" aria-label="对话">
+        <div id="agent-chat-log" class="agent-chat-log" role="log" aria-live="polite" aria-relevant="additions text"><div class="agent-loading" role="status"><span class="loading-dot" aria-hidden="true"></span>正在读取对话</div></div>
+        <div class="composer-wrap">
+          <div id="agent-run-status" class="agent-run-status" role="status" aria-live="polite" hidden></div>
+          <div class="suggestions" aria-label="建议问题"><button type="button" class="suggestion" data-prompt="给我做一份调查问卷，评估脊柱健康情况">填写健康问卷</button><button type="button" class="suggestion" data-prompt="生成一份健康评估报告，PDF和Word都要">生成健康报告</button><button type="button" class="suggestion" data-prompt="查看我的历次检查记录">历次记录</button></div>
+          <form id="agent-chat-form" class="composer" aria-label="发送消息和资料">
+            <div id="agent-attachment-list" class="agent-attachment-list" aria-label="已添加资料"></div>
+            <div id="agent-plugin-list" class="agent-plugin-list" aria-label="已选择插件"></div>
+            <label class="ms-sr" for="agent-chat-input">输入问题或描述分析任务</label>
+            <textarea id="agent-chat-input" rows="2" maxlength="4000" placeholder="输入问题，或添加资料开始分析…"></textarea>
+            <div class="composer-toolbar">
+              <div class="composer-tools">
+                <button id="agent-add-button" class="icon-button" type="button" aria-label="添加资料或插件" title="添加资料或插件" aria-haspopup="true" aria-expanded="false" aria-controls="agent-add-menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                <span id="agent-model-label" class="agent-model-label">SpineInsight</span>
+                <label class="agent-web-toggle" title="检索公开医学文献，需要 AI 外部处理授权"><input id="agent-web-search" type="checkbox">联网</label>
+              </div>
+              <div class="composer-send-actions">
+                <button id="agent-stop-button" class="icon-button agent-stop" type="button" aria-label="停止当前响应" title="停止" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+                <button id="agent-send-button" class="agent-send" type="submit" aria-label="发送消息" title="发送"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button>
+              </div>
+            </div>
+            <div id="agent-add-menu" class="agent-add-menu" role="dialog" aria-label="添加资料或插件" hidden>
+              <div class="agent-menu-files">
+                <button type="button" data-attach-type="image"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m3 16 5-5 5 5 4-4 4 4M8 7h.01"/></svg><span>添加图片</span><small>DR / RGB</small></button>
+                <button type="button" data-attach-type="file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9ZM14 3v6h6M8 14h8M8 17h5"/></svg><span>添加文件</span><small>DICOM 等</small></button>
+                <button type="button" data-attach-type="video"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="12" height="14" rx="2"/><path d="m15 10 6-4v12l-6-4"/></svg><span>添加视频</span><small>动作 / 步态</small></button>
+              </div>
+              <div class="agent-menu-divider"></div>
+              <div class="agent-menu-label">插件</div>
+              <div id="agent-plugin-options" class="agent-plugin-options"><p class="ms-note">正在读取插件…</p></div>
+            </div>
+            <input id="agent-file-input" type="file" multiple accept=".png,.jpg,.jpeg,.bmp,.webp,.dcm,.dicom,.mp4,.mov,.m4v,.avi,.mkv,.webm,.pdf,.txt,.md,.csv,.docx" hidden>
+          </form>
+          <p id="agent-toast" class="ms-message" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="auth.js?v=20260908"></script>
+  <script src="spine-demo.js?v=20260908"></script>
+  <script src="case-history.js?v=20260908"></script>
+  <script src="spine-questionnaire.js?v=20260930-intake4"></script>
+  <script src="health-agent-workflows.js?v=20260930-workflows2"></script>
+  <script src="health-agent.js?v=20260930-workflows2"></script>
+</body>
+</html>

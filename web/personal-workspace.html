@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpine - 个人脊柱检测</title>
+    <script src="vendor/tailwindcss-3.4.17/tailwind.min.js"></script>
+    <link href="vendor/fontawesome-free-6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260827-personal">
+    <style>
+        html, body { margin: 0; min-height: 100vh; background: #000 !important; color: #fff; }
+        body { background: radial-gradient(circle at 18% 0%, rgba(94,106,210,.11), transparent 28rem), radial-gradient(circle at 92% 100%, rgba(138,143,152,.07), transparent 32rem), #000 !important; }
+        .personal-dropzone { min-height: 148px; transition: .25s ease; }
+        .personal-dropzone.is-dragging { border-color: rgba(136,150,249,.92); background: rgba(94,106,210,.15); transform: translateY(-1px); }
+        .personal-dropzone.is-ready { border-color: rgba(34,197,94,.52); background: rgba(34,197,94,.06); }
+        .personal-tab[aria-selected="true"] { color: #fff; background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); box-shadow: 0 0 15px rgba(255,255,255,.05), inset 0 1px rgba(255,255,255,.1); }
+        .personal-tab[aria-selected="false"] { color: #8a8f98; border-color: transparent; }
+        .personal-tab[aria-selected="false"]:hover { color: #fff; background: rgba(255,255,255,.03); }
+        .personal-progress-overlay { background: rgba(2,2,4,.82); backdrop-filter: blur(18px); }
+        .personal-progress-card { width: min(480px, calc(100vw - 34px)); }
+        .progress-item { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: center; color: #8a8f98; transition: .2s ease; }
+        .progress-item .progress-icon { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; background: rgba(255,255,255,.03); color: #8a8f98; font-size: 10px; }
+        .progress-item.is-active { color: #dfe3ff; }
+        .progress-item.is-active .progress-icon { color: #fff; border-color: rgba(136,150,249,.8); background: rgba(94,106,210,.38); animation: progressPulse 1.1s infinite ease-in-out; }
+        .progress-item.is-done { color: #dfe3ff; }
+        .progress-item.is-done .progress-icon { color: #061109; border-color: #22c55e; background: #22c55e; animation: none; }
+        .progress-item.is-failed { color: #ffb7bd; }
+        .progress-item.is-failed .progress-icon { color: #fff; border-color: #ef4444; background: #ef4444; animation: none; }
+        @keyframes progressPulse { 50% { transform: scale(1.12); box-shadow: 0 0 20px rgba(136,150,249,.55); } }
+    </style>
+<script src="case-context.js?v=20260908" defer></script></head>
+<body class="bg-[#000] text-white h-screen overflow-hidden flex font-sans selection:bg-[#5E6AD2]/30" data-page="personal-workspace">
+    <div class="noise-bg"></div>
+    <div class="ambient-light-1"></div>
+    <div class="ambient-light-2"></div>
+
+    <div id="static-demo-banner" data-demo-banner class="hidden fixed top-4 left-1/2 -translate-x-1/2 z-[10001] max-w-[min(760px,calc(100vw-32px))] rounded-2xl border border-amber-300/30 bg-[#171208]/95 px-5 py-3 text-center text-xs leading-relaxed text-amber-100 shadow-2xl backdrop-blur-xl">
+        <strong>演示检测结果已载入。</strong>图像为本地授权展示材料；指标和任务状态为演示记录。不会调用模型、不写入病例。<a href="personal-workspace.html?mode=real" class="ml-2 underline text-amber-50">退出演示</a>
+    </div>
+
+    <a href="health-home.html" data-demo-link class="fixed top-5 left-5 z-[9999] flex items-center gap-2 px-4 py-2 bg-[#050505]/80 border border-white/10 rounded-full text-[#8A8F98] hover:text-white hover:bg-white/10 transition-all duration-300 backdrop-blur-md text-sm cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(94,106,210,0.4)]">
+        <i class="fa-solid fa-arrow-left"></i> 返回健康中心
+    </a>
+    <a href="personal-case.html" data-demo-link class="fixed top-5 right-5 z-[9999] flex items-center gap-2 px-4 py-2 bg-[#5E6AD2]/15 border border-[#5E6AD2]/35 rounded-full text-[#DDE1EB] hover:bg-[#5E6AD2]/28 transition-all duration-300 backdrop-blur-md text-sm cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(94,106,210,0.4)]">
+        <i class="fa-solid fa-folder-open"></i> 查看健康档案
+    </a>
+
+    <aside class="w-[390px] h-full flex flex-col glass-panel sharp-border border-r border-white/10 z-10 pt-20 pb-4 px-5 overflow-y-auto custom-scrollbar shrink-0">
+        <div class="mb-5 shrink-0">
+            <div class="text-[10px] uppercase tracking-[.18em] text-[#8896F9] font-semibold">Personal screening</div>
+            <h1 class="mt-2 text-[22px] font-semibold tracking-tight">个人脊柱检测</h1>
+            <p class="mt-2 text-[12px] leading-relaxed text-[#8A8F98]">用于个人影像预筛与观察，不替代专业医生诊断。</p>
+        </div>
+
+        <div class="flex items-center gap-1 bg-white/[.02] p-1 rounded-xl border border-white/5 mb-5 shrink-0" role="tablist" aria-label="个人检测方式">
+            <button type="button" id="tab-personal-rgb" class="personal-tab relative flex-1 py-1.5 px-2 rounded-lg text-[12px] font-medium border transition-all" role="tab" aria-selected="true" aria-controls="panel-personal-rgb">RGB检测</button>
+            <button type="button" id="tab-personal-dr" class="personal-tab relative flex-1 py-1.5 px-2 rounded-lg text-[12px] font-medium border transition-all" role="tab" aria-selected="false" aria-controls="panel-personal-dr">DR检测</button>
+            <button type="button" id="tab-personal-video" class="personal-tab relative flex-1 py-1.5 px-2 rounded-lg text-[12px] font-medium border transition-all" role="tab" aria-selected="false" aria-controls="panel-personal-video">步态评估</button>
+        </div>
+
+        <section id="panel-personal-rgb" class="flex flex-col gap-4 shrink-0" role="tabpanel" aria-labelledby="tab-personal-rgb">
+            <div id="rgb-dropzone" class="personal-dropzone rounded-2xl border border-dashed border-white/15 bg-black/40 p-5 text-center cursor-pointer btn-glow" tabindex="0" role="button" aria-label="导入侧位 RGB 照片">
+                <div class="w-11 h-11 mx-auto rounded-xl bg-[#5E6AD2]/15 border border-[#5E6AD2]/25 flex items-center justify-center text-[#BFC7FF]"><i class="fa-solid fa-person-rays text-lg"></i></div>
+                <p id="rgb-file-name" class="mt-3 text-sm font-medium text-[#DDE1EB]">拖入或选择侧位 RGB 照片</p>
+                <p class="mt-1 text-[11px] leading-relaxed text-[#8A8F98]">单人、侧面、全身尽量完整；支持 JPG / PNG / WebP。</p>
+                <button type="button" id="btn-personal-rgb-import" class="mt-4 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[12px] text-[#DDE1EB] transition-all"><i class="fa-solid fa-image mr-2"></i>选择照片</button>
+            </div>
+
+            <button type="button" id="btn-personal-rgb-analyze" class="w-full py-3 bg-[#5E6AD2] hover:bg-[#6B79E4] disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-xl text-sm font-semibold transition-all shadow-[0_0_15px_rgba(94,106,210,.4)] btn-glow primary-glow" disabled>
+                <i class="fa-solid fa-play mr-2"></i>开始一键分析
+            </button>
+        </section>
+
+        <section id="panel-personal-dr" class="hidden flex-col gap-4 shrink-0" role="tabpanel" aria-labelledby="tab-personal-dr">
+            <div id="dr-dropzone" class="personal-dropzone rounded-2xl border border-dashed border-white/15 bg-black/40 p-5 text-center cursor-pointer btn-glow" tabindex="0" role="button" aria-label="导入 DR 或 X 光图像">
+                <div class="w-11 h-11 mx-auto rounded-xl bg-[#5E6AD2]/15 border border-[#5E6AD2]/25 flex items-center justify-center text-[#BFC7FF]"><i class="fa-solid fa-x-ray text-lg"></i></div>
+                <p id="dr-file-name" class="mt-3 text-sm font-medium text-[#DDE1EB]">拖入或选择 DR / X 光影像</p>
+                <p class="mt-1 text-[11px] leading-relaxed text-[#8A8F98]">复用医生工作台的朝向校正与关键点测算功能。</p>
+                <button type="button" id="btn-personal-dr-import" class="mt-4 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[12px] text-[#DDE1EB] transition-all"><i class="fa-solid fa-file-import mr-2"></i>选择影像</button>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 px-1">
+                <label for="personal-scale-input" class="text-xs tracking-widest uppercase text-[#8A8F98]">比例尺 (px/mm)</label>
+                <input type="number" id="personal-scale-input" value="1.5" min="0.1" max="10" step="0.1" class="w-20 bg-black/50 border border-white/10 rounded px-2 py-1 text-sm text-center text-white focus:outline-none focus:border-[#5E6AD2] font-mono">
+            </div>
+            <button type="button" id="btn-personal-dr-analyze" class="w-full py-3 bg-[#5E6AD2] hover:bg-[#6B79E4] disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-xl text-sm font-semibold transition-all shadow-[0_0_15px_rgba(94,106,210,.4)] btn-glow primary-glow" disabled>
+                <i class="fa-solid fa-crosshairs mr-2"></i>运行 DR 智能测算
+            </button>
+        </section>
+
+        <section id="panel-personal-video" class="hidden flex-col gap-4 shrink-0" role="tabpanel" aria-labelledby="tab-personal-video">
+            <div id="video-dropzone" class="personal-dropzone rounded-2xl border border-dashed border-white/15 bg-black/40 p-5 text-center cursor-pointer btn-glow" tabindex="0" role="button" aria-label="导入侧位步态视频">
+                <div class="w-11 h-11 mx-auto rounded-xl bg-[#5E6AD2]/15 border border-[#5E6AD2]/25 flex items-center justify-center text-[#BFC7FF]"><i class="fa-solid fa-person-walking text-lg"></i></div>
+                <p id="video-file-name" class="mt-3 text-sm font-medium text-[#DDE1EB]">拖入或选择侧位步态视频</p>
+                <p class="mt-1 text-[11px] leading-relaxed text-[#8A8F98]">单人、全身可见、侧面自然行走；支持 MP4 / MOV。</p>
+                <button type="button" id="btn-personal-video-import" class="mt-4 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[12px] text-[#DDE1EB] transition-all"><i class="fa-solid fa-video mr-2"></i>选择视频</button>
+            </div>
+
+            <div id="video-meta-card" class="hidden rounded-xl bg-black/40 p-4 border border-white/5">
+                <div class="text-[11px] uppercase tracking-widest text-[#8A8F98]">本地视频预览</div>
+                <video id="personal-video-preview" class="w-full mt-3 rounded-lg bg-black border border-white/10 max-h-44" controls playsinline></video>
+                <p id="video-meta" class="mt-2 text-[11px] text-[#B4B9C4]"></p>
+            </div>
+
+            <button type="button" id="btn-personal-video-prepare" class="w-full py-3 bg-[#5E6AD2]/15 hover:bg-[#5E6AD2]/25 disabled:opacity-40 disabled:cursor-not-allowed text-[#DDE1EB] border border-[#5E6AD2]/35 rounded-xl text-sm font-semibold transition-all btn-glow" disabled>
+                <i class="fa-solid fa-list-check mr-2"></i>检查并准备素材
+            </button>
+            <button type="button" id="btn-personal-video-analyze" class="w-full py-2.5 bg-white/5 text-[#8A8F98] border border-white/10 rounded-xl text-sm font-medium cursor-not-allowed" disabled title="独立视频 Worker 尚未验收，不能输出筛查结果">
+                <i class="fa-solid fa-person-walking-arrow-right mr-2"></i>视频分析（等待独立 Worker 验收）
+            </button>
+        </section>
+
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-6 shrink-0"></div>
+        <section class="shrink-0">
+            <div class="flex items-center justify-between mb-3"><div class="text-xs uppercase tracking-widest text-[#8A8F98]">检测摘要</div><span id="personal-result-source" class="text-[10px] text-[#8896F9]">等待分析</span></div>
+            <div id="personal-dr-summary">
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="metric-card bg-white/[.025] rounded-xl border border-white/5 p-3"><span class="text-[10px] uppercase tracking-wider text-[#8A8F98]">LL</span><strong id="personal-val-ll" class="block mt-1 text-[20px] font-semibold">--<small class="text-[10px] opacity-70">°</small></strong></div>
+                    <div class="metric-card bg-white/[.025] rounded-xl border border-white/5 p-3"><span class="text-[10px] uppercase tracking-wider text-[#8A8F98]">SS / SA</span><strong id="personal-val-ss" class="block mt-1 text-[20px] font-semibold">--<small class="text-[10px] opacity-70">°</small></strong></div>
+                    <div class="metric-card bg-white/[.025] rounded-xl border border-white/5 p-3"><span class="text-[10px] uppercase tracking-wider text-[#8A8F98]">LCA</span><strong id="personal-val-lca" class="block mt-1 text-[20px] font-semibold">--<small class="text-[10px] opacity-70">°</small></strong></div>
+                    <div class="metric-card bg-white/[.025] rounded-xl border border-white/5 p-3"><span class="text-[10px] uppercase tracking-wider text-[#8A8F98]">LCI</span><strong id="personal-val-lci" class="block mt-1 text-[20px] font-semibold">--<small class="text-[10px] opacity-70">mm</small></strong></div>
+                </div>
+                <div id="personal-slip-container" class="mt-3 rounded-xl border border-white/5 bg-black/35 p-3 text-center text-[11px] leading-relaxed text-[#8A8F98]">完成 DR 测算后显示节段位移信息。</div>
+            </div>
+            <div id="personal-video-summary" class="hidden">
+                <div class="rounded-xl border border-[#5E6AD2]/25 bg-[#5E6AD2]/[.07] p-3">
+                    <span class="text-[10px] uppercase tracking-wider text-[#BFC7FF]">视频分析结果</span>
+                    <strong id="video-screening-conclusion" class="block mt-1 text-[20px] font-semibold">--</strong>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-2">
+                    <div class="metric-card bg-white/[.025] rounded-xl border border-white/5 p-3"><span class="block text-[10px] leading-tight text-[#8A8F98]">阳性</span><strong id="video-prob-positive" class="block mt-1 text-[17px] font-semibold">--<small class="text-[10px] opacity-70">%</small></strong></div>
+                    <div class="metric-card bg-white/[.025] rounded-xl border border-white/5 p-3"><span class="block text-[10px] leading-tight text-[#8A8F98]">临界</span><strong id="video-prob-neutral" class="block mt-1 text-[17px] font-semibold">--<small class="text-[10px] opacity-70">%</small></strong></div>
+                    <div class="metric-card bg-white/[.025] rounded-xl border border-white/5 p-3"><span class="block text-[10px] leading-tight text-[#8A8F98]">阴性</span><strong id="video-prob-negative" class="block mt-1 text-[17px] font-semibold">--<small class="text-[10px] opacity-70">%</small></strong></div>
+                </div>
+                <p class="mt-3 text-[11px] leading-relaxed text-[#8A8F98]">仅在独立视频 Worker 验收并启用后显示结果；目前不会输出任何视频筛查结论或置信度。</p>
+            </div>
+        </section>
+        <p id="personal-status" class="mt-5 mb-2 text-center text-[12px] leading-relaxed text-[#8A8F98] shrink-0">请选择一种检测方式开始。</p>
+    </aside>
+
+    <main class="flex-1 relative min-w-0 h-full overflow-y-auto custom-scrollbar bg-[#020202]">
+        <div class="min-h-full max-w-[1180px] mx-auto p-6 md:p-10 lg:p-12">
+            <div class="flex flex-col gap-2 mb-7 pt-10 md:pt-2">
+                <div class="text-[11px] uppercase tracking-[.18em] text-[#8896F9]">MindSpine Personal</div>
+                <h2 id="personal-stage-title" class="text-3xl md:text-4xl font-semibold tracking-tight">从一张侧位照片开始</h2>
+                <p id="personal-stage-description" class="max-w-2xl text-sm md:text-base leading-relaxed text-[#8A8F98]">导入侧面 RGB 照片后，系统会连续完成朝向标准化、ROI 裁剪、类 DR 图生成与 DR 测算。</p>
+            </div>
+
+            <div id="personal-placeholder" class="min-h-[480px] rounded-3xl border border-white/10 bg-gradient-to-br from-white/[.045] to-white/[.015] p-8 md:p-12 flex items-center justify-center overflow-hidden relative">
+                <div class="absolute inset-0 opacity-40" style="background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:32px 32px;"></div>
+                <div class="relative text-center max-w-md">
+                    <div class="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center border border-[#5E6AD2]/25 bg-[#5E6AD2]/10 text-[#BFC7FF] shadow-[0_0_34px_rgba(94,106,210,.22)]"><i class="fa-solid fa-spine text-2xl"></i></div>
+                    <h3 class="mt-6 text-xl font-semibold">等待个人影像</h3>
+                    <p id="personal-placeholder-description" class="mt-3 text-sm leading-relaxed text-[#8A8F98]">导入侧面 RGB 照片后，系统会自动生成类 DR 图并完成后续影像测算。</p>
+                </div>
+            </div>
+
+            <div id="personal-image-grid" class="hidden grid lg:grid-cols-[minmax(0,1fr)_minmax(250px,.45fr)] gap-5">
+                <article class="rounded-3xl border border-white/10 bg-white/[.025] p-4 md:p-5 overflow-hidden">
+                    <div class="flex items-center justify-between gap-3 mb-4"><span id="personal-main-label" class="text-[11px] uppercase tracking-widest text-[#8A8F98]">结果图像</span><span class="text-[10px] text-[#8896F9]">本地处理</span></div>
+                    <div class="min-h-[390px] flex items-center justify-center bg-black/50 rounded-2xl overflow-hidden"><img id="personal-main-image" class="max-w-full max-h-[600px] object-contain" alt="个人检测结果"></div>
+                </article>
+                <article id="personal-sub-card" class="rounded-3xl border border-white/10 bg-white/[.025] p-4 md:p-5 overflow-hidden">
+                    <div class="flex items-center justify-between gap-3 mb-4"><span id="personal-sub-label" class="text-[11px] uppercase tracking-widest text-[#8A8F98]">输入图像</span></div>
+                    <div class="min-h-[300px] flex items-center justify-center bg-black/50 rounded-2xl overflow-hidden"><img id="personal-sub-image" class="max-w-full max-h-[510px] object-contain" alt="个人检测输入"></div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <div id="personal-progress-overlay" class="personal-progress-overlay hidden fixed inset-0 z-[10000] items-center justify-center px-4">
+        <section class="personal-progress-card rounded-3xl border border-white/10 bg-[#09090d]/95 p-6 shadow-2xl shadow-black/70">
+            <div class="flex items-start justify-between gap-5"><div><div class="text-[10px] uppercase tracking-[.18em] text-[#8896F9]">Processing</div><h2 id="personal-progress-title" class="mt-2 text-xl font-semibold">正在准备分析</h2><p id="personal-progress-message" class="mt-2 text-[12px] leading-relaxed text-[#8A8F98]">请保持此页面打开。</p></div><i class="fa-solid fa-circle-notch animate-spin text-[#8896F9] text-lg"></i></div>
+            <div id="personal-progress-track" class="h-1.5 bg-white/5 rounded-full overflow-hidden mt-6"><div id="personal-progress-bar" class="h-full bg-gradient-to-r from-[#5E6AD2] to-[#8896F9] transition-all duration-500" style="width:0%"></div></div>
+            <ol id="personal-progress-list" class="hidden"></ol>
+        </section>
+    </div>
+
+    <script src="auth.js?v=20260830-demo2"></script>
+    <script src="spine-demo.js?v=20260830-agentmock3"></script>
+    <script src="personal-app.js?v=20260830-agentmock3"></script>
+</body>
+</html>

@@ -7,27 +7,29 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="脊见智诊 SpineInsight">
     <meta property="og:description" content="脊柱智能辅助筛查、量化分析与报告平台">
-    <meta property="og:image" content="og.png">
+    <meta property="og:image" content="/og.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="脊见智诊 SpineInsight">
     <meta name="twitter:description" content="脊柱智能辅助筛查、量化分析与报告平台">
-    <meta name="twitter:image" content="og.png">
+    <meta name="twitter:image" content="/og.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <title>脊见智诊 SpineInsight - 脊柱智能辅助筛查与分析系统</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="vendor/tailwindcss-3.4.17/tailwind.min.js"></script>
+    <link href="vendor/fontawesome-free-6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+        
         :root{--bg:#000;--line:rgba(255,255,255,.11);--line2:rgba(136,150,249,.36);--muted:#8a8f98;--soft:#b4b9c4;--a:#5e6ad2;--a2:#8896f9;--a3:#a393ff;--green:#22c55e}
-        *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;color:#f7f8ff;background:radial-gradient(circle at 50% -10%,rgba(94,106,210,.24),transparent 34rem),radial-gradient(circle at 86% 24%,rgba(163,147,255,.12),transparent 26rem),#000;overflow-x:hidden}a{color:inherit;text-decoration:none}
+        *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:#f7f8ff;background:radial-gradient(circle at 50% -10%,rgba(94,106,210,.24),transparent 34rem),radial-gradient(circle at 86% 24%,rgba(163,147,255,.12),transparent 26rem),#000;overflow-x:hidden}a{color:inherit;text-decoration:none}
         .bg-grid{position:fixed;inset:0;z-index:-5;pointer-events:none;opacity:.58;background-size:42px 42px;background-image:linear-gradient(to right,rgba(255,255,255,.034) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.034) 1px,transparent 1px);mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.76) 46%,transparent)}
         #radiating-particles{position:fixed;inset:0;z-index:-3;pointer-events:none}.shell{position:relative;z-index:1}.nav{position:sticky;top:0;z-index:50;width:min(1240px,calc(100vw - 32px));margin:0 auto;padding:18px 0;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(18px)}
-        .brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800}.mark{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--a2),var(--a));box-shadow:0 0 28px rgba(94,106,210,.55)}.links{display:flex;gap:26px;color:var(--muted);font-size:12px;font-weight:700}.links a:hover{color:#fff}
+        .brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800}.mark{position:relative;width:32px;height:32px;flex:0 0 32px;overflow:hidden;filter:drop-shadow(0 0 10px rgba(136,150,249,.4))}.mark img{position:absolute;top:-11.3px;left:-21.5px;width:75px;height:75px;max-width:none;pointer-events:none}.links{display:flex;gap:26px;color:var(--muted);font-size:12px;font-weight:700}.links a:hover{color:#fff}
         .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:11px 16px;font-size:12px;font-weight:800;transition:.25s;white-space:nowrap}.btn:hover{transform:translateY(-1px)}.btn-primary{background:linear-gradient(135deg,var(--a),#6b79e4);box-shadow:0 0 24px rgba(94,106,210,.45)}.btn-white{color:#050507;background:#fff}.btn-ghost{border:1px solid var(--line);background:rgba(255,255,255,.04);backdrop-filter:blur(18px)}
+        .auth-nav{position:relative;display:flex;align-items:center;gap:10px}.auth-nav-actions{display:flex;align-items:center;gap:10px}.account-avatar-button{display:grid;place-items:center;width:38px;height:38px;padding:0;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(255,255,255,.06);box-shadow:0 0 18px rgba(94,106,210,.22);transition:.22s}.account-avatar-button:hover{transform:translateY(-1px);border-color:rgba(136,150,249,.8)}.account-nav-avatar{width:100%;height:100%;object-fit:cover}.auth-avatar-fallback{display:grid;place-items:center;width:100%;height:100%;color:#fff;background:linear-gradient(135deg,#5e6ad2,#a393ff);font-size:13px;font-weight:800}.account-menu{position:absolute;top:48px;right:0;width:286px;padding:10px;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:rgba(9,9,13,.96);box-shadow:0 24px 62px rgba(0,0,0,.58),inset 0 1px rgba(255,255,255,.08);backdrop-filter:blur(24px)}.account-menu[hidden]{display:none}.account-menu-head{padding:10px 12px 13px;border-bottom:1px solid rgba(255,255,255,.08)}.account-menu-head small{display:block;margin-bottom:3px;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.account-menu-head strong{font-size:13px}.account-menu-list{display:grid;gap:5px;max-height:258px;padding:8px 0;overflow:auto}.account-choice{display:grid;grid-template-columns:35px 1fr auto;align-items:center;gap:10px;width:100%;padding:9px;border:1px solid transparent;border-radius:13px;color:#fff;cursor:pointer;background:transparent;font:inherit;text-align:left;transition:.2s}.account-choice:hover{border-color:rgba(136,150,249,.36);background:rgba(94,106,210,.12)}.account-choice-avatar{width:35px;height:35px;border-radius:50%;object-fit:cover}.account-choice span{display:grid;gap:2px}.account-choice strong{font-size:12px}.account-choice small{color:var(--muted);font-size:10px}.account-choice i{color:var(--muted);font-size:11px}.account-menu-action{display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;border:0;border-top:1px solid rgba(255,255,255,.08);color:#dfe3ff;cursor:pointer;background:transparent;font:inherit;font-size:12px;text-align:left;transition:.2s}.account-menu-action:hover{background:rgba(255,255,255,.06)}.account-menu-action.danger{color:#ffb6bd}.account-menu-action:disabled{opacity:.55;cursor:wait}
         .hero{position:relative;min-height:calc(100vh - 72px);display:grid;place-items:center;overflow:hidden;padding:80px 18px 118px;text-align:center}.spine-bg{position:absolute;top:52%;left:50%;width:min(920px,110vw);height:min(940px,122vh);transform:translate(-50%,-50%);background:url("a656e04b461eeb84da85986309c29f53.png") center/contain no-repeat;opacity:.17;mix-blend-mode:screen;mask-image:radial-gradient(ellipse at center,#000 25%,rgba(0,0,0,.5) 48%,transparent 73%);pointer-events:none;z-index:-1}
         .orbit{position:absolute;width:min(780px,86vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.06);box-shadow:inset 0 0 80px rgba(94,106,210,.05);pointer-events:none}.orbit:before,.orbit:after{content:"";position:absolute;height:1px;border-radius:999px;background:linear-gradient(90deg,transparent,rgba(136,150,249,.58),transparent)}.orbit:before{width:42%;top:18%;right:8%;transform:rotate(-18deg)}.orbit:after{width:32%;bottom:18%;left:10%;transform:rotate(22deg)}
         .hero-copy{width:min(1180px,100%);transform:translateY(-18px)}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:44px;padding:8px 12px;border:1px solid rgba(94,106,210,.24);border-radius:999px;background:rgba(94,106,210,.1);color:#bfc7ff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(18px)}.dot{width:7px;height:7px;border-radius:999px;background:var(--a2);box-shadow:0 0 12px var(--a2);animation:pulse 1.6s ease-in-out infinite}@keyframes pulse{50%{opacity:1;transform:scale(1.12)}0%,100%{opacity:.45;transform:scale(.92)}}
         .hero-title{margin:0 auto 26px!important;max-width:1180px!important;line-height:.94!important;font-weight:900!important;letter-spacing:-.075em!important}.hero-name{display:block!important;color:#fff!important;font-size:clamp(58px,7.2vw,112px)!important;line-height:.96!important}.hero-subtitle{display:block!important;margin-top:10px!important;font-size:clamp(48px,6.5vw,104px)!important;line-height:1.02!important;letter-spacing:-.065em!important;color:transparent;background:linear-gradient(100deg,#fff 0%,#dfe3ff 38%,var(--a3) 100%);-webkit-background-clip:text;background-clip:text}.lead{width:min(850px,100%);margin:0 auto;color:var(--soft);font-size:clamp(16px,2vw,21px);line-height:1.78}.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:34px}
-        .float{position:absolute;display:grid;gap:7px;padding:18px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 20% 10%,rgba(136,150,249,.18),transparent 8rem),rgba(5,5,7,.66);backdrop-filter:blur(20px);box-shadow:0 24px 80px rgba(0,0,0,.45);text-align:left}.float span{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.float strong{font-size:32px;letter-spacing:-.06em}.float p{margin:0;max-width:224px;color:var(--muted);font-size:12px;line-height:1.55}.fr{top:18%;right:max(22px,calc((100vw - 1240px)/2))}.fl{left:max(22px,calc((100vw - 1240px)/2));bottom:14%}
+        .float{position:absolute;display:grid;gap:7px;padding:18px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 20% 10%,rgba(136,150,249,.18),transparent 8rem),rgba(5,5,7,.66);backdrop-filter:blur(20px);box-shadow:0 24px 80px rgba(0,0,0,.45);text-align:left}.float span{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.float strong{font-size:32px;letter-spacing:-.06em}.float p{margin:0;max-width:224px;color:var(--muted);font-size:12px;line-height:1.55}.fr{top:auto;right:max(22px,calc((100vw - 1240px)/2));bottom:14%}.fl{left:max(22px,calc((100vw - 1240px)/2));bottom:14%}
         .section{width:min(1240px,calc(100vw - 32px));margin:0 auto;padding:108px 0}.head{display:grid;gap:14px;margin-bottom:34px}.center{text-align:center;place-items:center}.k{color:var(--a2);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.section h2{margin:0;max-width:880px;font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-.055em;font-weight:900}.desc{margin:0;max-width:790px;color:var(--muted);font-size:15px;line-height:1.8}.reveal{opacity:0;transform:translateY(42px);transition:opacity .82s ease,transform .82s cubic-bezier(.16,1,.3,1)}.reveal.is-visible{opacity:1;transform:translateY(0)}
         .card,.flow,.road,.module-card,.panel,.report-chip,.report-origin,.flip-face,.pipeline-map,.loss-board,.cta{border:1px solid rgba(255,255,255,.075);background:linear-gradient(145deg,rgba(255,255,255,.082),rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{position:relative;overflow:hidden;min-height:300px;padding:24px;border-radius:28px;transition:.25s}.card:hover,.flow:hover,.road:hover,.module-card:hover{border-color:rgba(136,150,249,.34);transform:translateY(-4px)}.idx{display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;border-radius:13px;color:#dfe3ff;font-size:12px;font-weight:800;border:1px solid rgba(136,150,249,.24);background:rgba(94,106,210,.13)}.card h3{margin:54px 0 12px;font-size:19px;font-weight:800}.card p,.flow p,.road p,.module-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.76}.mini{position:absolute;right:22px;bottom:18px;color:rgba(255,255,255,.16);font-size:54px;font-weight:900;letter-spacing:-.1em}
         .story{display:grid;grid-template-columns:.82fr 1.18fr;gap:28px;align-items:start}.sticky{position:sticky;top:104px;min-height:610px;border:1px solid rgba(255,255,255,.075);border-radius:34px;padding:28px;background:radial-gradient(circle at 50% 10%,rgba(94,106,210,.22),transparent 16rem),linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));overflow:hidden}.sticky h3{margin:0 0 8px;font-size:18px;font-weight:800}.sticky p,.note{margin:0;color:rgba(180,185,196,.72);font-size:12px;line-height:1.7}.rail{height:430px;margin-top:36px;display:grid;place-items:center}.stack{position:relative;width:170px;height:370px}.v{position:absolute;left:50%;width:102px;height:42px;border-radius:17px 18px 14px 14px;transform:translateX(-50%) rotate(var(--t));background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(184,191,230,.46));box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 18px 35px rgba(0,0,0,.28)}.v:before,.v:after{content:"";position:absolute;top:14px;width:24px;height:18px;border-radius:999px;background:rgba(0,0,0,.55);opacity:.72}.v:before{left:14px}.v:after{right:14px}.v:nth-child(1){top:0;--t:-4deg;width:92px}.v:nth-child(2){top:58px;--t:-2deg;width:104px}.v:nth-child(3){top:118px;--t:0deg;width:112px}.v:nth-child(4){top:180px;--t:2deg;width:118px}.v:nth-child(5){top:245px;--t:5deg;width:126px}.v:nth-child(6){top:320px;--t:9deg;width:148px;height:54px;border-radius:20px 22px 30px 30px;opacity:.86}.mline{position:absolute;left:50%;top:30px;width:1px;height:330px;background:linear-gradient(to bottom,transparent,rgba(136,150,249,.65),transparent);transform:translateX(86px) rotate(-7deg)}.mline:before{content:"LCI";position:absolute;top:46%;left:12px;color:#bfc7ff;font-size:11px;letter-spacing:.14em;font-weight:800}
@@ -41,110 +43,35 @@
         .roads{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.road{padding:20px;border-radius:28px;transition:.25s}.road span{color:var(--a2);font-size:11px;font-weight:800;letter-spacing:.14em}.cta{overflow:hidden;border-color:rgba(136,150,249,.22);border-radius:36px;padding:clamp(28px,6vw,64px);background:radial-gradient(circle at 85% 0,rgba(136,150,249,.22),transparent 20rem),radial-gradient(circle at 0 100%,rgba(94,106,210,.2),transparent 20rem),rgba(255,255,255,.045)}.footer{width:min(1240px,calc(100vw - 32px));margin:0 auto;padding:34px 0 44px;border-top:1px solid rgba(255,255,255,.075);display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}
         @media(max-width:1080px){.float{display:none}.grid4,.workflow,.roads,.loss-strip{grid-template-columns:repeat(2,1fr)}.story,.algorithm-shell{grid-template-columns:1fr}.sticky{position:relative;top:0}}@media(max-width:760px){.links{display:none}.hero-copy{transform:translateY(-8px)}.eyebrow{margin-bottom:28px}.hero-title{letter-spacing:-.055em!important}.grid4,.workflow,.roads,.grades,.module-grid,.report-split,.flip-grid,.loss-strip{grid-template-columns:1fr}.body{padding-left:22px}.panel summary{grid-template-columns:auto 1fr}.chev{display:none}.flip-card,.flip-inner{min-height:500px}.footer{flex-direction:column;align-items:flex-start}}
     </style>
-    <link rel="stylesheet" href="client-downloads.css">
+<link rel="stylesheet" href="workbench.css?v=20260908"><style>.product-showcase .ms-app{min-height:auto;background:transparent}.product-showcase h2{font-size:38px;line-height:1.2;font-weight:600;letter-spacing:-1.4px}.product-showcase .tour-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;margin-top:28px}.product-showcase .tour-card{padding:32px;border:1px solid #353b41;border-radius:16px;background:#191d20;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.product-showcase .tour-card h3{font-size:24px;line-height:1.4;letter-spacing:-.8px;font-weight:600;margin:12px 0}.product-showcase .tour-card p{color:#9ea9b1;font-size:13px;line-height:1.8;max-width:460px}.product-showcase .tour-card.hero-card{grid-row:span 2;background:radial-gradient(ellipse at 80% 15%,#34433c55,transparent 70%),#171d1d}.product-showcase .tour-visual{border:1px solid #3c4749;border-radius:12px;background:#0e1314;margin:30px 0;padding:22px}.product-showcase .tour-visual img{width:100%;height:210px;object-fit:contain;filter:grayscale(1)}.product-showcase .tour-link{display:inline-flex;gap:12px;align-items:center;color:#d8e5e7;font-size:12px;margin-top:24px}.product-showcase .tour-number{font:11px ui-monospace,Consolas,monospace;color:#8a9b9d;letter-spacing:2px}.product-showcase .tour-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:60px;border-top:1px solid #353b41;padding-top:25px}.product-showcase .tour-steps h3{font-size:15px;margin:12px 0;color:#e3e9ec}.product-showcase .tour-steps p{font-size:12px;color:#93a0a8;line-height:1.8}@media(max-width:800px){.product-showcase .tour-grid{grid-template-columns:1fr}.product-showcase .tour-steps{grid-template-columns:1fr 1fr}}</style>
 </head>
-<body class="antialiased selection:bg-[#5E6AD2]/30 selection:text-white">
+<body class="antialiased selection:bg-[#5E6AD2]/30 selection:text-white" data-page="home">
     <div class="bg-grid"></div>
     <canvas id="radiating-particles"></canvas>
     <div class="shell">
         <nav class="nav">
-            <a class="brand" href="#top"><span class="mark">S</span><span>SpineInsight</span></a>
-            <div class="links"><a href="#overview">核心思想</a><a href="#metrics">指标解释</a><a href="#algorithm">算法结构</a><a href="#reports">报告体系</a><a href="#future">未来扩展</a><a href="#downloads">下载客户端</a></div>
-            <div class="flex gap-3"><a class="btn btn-ghost hidden sm:inline-flex" href="#metrics">查看指标</a><a class="btn btn-primary" href="workspace.html">进入工作台</a></div>
+            <a class="brand" href="#top"><span class="mark"><img src="logo.png" alt=""></span><span>SpineInsight</span></a>
+            <div class="links"><a href="#overview">核心思想</a><a href="#metrics">指标解释</a><a href="#algorithm">算法结构</a><a href="#reports">报告体系</a><a href="#future">功能与指引</a></div>
+            <div class="auth-nav">
+                <div id="guest-actions" class="auth-nav-actions"><a class="btn btn-ghost hidden sm:inline-flex" href="health-home.html">健康中心</a><a class="btn btn-ghost" href="login.html">登录</a><a class="btn btn-primary" href="register.html">注册</a></div>
+                <div id="member-actions" class="auth-nav-actions" hidden><a class="btn btn-ghost hidden sm:inline-flex" href="#metrics">查看指标</a><a class="btn btn-ghost hidden sm:inline-flex" href="health-home.html">健康中心</a><a class="btn btn-primary" href="workspace.html">医生工作台</a><button id="account-avatar-button" class="account-avatar-button" type="button" aria-expanded="false" aria-haspopup="menu" aria-label="账号菜单"></button><div id="account-menu" class="account-menu" role="menu" hidden><div class="account-menu-head"><small>当前账号</small><strong id="account-menu-name">—</strong></div><div id="account-menu-list" class="account-menu-list"></div><a class="account-menu-action" href="health-home.html"><i class="fa-solid fa-sparkles"></i>脊柱健康中心</a><a class="account-menu-action" href="login.html?add=1"><i class="fa-solid fa-user-plus"></i>添加账号</a><button id="account-logout" class="account-menu-action danger" type="button"><i class="fa-solid fa-arrow-right-from-bracket"></i>退出账号</button></div></div>
+            </div>
         </nav>
         <header id="top" class="hero">
             <div class="spine-bg"></div><div class="orbit"></div>
             <aside class="float fr"><span>Multitask Pipeline</span><strong>5 in 1</strong><p>朝向分类、ROI 定位、关键点检测、X 光图生成、报告输出整合到同一工作流。</p></aside>
-            <aside class="float fl"><span>Screening First</span><strong>低门槛</strong><p>面向初筛、随访和辅助分析，不替代医生诊断和正式影像检查。</p></aside>
+            <aside class="float fl"><span>Spine Health Agent</span><strong>健康闭环</strong><p>问卷分流、资料评估、病例档案、复测与复核，全部进入同一条时间线。</p></aside>
             <div class="hero-copy">
                 <div class="eyebrow"><span class="dot"></span>智能影像解析，洞悉每一节脊椎结构。</div>
-                <h1 class="hero-title"><span class="hero-name">脊见智诊</span><span class="hero-subtitle">让脊柱筛查更快、更清晰</span></h1>
-                <p class="lead">基于多任务迁移学习的脊柱智能辅助筛查与分析系统。系统面向 X 光、DICOM 与 RGB 体表图像，提供朝向标准化、椎体区域识别、关键点测量、X 光图辅助生成和双版本报告输出。</p>
-                <div class="hero-actions"><a class="btn btn-white" href="workspace.html">打开分析工作台 <i class="fa-solid fa-arrow-right"></i></a><a class="btn btn-ghost" href="#overview">下滑了解项目 <i class="fa-solid fa-chevron-down"></i></a><a class="btn btn-ghost" href="#downloads">下载客户端 <span aria-hidden="true">↓</span></a></div>
+                <h1 class="hero-title"><span class="hero-name">脊见智诊</span><span class="hero-subtitle">从一次筛查，走向持续的脊柱健康管理</span></h1>
+                <p class="lead">面向腰背健康与脊柱侧弯随访的脊柱健康 Agent：先完成问卷分流，再把 X 光、DICOM、照片与后续复测写入个人病例。影像工具和医生工作台仍完整保留，所有结论均可回溯、可复核。</p>
+                <div class="hero-actions"><a class="btn btn-white" href="health-home.html">进入脊柱健康中心 <i class="fa-solid fa-sparkles"></i></a><a class="btn btn-ghost" href="personal-workspace.html">个人影像检测 <i class="fa-solid fa-user-doctor"></i></a></div>
+                <div id="member-hero-actions" class="hero-actions" hidden><a class="btn btn-primary" href="workspace.html">医生工作台 <i class="fa-solid fa-arrow-right"></i></a></div>
             </div>
         </header>
         <main>
-<section id="downloads" class="client-downloads" aria-labelledby="client-downloads-title">
-    <div class="client-downloads__heading">
-        <div>
-            <p class="client-downloads__eyebrow">SpineInsight 客户端</p>
-            <h2 id="client-downloads-title">选择你的设备，开始体验。</h2>
-            <p class="client-downloads__intro">在手机上随手记录，在电脑上展开工作。为不同设备，选择合适的版本。</p>
-        </div>
-        <span class="client-downloads__brand" aria-hidden="true"><img src="client-download-brand.png" alt="" width="56" height="56"></span>
-    </div>
-
-    <div class="client-downloads__platforms">
-        <article class="client-downloads__platform client-downloads__platform--available" aria-labelledby="download-android-title">
-            <div class="client-downloads__platform-top">
-                <span class="client-downloads__device" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" fill="none"><rect x="13" y="5" width="22" height="38" rx="6" stroke="currentColor" stroke-width="2.2"/><path d="M20 10h8M22 37h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m20 23 3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <span class="client-downloads__status client-downloads__status--ready">可下载</span>
-            </div>
-            <h3 id="download-android-title">Android</h3>
-            <p class="client-downloads__purpose">随手拍摄，留住每一次观察。</p>
-            <p id="android-download-meta" class="client-downloads__meta"><span>0.1.0 试用版</span><span>Android 8.0 及以上</span><span>137 KB</span></p>
-            <div class="client-downloads__actions">
-                <a class="client-downloads__button client-downloads__button--primary" href="https://raw.githubusercontent.com/MK2MCree/SpinePose-AI/main/downloads/SpineInsight-android-0.1.0.apk" aria-describedby="android-download-meta">
-                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v9m-3.5-3.5L10 12l3.5-3.5M4 13v3h12v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    下载 Android 版
-                </a>
-                <details class="client-downloads__qr" data-download-qr>
-                    <summary class="client-downloads__scan" aria-controls="client-downloads-android-qr">
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 7V3h4m6 0h4v4M3 13v4h4m10-4v4h-4M7 7h2v2H7zm6 0h1v2h-1zm-6 6h2v1H7zm5-2h2v3h-3v-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        手机扫码
-                    </summary>
-                    <div id="client-downloads-android-qr" class="client-downloads__qr-panel">
-                        <img src="client-download-android-qr.png" width="184" height="184" alt="扫码下载脊见智诊 Android 试用版" loading="lazy">
-                        <strong>用手机浏览器扫码下载</strong>
-                        <p>Android 0.1.0 试用版</p>
-                    </div>
-                </details>
-            </div>
-            <p class="client-downloads__note">本机照片与文字记录、拍前引导和问卷。安装时按手机系统提示操作。</p>
-        </article>
-
-        <article class="client-downloads__platform" aria-labelledby="download-harmony-title">
-            <div class="client-downloads__platform-top">
-                <span class="client-downloads__device" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" fill="none"><rect x="13" y="5" width="22" height="38" rx="6" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="23" r="6.5" stroke="currentColor" stroke-width="2.2"/><path d="M22 37h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-                </span>
-                <span class="client-downloads__status">审核中</span>
-            </div>
-            <h3 id="download-harmony-title">HarmonyOS</h3>
-            <p class="client-downloads__purpose">轻松留存，整理自己的记录。</p>
-            <p class="client-downloads__meta"><span>0.2.0</span><span>华为应用市场审核中</span></p>
-            <div class="client-downloads__actions">
-                <button class="client-downloads__button" type="button" disabled>等待应用市场上架</button>
-            </div>
-            <p class="client-downloads__note">审核通过后，将在这里提供华为应用市场下载入口。</p>
-        </article>
-
-        <article class="client-downloads__platform" aria-labelledby="download-windows-title">
-            <div class="client-downloads__platform-top">
-                <span class="client-downloads__device" aria-hidden="true">
-                    <svg viewBox="0 0 48 48" fill="none"><rect x="5" y="8" width="38" height="26" rx="4" stroke="currentColor" stroke-width="2.2"/><path d="M19 40h10m-5-6v6M11 14h10v6H11zm16 0h10v6H27zM11 24h10v4H11zm16 0h10v4H27z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <span class="client-downloads__status">准备中</span>
-            </div>
-            <h3 id="download-windows-title">Windows</h3>
-            <p class="client-downloads__purpose">在更大的屏幕上，展开工作。</p>
-            <p class="client-downloads__meta"><span>桌面客户端</span><span>公开安装包准备中</span></p>
-            <div class="client-downloads__actions">
-                <button class="client-downloads__button" type="button" disabled>下载即将开放</button>
-            </div>
-            <p class="client-downloads__note">桌面版安装包完成发布后，将在这里开放下载。</p>
-        </article>
-    </div>
-
-    <div class="client-downloads__footer">
-        <p>各端功能以对应版本说明为准。Android 本机记录与网页端目前分别保存，网页分析功能需要连接可访问的服务。</p>
-        <a href="workspace.html">继续使用网页版 <span aria-hidden="true">↗</span></a>
-    </div>
-</section>
             <section id="overview" class="section">
-                <div class="head center"><span class="k">Core Concept</span><h2>把图像输入、智能分析、量化解释、报告沟通连成一条闭环。</h2><p class="desc">项目不是把单个模型孤立展示，而是围绕真实脊柱筛查流程，把多个模型和工程模块组织成可操作的辅助工作台。它适合医生初筛、基层预筛、康复随访和患者沟通场景。</p></div>
+                <div class="head center"><span class="k">Core Concept</span><h2>把问卷、影像、智能分析、康复随访与医生沟通连成一条闭环。</h2><p class="desc">先由脊柱健康 Agent 完成资料分流和病例建档，再按需进入影像分析、人工复核与长期趋势。每项结论都保留质量状态、来源和适用边界，而不是把多个模型堆成一个黑箱总分。</p></div>
                 <div class="grid4">
                     <article class="card reveal"><span class="idx">01</span><h3>多模态输入</h3><p>X 光侧重结构测量，DICOM 支持窗宽窗位，RGB 侧重低成本预筛和 X 光风格图辅助展示。</p><span class="mini">XR</span></article>
                     <article class="card reveal"><span class="idx">02</span><h3>朝向标准化</h3><p>通过左右分类模型自动判断朝向，将患者统一到面向左侧的测量标准，减少输入方向带来的测算偏差。</p><span class="mini">LR</span></article>
@@ -237,16 +164,11 @@
                     </div>
                 </div>
             </section>
-            <section id="future" class="section">
-                <div class="head center"><span class="k">Roadmap</span><h2>从脊柱形态测量，扩展到退变征象识别。</h2><p class="desc">当前版本重点打通可运行工作流。后续可在更多标注数据支持下，加入退变、形变、椎间隙和骨性增生等细粒度识别能力。</p></div>
-                <div class="roads"><article class="road reveal"><span>Next 01</span><h3>骨刺与骨赘识别</h3><p>检测椎体边缘骨性增生，辅助提示退行性改变和长期应力改变。</p></article><article class="road reveal"><span>Next 02</span><h3>椎体形变分析</h3><p>识别楔形变、压缩改变和椎体高度异常，为骨质疏松和压缩风险筛查提供线索。</p></article><article class="road reveal"><span>Next 03</span><h3>椎间距过窄</h3><p>计算椎间隙高度变化，辅助观察椎间盘退变、节段稳定性和复查趋势。</p></article><article class="road reveal"><span>Next 04</span><h3>侧弯与长期随访</h3><p>加入 Cobb 角、历史报告对比和趋势图，支持青少年筛查及康复随访。</p></article></div>
-            </section>
-            <section class="section">
-                <div class="cta reveal"><span class="k">Workbench Ready</span><h2>从介绍页进入工作台，完成真实样本分析。</h2><p class="desc">你可以在工作台中导入 X 光、DICOM 或 RGB 图像，运行朝向标准化、批量处理、区域识别、角度测量、X 光图生成和报告导出。系统定位是辅助筛查与分析平台，适合作为后续科研迭代基础。</p><div class="hero-actions" style="justify-content:flex-start"><a class="btn btn-white" href="workspace.html">进入工作台</a><a class="btn btn-ghost" href="#top">回到顶部</a></div></div>
-            </section>
+            <section id="future" class="section product-showcase"><div class="ms-app"><p class="ms-eyebrow">One workspace. Every perspective.</p><h2>看见结果。理解变化。<br>开始下一步。</h2><p class="ms-subtitle">从影像到步态，从一次检查到长期随访。按你的任务进入工作区。</p><div class="tour-grid"><article class="tour-card hero-card"><div><span class="tour-number">01 / GAIT · V2.0.1</span><h3>从行走视频，<br>到可以复核的每一个细节。</h3><p>导入视频，自动选择目标并提取轮廓。原始视频、跟踪叠加与 Mask 共享播放位置，支持目标重选和独立重跑。</p><div class="tour-visual"><img src="assets/case-demo/gait-silhouette-sequence.png" alt="轮廓序列界面示例"><div class="ms-row between" style="margin-top:15px"><span class="ms-chip sample">静态界面示例</span><span class="ms-note">原始视频 / 跟踪 / Mask</span></div></div><p>三类模型分数、质量详情与分析产物一起保留。选择本次采用的结果，再归入检查报告。</p></div><a class="tour-link" href="gait-workspace.html">开始步态评估 <span>↗</span></a></article><article class="tour-card"><div><span class="tour-number">02 / IMAGING</span><h3>专业测量，保留原始依据。</h3><p>支持 X 光、DICOM 与 RGB 资料。将原图、标注和量化指标放在同一工作流中，完成测算、回看与导出。</p></div><div class="ms-row"><a class="tour-link" href="workspace.html">医生影像工作台 ↗</a><a class="tour-link" href="personal-workspace.html">个人影像评估 ↗</a></div></article><article class="tour-card"><div><span class="tour-number">03 / AGENT</span><h3>围绕你的检查，展开对话。</h3><p>结合已保存的病例与知识来源，解释结果、整理问题并准备任务。简洁的对话中心，让下一步清楚可见。</p></div><a class="tour-link" href="health-agent.html">打开 Agent ↗</a></article></div><div class="tour-steps"><article><span class="tour-number">STEP 01</span><h3>描述当前情况</h3><p>记录不适位置、病程、活动影响和本次目标。</p><a class="tour-link" href="personal-case.html?modal=questionnaire">填写问卷 ↗</a></article><article><span class="tour-number">STEP 02</span><h3>添加评估资料</h3><p>选择影像或步态工作区，保留原始资料与分析过程。</p><a class="tour-link" href="personal-workspace.html">添加资料 ↗</a></article><article><span class="tour-number">STEP 03</span><h3>复核并归档</h3><p>确认采用的结果，补充观察备注，形成独立检查记录。</p><a class="tour-link" href="personal-case.html">健康档案 ↗</a></article><article><span class="tour-number">STEP 04</span><h3>带着结果沟通</h3><p>导出检查报告，或让 Agent 整理值得进一步沟通的问题。</p><a class="tour-link" href="design-preview.html">浏览功能示例 ↗</a></article></div><div id="member-cta-actions" class="hero-actions" style="justify-content:flex-start;margin-top:55px"><a class="ms-button primary" href="health-home.html">进入健康中心 ↗</a><a class="ms-button" href="design-preview.html">先看功能演示</a></div></div></section>
         </main>
-        <footer class="footer"><div class="brand"><span class="mark">S</span><span>SpineInsight / 脊见智诊</span></div><p class="note">本系统用于脊柱智能辅助筛查、科研展示和医生沟通辅助，不作为最终医疗诊断依据。</p></footer>
+        <footer class="footer"><div class="brand"><span class="mark"><img src="logo.png" alt=""></span><span>SpineInsight / 脊见智诊</span></div><p class="note">本系统用于脊柱智能辅助筛查、科研展示和医生沟通辅助，不作为最终医疗诊断依据。</p></footer>
     </div>
+    <script src="auth.js"></script>
     <script>
         const canvas=document.getElementById("radiating-particles"),ctx=canvas.getContext("2d"),particles=[];function resize(){canvas.width=innerWidth;canvas.height=innerHeight}addEventListener("resize",resize);resize();
         class Particle{constructor(){this.reset();this.life=Math.random()*this.maxLife;this.x+=Math.cos(this.angle)*this.speed*this.life;this.y+=Math.sin(this.angle)*this.speed*this.life}reset(){const w=160,h=canvas.height*.76;this.x=canvas.width/2+(Math.random()-.5)*w;this.y=canvas.height/2+(Math.random()-.5)*h;const dx=this.x-canvas.width/2,dy=this.y-canvas.height/2;this.angle=Math.atan2(dy,dx)+(Math.random()-.5)*1.5;this.speed=Math.random()*.22+.045;this.radius=Math.random()*1.25+.35;this.life=0;this.maxLife=Math.random()*320+220}update(){this.x+=Math.cos(this.angle)*this.speed;this.y+=Math.sin(this.angle)*this.speed;this.speed*=1.002;this.life+=1;if(this.life>=this.maxLife||this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset()}draw(){const r=this.life/this.maxLife,a=r<.08?r/.08:1-(r-.08)/.92;ctx.fillStyle=`rgba(220,228,255,${Math.max(0,a)*.55})`;ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.fill()}}
@@ -255,6 +177,5 @@
         const reportScrolls=[...document.querySelectorAll("[data-report-scroll]")];const clamp=(n,min=0,max=1)=>Math.min(max,Math.max(min,n));function updateReportScroll(){reportScrolls.forEach(section=>{const rect=section.getBoundingClientRect(),total=Math.max(1,rect.height-innerHeight),progress=clamp(-rect.top/total),current=section.dataset.stage||"one";let next=current;if(current==="one"&&progress>.26)next="split";if(current==="split"&&progress<.16)next="one";if(current==="split"&&progress>.58)next="flip";if(current==="flip"&&progress<.48)next="split";if(next!==current)section.dataset.stage=next})}let reportTicking=false;function requestReportUpdate(){if(reportTicking)return;reportTicking=true;requestAnimationFrame(()=>{updateReportScroll();reportTicking=false})}addEventListener("scroll",requestReportUpdate,{passive:true});addEventListener("resize",requestReportUpdate);updateReportScroll();
         document.querySelectorAll(".panel").forEach(panel=>panel.addEventListener("toggle",()=>{if(panel.open)document.querySelectorAll(".panel").forEach(other=>{if(other!==panel)other.removeAttribute("open")})}));
     </script>
-    <script src="client-downloads.js" defer></script>
 </body>
 </html>

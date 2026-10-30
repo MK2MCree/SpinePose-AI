@@ -398,6 +398,7 @@ class PseudoCTGenerator:
         soft_mask_blur_ratio: float = 0.08,
         source_image_width: int = 256,
         source_image_height: int = 256,
+        initial_mode: str = PSEUDOCT_MODE_TRANSFER,
     ):
         self.project_root = project_root
         self.output_root = output_root
@@ -420,7 +421,7 @@ class PseudoCTGenerator:
         self.checkpoint_path = None
 
         os.makedirs(self.output_root, exist_ok=True)
-        self.reload(PSEUDOCT_MODE_TRANSFER)
+        self.reload(initial_mode)
 
     def set_bbox_detector(self, detector):
         self.bbox_detector = detector

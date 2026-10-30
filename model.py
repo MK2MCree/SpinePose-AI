@@ -10,6 +10,8 @@ import datetime
 from PIL import Image, ImageDraw, ImageFont
 from ultralytics import YOLO
 
+from mindspine.runtime import get_resource_root
+
 
 class SpineModel:
     def __init__(self):
@@ -41,8 +43,7 @@ class SpineModel:
 
         # 【关键：这里会自动判断是否被打包成了 exe】
         # 如果是 exe，就获取 exe 所在的同级目录；如果是 python 运行，就获取当前 py 文件目录
-        base_dir = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(
-            os.path.abspath(__file__))
+        base_dir = get_resource_root()
         status_text = ""
 
         # 加载 X 光主模型
