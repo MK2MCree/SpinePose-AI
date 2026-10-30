@@ -12,6 +12,10 @@ await mkdir(publicRoot, { recursive: true });
 
 for (const name of [
   "index.html",
+  "client-downloads.css",
+  "client-downloads.js",
+  "client-download-android-qr.png",
+  "client-download-brand.png",
   "workspace.html",
   "personal-workspace.html",
   "personal-case.html",

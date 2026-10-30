@@ -1,0 +1,242 @@
+/* Download section shares the homepage's black surfaces and violet accents. */
+.client-downloads {
+    --download-ink: #f7f8ff;
+    --download-muted: #8a8f98;
+    --download-soft: #b4b9c4;
+    --download-accent: var(--a, #5e6ad2);
+    --download-accent-light: var(--a2, #8896f9);
+    --download-line: rgba(255, 255, 255, .11);
+    position: relative;
+    width: min(1240px, calc(100vw - 32px));
+    margin: 0 auto;
+    padding: 108px 0;
+    color: var(--download-ink);
+    background: transparent;
+    text-align: left;
+    scroll-margin-top: 92px;
+}
+
+.client-downloads *,
+.client-downloads *::before,
+.client-downloads *::after { box-sizing: border-box; }
+
+.client-downloads__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 34px;
+}
+
+.client-downloads__eyebrow {
+    margin: 0 0 14px;
+    color: var(--download-accent-light);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: .08em;
+}
+
+.client-downloads h2 {
+    max-width: 880px;
+    margin: 0;
+    color: var(--download-ink);
+    font-size: clamp(34px, 5vw, 62px);
+    font-weight: 900;
+    letter-spacing: -.055em;
+    line-height: 1.04;
+}
+
+.client-downloads__intro {
+    max-width: 790px;
+    margin: 18px 0 0;
+    color: var(--download-soft);
+    font-size: 15px;
+    line-height: 1.8;
+    text-wrap: pretty;
+}
+
+.client-downloads__brand {
+    display: grid;
+    flex: 0 0 80px;
+    width: 80px;
+    height: 80px;
+    place-items: center;
+    border: 1px solid rgba(136, 150, 249, .24);
+    border-radius: 24px;
+    background: rgba(94, 106, 210, .09);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+
+.client-downloads__brand img { display: block; width: 54px; height: 54px; object-fit: contain; }
+
+.client-downloads__platforms {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.client-downloads__platform {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, .075);
+    border-radius: 28px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, .082), rgba(255, 255, 255, .025));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    transition: border-color 180ms ease, transform 180ms cubic-bezier(.23, 1, .32, 1);
+}
+
+.client-downloads__platform-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 26px; }
+.client-downloads__device { display: grid; width: 56px; height: 56px; place-items: center; color: var(--download-muted); }
+.client-downloads__device svg { width: 44px; height: 44px; }
+.client-downloads__platform--available .client-downloads__device {
+    border: 1px solid rgba(136, 150, 249, .2);
+    border-radius: 18px;
+    color: #dfe3ff;
+    background: rgba(94, 106, 210, .13);
+}
+
+.client-downloads__status {
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 999px;
+    color: var(--download-soft);
+    background: rgba(255, 255, 255, .035);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.client-downloads__status--ready { border-color: rgba(94, 106, 210, .24); color: #bfc7ff; background: rgba(94, 106, 210, .13); }
+.client-downloads h3 { margin: 0; color: var(--download-ink); font-size: 25px; line-height: 1.3; letter-spacing: -.035em; font-weight: 800; }
+.client-downloads__purpose { min-height: 46px; margin: 10px 0 0; color: var(--download-soft); font-size: 14px; line-height: 1.65; }
+.client-downloads__meta { display: flex; min-height: 53px; flex-wrap: wrap; align-content: flex-start; column-gap: 10px; row-gap: 3px; margin: 18px 0 0; color: var(--download-muted); font-size: 11px; line-height: 1.7; }
+.client-downloads__meta span { white-space: nowrap; }
+.client-downloads__actions { position: relative; display: flex; min-height: 94px; align-items: flex-start; align-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+
+.client-downloads__button {
+    display: inline-flex;
+    min-height: 46px;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 12px 16px;
+    border: 1px solid var(--download-line);
+    border-radius: 999px;
+    color: var(--download-soft);
+    background: rgba(255, 255, 255, .04);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+}
+
+.client-downloads__button svg { flex: 0 0 18px; width: 18px; height: 18px; }
+.client-downloads__button[disabled] { cursor: not-allowed; color: #8a8f98; background: rgba(255, 255, 255, .025); opacity: .65; }
+.client-downloads__button--primary {
+    border-color: transparent;
+    color: #fff;
+    background: linear-gradient(135deg, var(--download-accent), #6b79e4);
+    box-shadow: 0 0 24px rgba(94, 106, 210, .28);
+    transition: transform 120ms cubic-bezier(.23, 1, .32, 1), box-shadow 150ms ease;
+}
+.client-downloads__button--primary:active { transform: scale(.98); }
+.client-downloads__note { min-height: 54px; margin: 16px 0 0; color: var(--download-muted); font-size: 12px; line-height: 1.75; text-wrap: pretty; }
+
+.client-downloads__qr { position: relative; flex: 1 0 100%; }
+.client-downloads__scan {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 2px;
+    color: var(--download-accent-light);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.client-downloads__scan::-webkit-details-marker { display: none; }
+.client-downloads__scan svg { width: 17px; height: 17px; }
+.client-downloads__qr-panel {
+    position: absolute;
+    z-index: 12;
+    bottom: calc(100% + 12px);
+    left: -14px;
+    width: 230px;
+    padding: 20px 20px 17px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 20px;
+    color: var(--download-ink);
+    background: rgba(9, 9, 13, .97);
+    box-shadow: 0 24px 62px rgba(0, 0, 0, .58), inset 0 1px rgba(255, 255, 255, .08);
+    text-align: center;
+    backdrop-filter: blur(20px);
+}
+.client-downloads__qr-panel::after { position: absolute; bottom: -6px; left: 31px; width: 12px; height: 12px; border-right: 1px solid rgba(255, 255, 255, .14); border-bottom: 1px solid rgba(255, 255, 255, .14); background: #09090d; content: ""; transform: rotate(45deg); }
+.client-downloads__qr-panel img { display: block; width: 184px; height: 184px; margin: 0 auto 13px; border-radius: 6px; background: #fff; }
+.client-downloads__qr-panel strong { display: block; font-size: 12px; font-weight: 700; line-height: 1.7; }
+.client-downloads__qr-panel p { margin: 3px 0 0; color: var(--download-muted); font-size: 11px; line-height: 1.6; }
+.client-downloads__button--primary:focus-visible,
+.client-downloads__scan:focus-visible,
+.client-downloads__footer a:focus-visible { outline: 3px solid var(--download-accent-light); outline-offset: 4px; }
+
+.client-downloads__footer { display: flex; align-items: flex-start; justify-content: space-between; gap: 26px; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .075); }
+.client-downloads__footer p { max-width: 790px; margin: 0; color: var(--download-muted); font-size: 12px; line-height: 1.8; }
+.client-downloads__footer a { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 7px; padding: 2px 0; color: var(--download-accent-light); font-size: 12px; font-weight: 700; line-height: 1.6; text-decoration: none; }
+
+@media (hover: hover) and (pointer: fine) {
+    .client-downloads__platform:hover { border-color: rgba(136, 150, 249, .34); transform: translateY(-3px); }
+    .client-downloads__button--primary:hover { transform: translateY(-1px); box-shadow: 0 0 28px rgba(94, 106, 210, .4); }
+    .client-downloads__button--primary:active { transform: scale(.98); }
+    .client-downloads__scan:hover,
+    .client-downloads__footer a:hover { color: #dfe3ff; }
+}
+
+@media (max-width: 960px) {
+    .client-downloads__platform { padding: 26px 22px 24px; }
+    .client-downloads__brand { flex-basis: 72px; width: 72px; height: 72px; border-radius: 22px; }
+    .client-downloads__brand img { width: 46px; height: 46px; }
+    .client-downloads h3 { font-size: 23px; }
+    .client-downloads__meta { min-height: 74px; }
+}
+
+@media (max-width: 760px) {
+    .client-downloads { padding: 64px 0; scroll-margin-top: 78px; }
+    .client-downloads__heading { margin-bottom: 26px; }
+    .client-downloads__brand { display: none; }
+    .client-downloads h2 { max-width: 500px; font-size: clamp(32px, 8.5vw, 42px); line-height: 1.1; }
+    .client-downloads__title-tail { display: block; }
+    .client-downloads__intro { margin-top: 16px; font-size: 14px; }
+    .client-downloads__platforms { grid-template-columns: 1fr; gap: 14px; }
+    .client-downloads__platform { padding: 24px; border-radius: 26px; }
+    .client-downloads__platform-top { margin-bottom: 20px; }
+    .client-downloads__device { width: 50px; height: 50px; }
+    .client-downloads__device svg { width: 40px; height: 40px; }
+    .client-downloads h3 { font-size: 25px; }
+    .client-downloads__purpose { min-height: 0; margin-top: 8px; font-size: 14px; }
+    .client-downloads__meta { min-height: 0; margin-top: 16px; }
+    .client-downloads__actions { min-height: 48px; margin-top: 20px; }
+    .client-downloads__button { min-height: 48px; font-size: 13px; }
+    .client-downloads__note { min-height: 0; margin-top: 15px; }
+    .client-downloads__qr { display: none; }
+    .client-downloads__footer { flex-direction: column; gap: 14px; margin-top: 24px; padding-top: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .client-downloads__platform,
+    .client-downloads__button--primary { transition: none; }
+    .client-downloads__platform:hover,
+    .client-downloads__button--primary:hover,
+    .client-downloads__button--primary:active { transform: none; }
+}
