@@ -1,0 +1,24 @@
+<section id="product-film" class="product-film" aria-labelledby="product-film-title">
+    <div class="product-film__heading">
+        <h2 id="product-film-title"><span>看看脊见智诊</span><span>如何工作。</span></h2>
+        <p id="product-film-description">从日常记录到智能助手，完整体验尽在这部影片。</p>
+    </div>
+    <figure class="product-film__figure">
+        <div class="product-film__stage" data-film-stage data-state="ready">
+            <video class="product-film__video" data-product-video controls preload="none" playsinline width="1920" height="1080" tabindex="0" poster="assets/product-film/spineinsight-film-poster.jpg" aria-label="脊见智诊产品演示影片" aria-describedby="product-film-description product-film-status">
+                <source src="assets/product-film/spineinsight-film-v10.mp4" type="video/mp4">
+                您的浏览器无法播放此视频，请使用下方链接打开影片。
+            </video>
+            <button class="product-film__play" data-film-play type="button" hidden>
+                <span class="product-film__play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.8a.8.8 0 0 1 1.22-.68l10 6.2a.8.8 0 0 1 0 1.36l-10 6.2A.8.8 0 0 1 8 18.2Z"/></svg></span>
+                <span data-film-play-label>观看产品演示</span>
+                <span class="product-film__play-duration" aria-hidden="true">2分27秒</span>
+            </button>
+        </div>
+        <figcaption class="product-film__caption">
+            <span>产品演示 <span class="product-film__duration">2分27秒</span></span>
+            <a href="assets/product-film/spineinsight-film-v10.mp4" data-film-fallback target="_blank" rel="noopener">在新窗口播放 <span aria-hidden="true">↗</span></a>
+        </figcaption>
+    </figure>
+    <p id="product-film-status" class="product-film__status" data-film-status role="status" aria-live="polite"></p>
+</section>

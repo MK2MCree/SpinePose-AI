@@ -12,6 +12,8 @@ await mkdir(publicRoot, { recursive: true });
 
 for (const name of [
   "index.html",
+  "product-film.css",
+  "product-film.js",
   "client-downloads.css",
   "client-downloads.js",
   "client-download-android-qr.png",
@@ -67,3 +69,6 @@ for (const name of caseDemoAssets) {
 // Runtime styles and icon fonts must remain available without CDN access.
 // Preserve the complete versioned dependency directories and license files.
 await cp(join(webRoot, "vendor"), join(publicRoot, "vendor"), { recursive: true });
+
+// Keep the product film and its actual-frame poster available on both frontends.
+await cp(join(webRoot, "assets", "product-film"), join(publicRoot, "assets", "product-film"), { recursive: true });

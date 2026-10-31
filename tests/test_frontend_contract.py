@@ -47,7 +47,6 @@ class FrontendContractTests(unittest.TestCase):
         self.assertIn('/api/auth/login', self.auth_js)
         self.assertIn('/api/auth/register', self.auth_js)
         self.assertIn('id="member-hero-actions"', self.home)
-        self.assertIn('id="member-cta-actions"', self.home)
         self.assertIn('memberEntryActions.forEach((element) => { element.hidden = false; });', self.auth_js)
 
     def test_personal_workspace_has_the_required_single_image_and_video_flow(self):

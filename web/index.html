@@ -43,8 +43,8 @@
         .roads{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.road{padding:20px;border-radius:28px;transition:.25s}.road span{color:var(--a2);font-size:11px;font-weight:800;letter-spacing:.14em}.cta{overflow:hidden;border-color:rgba(136,150,249,.22);border-radius:36px;padding:clamp(28px,6vw,64px);background:radial-gradient(circle at 85% 0,rgba(136,150,249,.22),transparent 20rem),radial-gradient(circle at 0 100%,rgba(94,106,210,.2),transparent 20rem),rgba(255,255,255,.045)}.footer{width:min(1240px,calc(100vw - 32px));margin:0 auto;padding:34px 0 44px;border-top:1px solid rgba(255,255,255,.075);display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}
         @media(max-width:1080px){.float{display:none}.grid4,.workflow,.roads,.loss-strip{grid-template-columns:repeat(2,1fr)}.story,.algorithm-shell{grid-template-columns:1fr}.sticky{position:relative;top:0}}@media(max-width:760px){.links{display:none}.hero-copy{transform:translateY(-8px)}.eyebrow{margin-bottom:28px}.hero-title{letter-spacing:-.055em!important}.grid4,.workflow,.roads,.grades,.module-grid,.report-split,.flip-grid,.loss-strip{grid-template-columns:1fr}.body{padding-left:22px}.panel summary{grid-template-columns:auto 1fr}.chev{display:none}.flip-card,.flip-inner{min-height:500px}.footer{flex-direction:column;align-items:flex-start}}
     </style>
-<link rel="stylesheet" href="workbench.css?v=20260908"><style>.product-showcase .ms-app{min-height:auto;background:transparent}.product-showcase h2{font-size:38px;line-height:1.2;font-weight:600;letter-spacing:-1.4px}.product-showcase .tour-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;margin-top:28px}.product-showcase .tour-card{padding:32px;border:1px solid #353b41;border-radius:16px;background:#191d20;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.product-showcase .tour-card h3{font-size:24px;line-height:1.4;letter-spacing:-.8px;font-weight:600;margin:12px 0}.product-showcase .tour-card p{color:#9ea9b1;font-size:13px;line-height:1.8;max-width:460px}.product-showcase .tour-card.hero-card{grid-row:span 2;background:radial-gradient(ellipse at 80% 15%,#34433c55,transparent 70%),#171d1d}.product-showcase .tour-visual{border:1px solid #3c4749;border-radius:12px;background:#0e1314;margin:30px 0;padding:22px}.product-showcase .tour-visual img{width:100%;height:210px;object-fit:contain;filter:grayscale(1)}.product-showcase .tour-link{display:inline-flex;gap:12px;align-items:center;color:#d8e5e7;font-size:12px;margin-top:24px}.product-showcase .tour-number{font:11px ui-monospace,Consolas,monospace;color:#8a9b9d;letter-spacing:2px}.product-showcase .tour-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:60px;border-top:1px solid #353b41;padding-top:25px}.product-showcase .tour-steps h3{font-size:15px;margin:12px 0;color:#e3e9ec}.product-showcase .tour-steps p{font-size:12px;color:#93a0a8;line-height:1.8}@media(max-width:800px){.product-showcase .tour-grid{grid-template-columns:1fr}.product-showcase .tour-steps{grid-template-columns:1fr 1fr}}</style>
-    <link rel="stylesheet" href="client-downloads.css">
+<link rel="stylesheet" href="workbench.css?v=20260908"><style>.product-showcase .ms-app{min-height:auto;background:transparent}.product-showcase h2{font-size:38px;line-height:1.2;font-weight:600;letter-spacing:-1.4px}.product-showcase .tour-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;margin-top:28px}.product-showcase .tour-card{padding:32px;border:1px solid #353b41;border-radius:16px;background:#191d20;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.product-showcase .tour-card h3{font-size:24px;line-height:1.4;letter-spacing:-.8px;font-weight:600;margin:12px 0}.product-showcase .tour-card p{color:#9ea9b1;font-size:13px;line-height:1.8;max-width:460px}.product-showcase .tour-card.hero-card{grid-row:span 2;background:radial-gradient(ellipse at 80% 15%,#34433c55,transparent 70%),#171d1d}.product-showcase .tour-visual{border:1px solid #3c4749;border-radius:12px;background:#0e1314;margin:30px 0;padding:22px}.product-showcase .tour-visual img{width:100%;height:210px;object-fit:contain;filter:grayscale(1)}.product-showcase .tour-link{display:inline-flex;gap:12px;align-items:center;color:#d8e5e7;font-size:12px;margin-top:24px}.product-showcase .tour-number{font:11px ui-monospace,Consolas,monospace;color:#8a9b9d;letter-spacing:2px}.product-showcase .tour-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:60px;border-top:1px solid #353b41;padding-top:25px}.product-showcase .tour-steps h3{font-size:15px;margin:12px 0;color:#e3e9ec}.product-showcase .tour-steps p{font-size:12px;color:#93a0a8;line-height:1.8}@media(max-width:800px){.product-showcase .tour-grid{grid-template-columns:1fr}.product-showcase .tour-steps{grid-template-columns:1fr 1fr}}</style>    <link rel="stylesheet" href="client-downloads.css">
+    <link rel="stylesheet" href="product-film.css">
 </head>
 <body class="antialiased selection:bg-[#5E6AD2]/30 selection:text-white" data-page="home">
     <div class="bg-grid"></div>
@@ -52,10 +52,10 @@
     <div class="shell">
         <nav class="nav">
             <a class="brand" href="#top"><span class="mark"><img src="logo.png" alt=""></span><span>SpineInsight</span></a>
-            <div class="links"><a href="#overview">核心思想</a><a href="#metrics">指标解释</a><a href="#algorithm">算法结构</a><a href="#reports">报告体系</a><a href="#future">功能与指引</a><a href="#downloads">下载客户端</a></div>
+            <div class="links"><a href="#product-film">产品影片</a><a href="#downloads">客户端下载</a></div>
             <div class="auth-nav">
                 <div id="guest-actions" class="auth-nav-actions"><a class="btn btn-ghost hidden sm:inline-flex" href="health-home.html">健康中心</a><a class="btn btn-ghost" href="login.html">登录</a><a class="btn btn-primary" href="register.html">注册</a></div>
-                <div id="member-actions" class="auth-nav-actions" hidden><a class="btn btn-ghost hidden sm:inline-flex" href="#metrics">查看指标</a><a class="btn btn-ghost hidden sm:inline-flex" href="health-home.html">健康中心</a><a class="btn btn-primary" href="workspace.html">医生工作台</a><button id="account-avatar-button" class="account-avatar-button" type="button" aria-expanded="false" aria-haspopup="menu" aria-label="账号菜单"></button><div id="account-menu" class="account-menu" role="menu" hidden><div class="account-menu-head"><small>当前账号</small><strong id="account-menu-name">—</strong></div><div id="account-menu-list" class="account-menu-list"></div><a class="account-menu-action" href="health-home.html"><i class="fa-solid fa-sparkles"></i>脊柱健康中心</a><a class="account-menu-action" href="login.html?add=1"><i class="fa-solid fa-user-plus"></i>添加账号</a><button id="account-logout" class="account-menu-action danger" type="button"><i class="fa-solid fa-arrow-right-from-bracket"></i>退出账号</button></div></div>
+                <div id="member-actions" class="auth-nav-actions" hidden><a class="btn btn-ghost hidden sm:inline-flex" href="#product-film">观看影片</a><a class="btn btn-ghost hidden sm:inline-flex" href="health-home.html">健康中心</a><a class="btn btn-primary" href="workspace.html">医生工作台</a><button id="account-avatar-button" class="account-avatar-button" type="button" aria-expanded="false" aria-haspopup="menu" aria-label="账号菜单"></button><div id="account-menu" class="account-menu" role="menu" hidden><div class="account-menu-head"><small>当前账号</small><strong id="account-menu-name">—</strong></div><div id="account-menu-list" class="account-menu-list"></div><a class="account-menu-action" href="health-home.html"><i class="fa-solid fa-sparkles"></i>脊柱健康中心</a><a class="account-menu-action" href="login.html?add=1"><i class="fa-solid fa-user-plus"></i>添加账号</a><button id="account-logout" class="account-menu-action danger" type="button"><i class="fa-solid fa-arrow-right-from-bracket"></i>退出账号</button></div></div>
             </div>
         </nav>
         <header id="top" class="hero">
@@ -71,6 +71,31 @@
             </div>
         </header>
         <main>
+<section id="product-film" class="product-film" aria-labelledby="product-film-title">
+    <div class="product-film__heading">
+        <h2 id="product-film-title"><span>看看脊见智诊</span><span>如何工作。</span></h2>
+        <p id="product-film-description">从日常记录到智能助手，完整体验尽在这部影片。</p>
+    </div>
+    <figure class="product-film__figure">
+        <div class="product-film__stage" data-film-stage data-state="ready">
+            <video class="product-film__video" data-product-video controls preload="none" playsinline width="1920" height="1080" tabindex="0" poster="assets/product-film/spineinsight-film-poster.jpg" aria-label="脊见智诊产品演示影片" aria-describedby="product-film-description product-film-status">
+                <source src="assets/product-film/spineinsight-film-v10.mp4" type="video/mp4">
+                您的浏览器无法播放此视频，请使用下方链接打开影片。
+            </video>
+            <button class="product-film__play" data-film-play type="button" hidden>
+                <span class="product-film__play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.8a.8.8 0 0 1 1.22-.68l10 6.2a.8.8 0 0 1 0 1.36l-10 6.2A.8.8 0 0 1 8 18.2Z"/></svg></span>
+                <span data-film-play-label>观看产品演示</span>
+                <span class="product-film__play-duration" aria-hidden="true">2分27秒</span>
+            </button>
+        </div>
+        <figcaption class="product-film__caption">
+            <span>产品演示 <span class="product-film__duration">2分27秒</span></span>
+            <a href="assets/product-film/spineinsight-film-v10.mp4" data-film-fallback target="_blank" rel="noopener">在新窗口播放 <span aria-hidden="true">↗</span></a>
+        </figcaption>
+    </figure>
+    <p id="product-film-status" class="product-film__status" data-film-status role="status" aria-live="polite"></p>
+</section>
+
 <section id="downloads" class="client-downloads" aria-labelledby="client-downloads-title">
     <div class="client-downloads__heading">
         <div>
@@ -153,113 +178,54 @@
         <a href="workspace.html">继续使用网页版 <span aria-hidden="true">↗</span></a>
     </div>
 </section>
-            <section id="overview" class="section">
-                <div class="head center"><span class="k">Core Concept</span><h2>把问卷、影像、智能分析、康复随访与医生沟通连成一条闭环。</h2><p class="desc">先由脊柱健康 Agent 完成资料分流和病例建档，再按需进入影像分析、人工复核与长期趋势。每项结论都保留质量状态、来源和适用边界，而不是把多个模型堆成一个黑箱总分。</p></div>
-                <div class="grid4">
-                    <article class="card reveal"><span class="idx">01</span><h3>多模态输入</h3><p>X 光侧重结构测量，DICOM 支持窗宽窗位，RGB 侧重低成本预筛和 X 光风格图辅助展示。</p><span class="mini">XR</span></article>
-                    <article class="card reveal"><span class="idx">02</span><h3>朝向标准化</h3><p>通过左右分类模型自动判断朝向，将患者统一到面向左侧的测量标准，减少输入方向带来的测算偏差。</p><span class="mini">LR</span></article>
-                    <article class="card reveal"><span class="idx">03</span><h3>关键点量化</h3><p>定位椎体与骶骨关键点后，自动计算 LL、SS/SA、LCA、LCI 和节段滑脱距离，降低重复手工测量成本。</p><span class="mini">KP</span></article>
-                    <article class="card reveal"><span class="idx">04</span><h3>双报告沟通</h3><p>医生版保留专业测量信息，个人版把结果翻译成更容易理解的语言，帮助医生和患者更高效沟通。</p><span class="mini">PDF</span></article>
-                </div>
-            </section>
-            <section id="metrics" class="section story">
-                <aside class="sticky reveal">
-                    <span class="k">Measurement Map</span><h3>指标不是孤立数字，而是脊柱排列关系的压缩表达。</h3><p>右侧区块可展开查看指标意义和项目内参考分层。实际判断仍需结合年龄、症状、体位、片源质量和医生面诊。</p>
-                    <div class="rail"><div class="stack spine-sequence"><span class="v"></span><span class="v"></span><span class="v"></span><span class="v"></span><span class="v"></span><span class="v"></span><span class="mline"></span></div></div>
-                    <p class="note">提示：以下阈值用于系统展示和筛查分层，不等同于最终诊断标准。正式诊断需由专业医生结合完整影像和病史判断。</p>
-                </aside>
-                <div>
-                    <div class="head"><span class="k">Clinical Indicators</span><h2>主要测量指标与风险分层</h2><p class="desc">工作台当前重点围绕腰椎侧位片中的曲度、骶骨倾斜、腰骶连接和节段位移进行辅助分析。</p></div>
-                    <div class="acc">
-                        <details class="panel reveal" open><summary><span class="code">LL</span><span class="mt"><h3>腰椎前凸角 Lumbar Lordosis</h3><p>反映腰椎整体前凸曲度，是评价腰椎排列和平衡的重要角度。</p></span><i class="fa-solid fa-chevron-down chev"></i></summary><div class="body"><p class="desc">LL 偏低常见于腰椎变直、平背倾向或肌肉保护性紧张；LL 偏高可能提示腰椎过度前凸、骨盆前倾或腰骶负荷增加。</p><div class="grades"><div class="grade"><span>偏低参考：&lt; 20°</span><p>提示曲度变直或平背倾向。</p></div><div class="grade"><span>常见参考：20° 到 60°</span><p>处于较常见的腰椎前凸范围。</p></div><div class="grade"><span>偏高参考：&gt; 60°</span><p>可能提示过度前凸或腰骶应力增加。</p></div></div></div></details>
-                        <details class="panel reveal"><summary><span class="code">SS</span><span class="mt"><h3>骶骨倾斜角 Sacral Slope / SA</h3><p>描述骶骨上终板与水平线之间的夹角，和骨盆姿态、腰骶力线有关。</p></span><i class="fa-solid fa-chevron-down chev"></i></summary><div class="body"><p class="desc">SS/SA 越大，常伴随骨盆前倾和腰椎前凸增加；过低则可能对应骨盆后倾和平背趋势。</p><div class="grades"><div class="grade"><span>偏低参考：&lt; 30°</span><p>可能提示骨盆后倾或曲度不足。</p></div><div class="grade"><span>常见参考：30° 到 50°</span><p>常作为较稳定的观察范围。</p></div><div class="grade"><span>偏高参考：&gt; 50°</span><p>可能和骨盆前倾、腰骶负荷增大相关。</p></div></div></div></details>
-                        <details class="panel reveal"><summary><span class="code">LCA</span><span class="mt"><h3>腰骶连接角 Lumbosacral Curvature Angle</h3><p>关注腰椎上端到骶骨上端之间的过渡夹角。</p></span><i class="fa-solid fa-chevron-down chev"></i></summary><div class="body"><p class="desc">LCA 可帮助观察腰骶过渡段是否存在曲度异常、连接角改变或局部应力集中趋势。它适合和 LL、SS/SA、节段滑脱距离联合阅读。</p><div class="grades"><div class="grade"><span>轻度关注</span><p>角度轻微偏离，可作为复查参考。</p></div><div class="grade"><span>中度关注</span><p>与其他指标同向异常时需复核。</p></div><div class="grade"><span>重点关注</span><p>若伴随滑脱或疼痛，应进入专科评估。</p></div></div></div></details>
-                        <details class="panel reveal"><summary><span class="code">LCI</span><span class="mt"><h3>腰椎曲度指数 Lumbar Curvature Index</h3><p>本项目内用于描述局部椎体点到腰骶参考线的距离，单位为 mm。</p></span><i class="fa-solid fa-chevron-down chev"></i></summary><div class="body"><p class="desc">当前算法以 L1 与 S1 背侧参考线为基准，计算局部关键点到该参考线的距离。它是项目中用于量化局部曲度和形态偏移的辅助参数。</p><div class="grades"><div class="grade"><span>轻度：&lt; 5 mm</span><p>局部偏移较小，通常作为趋势记录。</p></div><div class="grade"><span>中度：5 到 10 mm</span><p>提示局部曲度有可观察变化。</p></div><div class="grade"><span>明显：&gt; 10 mm</span><p>建议结合其他角度指标重点复核。</p></div></div></div></details>
-                        <details class="panel reveal"><summary><span class="code">Slip</span><span class="mt"><h3>节段滑脱距离 Vertebral Translation</h3><p>以相邻椎体参考点的位移距离筛查前滑脱或后滑脱倾向。</p></span><i class="fa-solid fa-chevron-down chev"></i></summary><div class="body"><p class="desc">当前算法采用 mm 级位移阈值进行初筛。后续版本可继续加入 Meyerding 百分比分级、椎间隙高度和动态位移对比。</p><div class="grades"><div class="grade"><span>正常参考：≤ 3 mm</span><p>未见明显节段滑移趋势。</p></div><div class="grade"><span>轻度异常：3 到 6 mm</span><p>提示轻度前滑或后滑。</p></div><div class="grade"><span>明显异常：&gt; 6 mm</span><p>需要医生结合影像进一步判断。</p></div></div></div></details>
-                    </div>
-                </div>
-            </section>
-            <section id="algorithm" class="section">
-                <div class="head center"><span class="k">Algorithm Architecture</span><h2>生成、分类、检测与测量模块共享同一个脊柱结构先验。</h2><p class="desc">系统采用多任务迁移学习思路，把朝向分类、目标检测、关键点定位、生成式 X 光图和报告解释拆成多个可验证模块。每个模块解决一个明确问题，再通过工程工作流组合为端到端筛查能力。</p></div>
-                <div class="algorithm-shell">
-                    <div class="pipeline-map reveal">
-                        <span class="k">End-to-end Flow</span><h3>从输入图像到结构化结论</h3><p class="desc">先标准化，再定位结构，随后测量与解释。这样比直接让一个模型输出结论更可控，也更容易定位错误来源。</p>
-                        <div class="pipeline-list">
-                            <div class="pipe-step"><i class="fa-solid fa-image"></i><div><strong>Input Normalization</strong><span>读取 X 光、DICOM 或 RGB，完成灰度、尺寸、窗宽窗位和基础增强。</span></div></div>
-                            <div class="pipe-step"><i class="fa-solid fa-arrows-left-right"></i><div><strong>Orientation Classifier</strong><span>判断朝左或朝右，必要时自动镜像为统一的侧位方向。</span></div></div>
-                            <div class="pipe-step"><i class="fa-solid fa-crop-simple"></i><div><strong>ROI Detector</strong><span>定位脊柱区域，剔除背景干扰，为 RGB 裁剪和生成模块提供稳定输入。</span></div></div>
-                            <div class="pipe-step"><i class="fa-solid fa-vector-square"></i><div><strong>Keypoint Detector</strong><span>定位椎体与骶骨关键点，交给几何引擎计算角度和距离。</span></div></div>
-                            <div class="pipe-step"><i class="fa-solid fa-file-medical"></i><div><strong>Report Composer</strong><span>将指标、图像标注和解释文本组织为医生版与个人版报告。</span></div></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="module-grid">
-                            <article class="module-card reveal"><span class="tag">Classification</span><h3>左右朝向分类模型</h3><p>输入缩放后的侧位图，输出朝左或朝右概率。它的价值不是炫技，而是保护后续测量坐标系，避免镜像方向导致角度和滑脱判断混乱。</p><div class="formula">Loss: L_cls = CE(y, p)<br>Output: left / right + confidence</div></article>
-                            <article class="module-card reveal"><span class="tag">Detection</span><h3>脊柱 ROI 与椎体检测</h3><p>检测模块负责从复杂背景中找到脊柱有效区域，并在 X 光图中识别椎体结构。它承担“先看哪里”的任务。</p><div class="formula">Loss: L_det = L_box + L_obj + L_cls<br>Output: bbox / ROI / confidence</div></article>
-                            <article class="module-card reveal"><span class="tag">Keypoints</span><h3>关键点检测与几何测量</h3><p>关键点模型输出椎体和骶骨参考点，几何层再计算 LL、SS/SA、LCA、LCI 和节段滑脱距离。测量逻辑独立，便于医生复核。</p><div class="formula">Loss: L_kp = L_coord + L_vis<br>Metrics: angle / distance / slip</div></article>
-                            <article class="module-card reveal"><span class="tag">Generation</span><h3>RGB 到 X 光风格生成</h3><p>生成模块采用 Pix2Pix 思路，将 RGB 体表图像映射到 X 光风格表达，用于低成本预筛和可视化解释。它不是替代真实影像，而是补充筛查入口。</p><div class="formula">Loss: L_gen = L_GAN + λL1 + L_edge<br>Backbone: U-Net G + PatchGAN D</div></article>
-                        </div>
-                        <div class="loss-board reveal"><span class="k">Design Logic</span><h3>损失函数对应的是系统稳定性的不同部分</h3><p class="desc">分类损失保证方向一致，检测损失保证区域可靠，关键点损失保证测量点稳定，生成损失保证图像结构相似。把它们拆开训练和验证，可以让项目更像工程系统，而不是一张黑箱结果图。</p><div class="loss-strip"><div><strong>CE 分类损失</strong><span>约束左右朝向判断，降低镜像错误。</span></div><div><strong>Box / Obj 损失</strong><span>约束 ROI 和椎体边界，提升定位稳定性。</span></div><div><strong>Keypoint 损失</strong><span>约束解剖关键点坐标，支撑角度测算。</span></div><div><strong>GAN + L1 损失</strong><span>约束生成图既像 X 光，又保留体表结构线索。</span></div></div></div>
-                    </div>
-                </div>
-                <div class="workflow">
-                    <article class="flow reveal"><i class="fa-solid fa-layer-group"></i><h3>迁移学习</h3><p>用已有视觉模型能力迁移到脊柱场景，降低从零训练的数据压力。</p></article>
-                    <article class="flow reveal"><i class="fa-solid fa-filter"></i><h3>多阶段回退</h3><p>当直测失败时，通过扩边、增强、视野重建等策略提高闭环可用率。</p></article>
-                    <article class="flow reveal"><i class="fa-solid fa-ruler-combined"></i><h3>几何后处理</h3><p>把模型输出转化为可解释角度和距离，而不是只给出模糊标签。</p></article>
-                    <article class="flow reveal"><i class="fa-solid fa-user-doctor"></i><h3>医学可复核</h3><p>保留关键点、测量线和原图对照，让医生能判断算法依据。</p></article>
-                    <article class="flow reveal"><i class="fa-solid fa-chart-line"></i><h3>持续扩展</h3><p>后续可加入骨刺、椎体形变、椎间距过窄和随访趋势分析。</p></article>
-                </div>
-            </section>
-            <section id="reports" class="section report-scroll-section">
-                <div class="head center"><span class="k">Report System</span><h2>同一组测量结果，拆成两种更适合真实沟通的报告。</h2><p class="desc">医生需要可复核、可归档、可追溯的专业信息；患者需要能读懂、能沟通、能指导下一步行动的解释。报告系统的设计重点是把专业结论翻译成不同阅读对象需要的语言。</p></div>
-                <div class="report-scroll" data-report-scroll data-stage="one">
-                    <div class="report-pin">
-                        <div class="report-stage-live">
-                            <div class="report-joint">
-                                <div><span class="k">One Data Source</span><h3>一组数据，两种表达</h3><p>系统先生成统一的指标、标注图和辅助印象，再随着阅读对象分流为医生版和个人版。来源一致，表达不同。</p></div>
-                            </div>
-                            <div class="report-live-cards">
-                                <article class="report-live-card">
-                                    <div class="report-live-inner">
-                                        <div class="report-live-face">
-                                            <div><span class="k">Doctor Side</span><h3>医生版报告</h3><p>强调专业测量、结构化指标、影像标注和复核线索。</p></div>
-                                            <div class="report-live-number">01</div>
-                                        </div>
-                                        <div class="report-live-face report-live-back">
-                                            <div><span class="k">Detail / Feature / Content</span><h3>为医生复核而设计</h3><p>医生版报告保留专业参数与图像证据，重点服务门诊阅片、病例沟通和复查归档。</p><ul class="report-list"><li>包含 LL、SS/SA、LCA、LCI、节段滑脱距离等结构化指标。</li><li>展示关键点、测量线、检测框和输入/输出图，便于追溯算法依据。</li><li>语言更专业，重点描述影像发现、异常线索和需要医生复核的位置。</li><li>适合医生快速筛查、康复随访对比、门诊报告归档和科研数据整理。</li></ul></div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="report-live-card">
-                                    <div class="report-live-inner">
-                                        <div class="report-live-face">
-                                            <div><span class="k">Patient Side + DeepSeek</span><h3>个人版报告</h3><p>强调通俗解释、风险提示、就医沟通和 DeepSeek 辅助生成的个性化建议。</p></div>
-                                            <div class="report-live-number">02</div>
-                                        </div>
-                                        <div class="report-live-face report-live-back">
-                                            <div><span class="k">DeepSeek-assisted Personal Report</span><h3>为患者理解而设计</h3><p>个人版报告在基础测量结果之外，可调用 DeepSeek 辅助生成更贴近患者阅读习惯的解释和建议，帮助患者知道下一步该问什么、做什么。</p><ul class="report-list"><li>减少术语堆叠，用通俗语言解释角度、曲度、滑脱等指标意义。</li><li>DeepSeek 辅助生成就医建议、就诊沟通要点、生活方式建议、风险提醒和复查提示。</li><li>把专业影像指标转化为患者能理解的行动建议，提升医患沟通效率。</li><li>明确说明“不替代医生诊断”，DeepSeek 内容只作为辅助解释和健康管理参考。</li></ul></div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="report-live-dots"><span></span><span></span><span></span></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="future" class="section product-showcase"><div class="ms-app"><p class="ms-eyebrow">One workspace. Every perspective.</p><h2>看见结果。理解变化。<br>开始下一步。</h2><p class="ms-subtitle">从影像到步态，从一次检查到长期随访。按你的任务进入工作区。</p><div class="tour-grid"><article class="tour-card hero-card"><div><span class="tour-number">01 / GAIT · V2.0.1</span><h3>从行走视频，<br>到可以复核的每一个细节。</h3><p>导入视频，自动选择目标并提取轮廓。原始视频、跟踪叠加与 Mask 共享播放位置，支持目标重选和独立重跑。</p><div class="tour-visual"><img src="assets/case-demo/gait-silhouette-sequence.png" alt="轮廓序列界面示例"><div class="ms-row between" style="margin-top:15px"><span class="ms-chip sample">静态界面示例</span><span class="ms-note">原始视频 / 跟踪 / Mask</span></div></div><p>三类模型分数、质量详情与分析产物一起保留。选择本次采用的结果，再归入检查报告。</p></div><a class="tour-link" href="gait-workspace.html">开始步态评估 <span>↗</span></a></article><article class="tour-card"><div><span class="tour-number">02 / IMAGING</span><h3>专业测量，保留原始依据。</h3><p>支持 X 光、DICOM 与 RGB 资料。将原图、标注和量化指标放在同一工作流中，完成测算、回看与导出。</p></div><div class="ms-row"><a class="tour-link" href="workspace.html">医生影像工作台 ↗</a><a class="tour-link" href="personal-workspace.html">个人影像评估 ↗</a></div></article><article class="tour-card"><div><span class="tour-number">03 / AGENT</span><h3>围绕你的检查，展开对话。</h3><p>结合已保存的病例与知识来源，解释结果、整理问题并准备任务。简洁的对话中心，让下一步清楚可见。</p></div><a class="tour-link" href="health-agent.html">打开 Agent ↗</a></article></div><div class="tour-steps"><article><span class="tour-number">STEP 01</span><h3>描述当前情况</h3><p>记录不适位置、病程、活动影响和本次目标。</p><a class="tour-link" href="personal-case.html?modal=questionnaire">填写问卷 ↗</a></article><article><span class="tour-number">STEP 02</span><h3>添加评估资料</h3><p>选择影像或步态工作区，保留原始资料与分析过程。</p><a class="tour-link" href="personal-workspace.html">添加资料 ↗</a></article><article><span class="tour-number">STEP 03</span><h3>复核并归档</h3><p>确认采用的结果，补充观察备注，形成独立检查记录。</p><a class="tour-link" href="personal-case.html">健康档案 ↗</a></article><article><span class="tour-number">STEP 04</span><h3>带着结果沟通</h3><p>导出检查报告，或让 Agent 整理值得进一步沟通的问题。</p><a class="tour-link" href="design-preview.html">浏览功能示例 ↗</a></article></div><div id="member-cta-actions" class="hero-actions" style="justify-content:flex-start;margin-top:55px"><a class="ms-button primary" href="health-home.html">进入健康中心 ↗</a><a class="ms-button" href="design-preview.html">先看功能演示</a></div></div></section>
         </main>
         <footer class="footer"><div class="brand"><span class="mark"><img src="logo.png" alt=""></span><span>SpineInsight / 脊见智诊</span></div><p class="note">本系统用于脊柱智能辅助筛查、科研展示和医生沟通辅助，不作为最终医疗诊断依据。</p></footer>
     </div>
     <script src="auth.js"></script>
     <script>
-        const canvas=document.getElementById("radiating-particles"),ctx=canvas.getContext("2d"),particles=[];function resize(){canvas.width=innerWidth;canvas.height=innerHeight}addEventListener("resize",resize);resize();
-        class Particle{constructor(){this.reset();this.life=Math.random()*this.maxLife;this.x+=Math.cos(this.angle)*this.speed*this.life;this.y+=Math.sin(this.angle)*this.speed*this.life}reset(){const w=160,h=canvas.height*.76;this.x=canvas.width/2+(Math.random()-.5)*w;this.y=canvas.height/2+(Math.random()-.5)*h;const dx=this.x-canvas.width/2,dy=this.y-canvas.height/2;this.angle=Math.atan2(dy,dx)+(Math.random()-.5)*1.5;this.speed=Math.random()*.22+.045;this.radius=Math.random()*1.25+.35;this.life=0;this.maxLife=Math.random()*320+220}update(){this.x+=Math.cos(this.angle)*this.speed;this.y+=Math.sin(this.angle)*this.speed;this.speed*=1.002;this.life+=1;if(this.life>=this.maxLife||this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset()}draw(){const r=this.life/this.maxLife,a=r<.08?r/.08:1-(r-.08)/.92;ctx.fillStyle=`rgba(220,228,255,${Math.max(0,a)*.55})`;ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.fill()}}
-        for(let i=0;i<180;i++)particles.push(new Particle());function animate(){ctx.fillStyle="rgba(0,0,0,.24)";ctx.fillRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.update();p.draw()});requestAnimationFrame(animate)}animate();
-        const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;entry.target.classList.add("is-visible");if(entry.target.classList.contains("spine-sequence"))entry.target.classList.add("spine-play");if(entry.target.classList.contains("flip-card")){const delay=Number(entry.target.dataset.flipDelay||0);setTimeout(()=>entry.target.classList.add("is-flipped"),450+delay)}observer.unobserve(entry.target)})},{threshold:.16,rootMargin:"0px 0px -8% 0px"});document.querySelectorAll(".reveal,.spine-sequence").forEach(el=>observer.observe(el));
-        const reportScrolls=[...document.querySelectorAll("[data-report-scroll]")];const clamp=(n,min=0,max=1)=>Math.min(max,Math.max(min,n));function updateReportScroll(){reportScrolls.forEach(section=>{const rect=section.getBoundingClientRect(),total=Math.max(1,rect.height-innerHeight),progress=clamp(-rect.top/total),current=section.dataset.stage||"one";let next=current;if(current==="one"&&progress>.26)next="split";if(current==="split"&&progress<.16)next="one";if(current==="split"&&progress>.58)next="flip";if(current==="flip"&&progress<.48)next="split";if(next!==current)section.dataset.stage=next})}let reportTicking=false;function requestReportUpdate(){if(reportTicking)return;reportTicking=true;requestAnimationFrame(()=>{updateReportScroll();reportTicking=false})}addEventListener("scroll",requestReportUpdate,{passive:true});addEventListener("resize",requestReportUpdate);updateReportScroll();
-        document.querySelectorAll(".panel").forEach(panel=>panel.addEventListener("toggle",()=>{if(panel.open)document.querySelectorAll(".panel").forEach(other=>{if(other!==panel)other.removeAttribute("open")})}));
+    (() => {
+        const canvas = document.getElementById('radiating-particles');
+        const hero = document.getElementById('top');
+        const context = canvas?.getContext('2d');
+        if (!context || !hero) return;
+        const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+        let visible = true, frame = 0;
+        const particles = Array.from({ length: 180 }, () => ({
+            x: Math.random(), y: Math.random(), life: Math.random(),
+            speed: .0006 + Math.random() * .0008, radius: .35 + Math.random() * 1.25
+        }));
+        function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+        function draw() {
+            frame = 0;
+            if (!visible || document.hidden || reducedMotion.matches) return;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            for (const particle of particles) {
+                particle.life = (particle.life + particle.speed) % 1;
+                const distance = particle.life * Math.max(canvas.width, canvas.height) * .55;
+                const angle = particle.x * Math.PI * 2;
+                context.fillStyle = `rgba(220,228,255,${Math.sin(particle.life * Math.PI) * .4})`;
+                context.beginPath();
+                context.arc(canvas.width / 2 + Math.cos(angle) * distance,
+                    canvas.height / 2 + Math.sin(angle) * distance * .8,
+                    particle.radius, 0, Math.PI * 2);
+                context.fill();
+            }
+            frame = requestAnimationFrame(draw);
+        }
+        function update() {
+            if (frame) cancelAnimationFrame(frame);
+            frame = 0;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            if (visible && !document.hidden && !reducedMotion.matches) frame = requestAnimationFrame(draw);
+        }
+        new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); }).observe(hero);
+        addEventListener('resize', () => { resize(); update(); });
+        document.addEventListener('visibilitychange', update);
+        reducedMotion.addEventListener('change', update);
+        resize(); update();
+    })();
     </script>
     <script src="client-downloads.js" defer></script>
+    <script src="product-film.js" defer></script>
 </body>
 </html>
